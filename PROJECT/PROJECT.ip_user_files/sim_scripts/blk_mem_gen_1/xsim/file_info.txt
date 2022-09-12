@@ -1,0 +1,2 @@
+blk_mem_gen_1_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../PROJECT.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_sim_netlist.vhdl,
+glbl.v,Verilog,xil_defaultlib,glbl.v
