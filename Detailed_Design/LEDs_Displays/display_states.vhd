@@ -79,22 +79,20 @@ begin
   end process;
   ---------------------------------------------------------------
   state_output_logic : process(r_state)
-  begin
-    -- Default  
-    s_display_state <= "00";           
+  begin    
     case r_state is
       ------------
-        when STOP => 
-            s_display_state <= "00";
+      when STOP => 
+        s_display_state <= "00";
       ------------
-        when PLAY =>
-            s_display_state <= "11";
+      when PLAY =>
+        s_display_state <= "11";
       ------------
-        when PAUSE =>
-            s_display_state <= "01";
+      when PAUSE =>
+        s_display_state <= "01";
       ------------
-        when others =>
-            s_display_state <= "00";
+      when others =>
+        s_display_state <= "00";
       ------------
     end case;
   end process;
