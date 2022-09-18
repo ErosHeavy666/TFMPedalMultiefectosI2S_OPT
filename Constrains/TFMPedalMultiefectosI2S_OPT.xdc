@@ -94,7 +94,7 @@ set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { BTND }
 set_property -dict {PACKAGE_PIN C17 IOSTANDARD LVCMOS33} [get_ports MCLK[1]]
 set_property -dict {PACKAGE_PIN D18 IOSTANDARD LVCMOS33} [get_ports WS[1]]
 set_property -dict {PACKAGE_PIN E18 IOSTANDARD LVCMOS33} [get_ports SCLK[1]]
-set_property -dict {PACKAGE_PIN G17 IOSTANDARD LVCMOS33} [get_ports SC_OUT]
+set_property -dict {PACKAGE_PIN G17 IOSTANDARD LVCMOS33} [get_ports SD_OUT]
 set_property -dict {PACKAGE_PIN D17 IOSTANDARD LVCMOS33} [get_ports MCLK[0]]
 set_property -dict {PACKAGE_PIN E17 IOSTANDARD LVCMOS33} [get_ports WS[0]]
 set_property -dict {PACKAGE_PIN F18 IOSTANDARD LVCMOS33} [get_ports SCLK[0]]
