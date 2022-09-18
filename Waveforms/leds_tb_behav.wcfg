@@ -12,47 +12,41 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="12000000000000fs"></ZoomEndTime>
-      <Cursor1Time time="12000000000000fs"></Cursor1Time>
+      <ZoomEndTime time="12000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="8560080000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="219"></NameColumnWidth>
-      <ValueColumnWidth column_width="122"></ValueColumnWidth>
+      <ValueColumnWidth column_width="118"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />
-   <wvobject fp_name="/leds_tb/u_leds/clk" type="logic">
+   <wvobject fp_name="/leds_tb/unit_leds/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/leds_tb/u_leds/n_reset" type="logic">
+   <wvobject fp_name="/leds_tb/unit_leds/n_reset" type="logic">
       <obj_property name="ElementShortName">n_reset</obj_property>
       <obj_property name="ObjectShortName">n_reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/leds_tb/u_leds/i_play_enable" type="logic">
+   <wvobject fp_name="/leds_tb/unit_leds/i_play_enable" type="logic">
       <obj_property name="ElementShortName">i_play_enable</obj_property>
       <obj_property name="ObjectShortName">i_play_enable</obj_property>
    </wvobject>
-   <wvobject fp_name="/leds_tb/u_leds/i_r_data_rx" type="array">
+   <wvobject fp_name="/leds_tb/unit_leds/i_r_data_rx" type="array">
       <obj_property name="ElementShortName">i_r_data_rx[15:0]</obj_property>
       <obj_property name="ObjectShortName">i_r_data_rx[15:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">15</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/leds_tb/u_leds/i_l_data_rx" type="array">
+   <wvobject fp_name="/leds_tb/unit_leds/i_l_data_rx" type="array">
       <obj_property name="ElementShortName">i_l_data_rx[15:0]</obj_property>
       <obj_property name="ObjectShortName">i_l_data_rx[15:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">15</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/leds_tb/u_leds/o_leds" type="array">
+   <wvobject fp_name="/leds_tb/unit_leds/o_leds" type="array">
       <obj_property name="ElementShortName">o_leds[15:0]</obj_property>
       <obj_property name="ObjectShortName">o_leds[15:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
@@ -61,82 +55,14 @@
       <obj_property name="label">-</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject fp_name="vbus45" type="vbus">
-      <obj_property name="label">l_leds</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="CustomSignalColor">#0000FF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
+   <wvobject fp_name="/leds_tb/unit_leds/r_r_LEDs" type="array">
+      <obj_property name="ElementShortName">r_r_LEDs[7:0]</obj_property>
+      <obj_property name="ObjectShortName">r_r_LEDs[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[7]" type="logic">
-         <obj_property name="ElementShortName">[7]</obj_property>
-         <obj_property name="ObjectShortName">[7]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[6]" type="logic">
-         <obj_property name="ElementShortName">[6]</obj_property>
-         <obj_property name="ObjectShortName">[6]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[5]" type="logic">
-         <obj_property name="ElementShortName">[5]</obj_property>
-         <obj_property name="ObjectShortName">[5]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[4]" type="logic">
-         <obj_property name="ElementShortName">[4]</obj_property>
-         <obj_property name="ObjectShortName">[4]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[3]" type="logic">
-         <obj_property name="ElementShortName">[3]</obj_property>
-         <obj_property name="ObjectShortName">[3]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[2]" type="logic">
-         <obj_property name="ElementShortName">[2]</obj_property>
-         <obj_property name="ObjectShortName">[2]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[1]" type="logic">
-         <obj_property name="ElementShortName">[1]</obj_property>
-         <obj_property name="ObjectShortName">[1]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[0]" type="logic">
-         <obj_property name="ElementShortName">[0]</obj_property>
-         <obj_property name="ObjectShortName">[0]</obj_property>
-      </wvobject>
    </wvobject>
-   <wvobject fp_name="vbus36" type="vbus">
-      <obj_property name="label">r_leds</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="CustomSignalColor">#0000FF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
+   <wvobject fp_name="/leds_tb/unit_leds/r_l_LEDs" type="array">
+      <obj_property name="ElementShortName">r_l_LEDs[7:0]</obj_property>
+      <obj_property name="ObjectShortName">r_l_LEDs[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[15]" type="logic">
-         <obj_property name="ElementShortName">[15]</obj_property>
-         <obj_property name="ObjectShortName">[15]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[14]" type="logic">
-         <obj_property name="ElementShortName">[14]</obj_property>
-         <obj_property name="ObjectShortName">[14]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[13]" type="logic">
-         <obj_property name="ElementShortName">[13]</obj_property>
-         <obj_property name="ObjectShortName">[13]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[12]" type="logic">
-         <obj_property name="ElementShortName">[12]</obj_property>
-         <obj_property name="ObjectShortName">[12]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[11]" type="logic">
-         <obj_property name="ElementShortName">[11]</obj_property>
-         <obj_property name="ObjectShortName">[11]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[10]" type="logic">
-         <obj_property name="ElementShortName">[10]</obj_property>
-         <obj_property name="ObjectShortName">[10]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[9]" type="logic">
-         <obj_property name="ElementShortName">[9]</obj_property>
-         <obj_property name="ObjectShortName">[9]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/leds_tb/u_leds/o_leds[8]" type="logic">
-         <obj_property name="ElementShortName">[8]</obj_property>
-         <obj_property name="ObjectShortName">[8]</obj_property>
-      </wvobject>
    </wvobject>
 </wave_config>
