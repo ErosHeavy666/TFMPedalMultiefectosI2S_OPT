@@ -65,7 +65,7 @@ begin
   ---
   ctrl_reg: process (clk)
   begin
-    if rising_edge(clk) then
+    if (rising_edge(clk)) then
       if (n_reset = '0') then
         r_i2s_state <= idle;
       else
@@ -162,7 +162,7 @@ begin
   ---
   dp_reg: process (clk)
   begin  
-    if rising_edge(clk) then
+    if (rising_edge(clk)) then
       if (n_reset = '0') then
          r_scount <= (others => '0');
          r_wcount <= (others => '0');
@@ -208,8 +208,8 @@ begin
   ---
   dp_sd_in_reg: process (clk)
   begin     
-    if rising_edge(clk) then
-      if n_reset = '0' then
+    if (rising_edge(clk)) then
+      if (n_reset = '0') then
          r_l_in <= (others => '0');
          r_r_in <= (others => '0');
       else
@@ -253,8 +253,8 @@ begin
   ---
   dp_sd_out_reg: process (clk)
   begin
-    if rising_edge(clk) then
-      if n_reset = '0' then
+    if (rising_edge(clk)) then
+      if (n_reset = '0') then
          r_l_out  <= (others => '0');
          r_r_out  <= (others => '0');
       else

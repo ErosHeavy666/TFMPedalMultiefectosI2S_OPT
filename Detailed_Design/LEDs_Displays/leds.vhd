@@ -19,9 +19,9 @@ entity leds is
     clk           : in std_logic; -- MCLK
     n_reset       : in std_logic; -- Reset síncrono a nivel bajo del sistema global
     i_play_enable : in std_logic; -- Enable que activa el sistema 
-    i_r_data_rx   : in std_logic_vector (g_width-1 downto 0); -- Canal derecho de audio a la entrada
-    i_l_data_rx   : in std_logic_vector (g_width-1 downto 0); -- Canal izquierdo de audio a la entrada
-    o_leds        : out std_logic_vector (g_width-1 downto 0) -- Vector de 15 Leds 
+    i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal derecho de audio a la entrada
+    i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal izquierdo de audio a la entrada
+    o_leds        : out std_logic_vector(g_width-1 downto 0) -- Vector de 15 Leds 
   );
 end leds;
 
@@ -31,8 +31,8 @@ end leds;
 architecture arch_leds of leds is
 
   -- Signals
-  signal r_r_LEDs, s_r_LEDs : std_logic_vector (g_width/2-1 downto 0);
-  signal r_l_LEDs, s_l_LEDs : std_logic_vector (g_width/2-1 downto 0);
+  signal r_r_LEDs, s_r_LEDs : std_logic_vector(g_width/2-1 downto 0);
+  signal r_l_LEDs, s_l_LEDs : std_logic_vector(g_width/2-1 downto 0);
 
 begin
   

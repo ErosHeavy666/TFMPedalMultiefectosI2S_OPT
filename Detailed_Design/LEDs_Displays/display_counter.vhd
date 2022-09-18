@@ -1,43 +1,66 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.all; 
+----------------------------------
+-- Engineer: Eros Garcia Arroyo --
+----------------------------------
 
+---------------
+-- Libraries --
+---------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
--- Asserts ref_rate every 250,000 clk cycles. At 100MHz, every 20ms
+------------
+-- Entity --
+------------
 entity display_counter is
-    Port (  
-        clk : in STD_LOGIC;
-        reset : in STD_LOGIC;
-        ref_rate : out STD_LOGIC
-        );
+  port (  
+    clk         : in std_logic;
+    n_reset     : in std_logic;
+    o_disp_rate : out std_logic
+  );
 end display_counter;
 
-architecture Behavioral of display_counter is
-
-    signal counter, counter_next : STD_LOGIC_VECTOR (17 downto 0) := (others => '0');
+------------------
+-- Architecture --
+------------------
+architecture arch_display_counter of display_counter is
+  
+  -- Constants 
+  constant c_REFRESH_RATE : integer := 28225; -- MCLK/400Hz = 11290000/400 = 28225
+    
+  -- Signals
+  signal r_cnt_disp_rate, s_cnt_disp_rate : unsigned(14 downto 0);
+  signal r_disp_rate, s_disp_rate : std_logic;
     
 begin
-    -- Register logic
-    process (clk, reset)
-        begin
-            if reset = '1' then
-                counter <= (others => '0');
-            elsif rising_edge(clk) then
-                counter <= counter_next;
-            end if;
-    end process;
-    
-    -- Combinational logic
-    process (counter)
-        begin
-            if counter = "111101000010010000" then -- Limit reached so reset
-                counter_next <= (others => '0');
-                ref_rate <= '1';
-            else -- Counts
-                counter_next <= counter + 1;
-                ref_rate <= '0';
-            end if;
-    end process;
 
-end Behavioral;
+  -- Register process:
+  r_display_counter_process : process(clk)
+  begin
+    if (rising_edge(clk)) then
+      if (n_reset = '0') then
+        r_cnt_disp_rate <= (others => '0');
+        r_disp_rate <= '0';
+      else
+        r_cnt_disp_rate <= s_cnt_disp_rate;
+        r_disp_rate <= s_disp_rate;
+      end if;
+    end if;
+  end process;
+    
+  -- Combinational logic process:
+  s_display_counter_process : process(r_cnt_disp_rate)
+  begin
+    if (r_cnt_disp_rate = to_unsigned(c_REFRESH_RATE, r_cnt_disp_rate'length)) then -- Limit reached so reset
+        s_cnt_disp_rate <= (others => '0');
+        s_disp_rate <= '1';
+    else -- Counts
+        s_cnt_disp_rate <= r_cnt_disp_rate + 1;
+        s_disp_rate <= '0';
+    end if;
+  end process;
+
+  -- Output process:
+  o_disp_rate <= r_disp_rate; 
+  
+end arch_display_counter;

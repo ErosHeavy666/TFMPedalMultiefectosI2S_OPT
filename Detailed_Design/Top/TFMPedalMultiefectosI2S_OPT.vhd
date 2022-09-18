@@ -71,9 +71,7 @@ ARCHITECTURE logic OF i2s_playback IS
     SIGNAL r_data_rx    :  signed(d_width-1 DOWNTO 0);  --right channel data received from I2S Transceiver component
     SIGNAL l_data_tx    :  std_logic_vector(d_width-1 DOWNTO 0);  --left channel data to transmit using I2S Transceiver component
     SIGNAL r_data_tx    :  std_logic_vector(d_width-1 DOWNTO 0);  --right channel data to transmit using I2S Transceiver component
-    SIGNAL en_rx, en_tx :  STD_LOGIC;  
-    type global_state_var is (PLAY, PAUSE, STOP);
-    signal state, state_next : global_state_var := STOP;        
+    SIGNAL en_rx, en_tx :  STD_LOGIC;    
          
     signal global_state : STD_LOGIC_VECTOR (1 downto 0) := "00";
     
@@ -234,7 +232,7 @@ BEGIN
 
     
     displays : display_interface port map (
-          clk => clock,
+          clk => master_clk,
           reset => reset_n,
           state => global_state,
           seg => seg,
@@ -251,56 +249,7 @@ BEGIN
         r_data_rx   =>  std_logic_vector(r_data_rx)  ,
         LEDs        =>  LED       
     );
-    
-    
-    change_state_logic : process(state, play_enable)
-            begin
-                state_next <= state;
-                case state is
-                    when STOP => 
-                        if play_enable = '1' then
-                            state_next <= PLAY;
-                        else
-                            state_next <= PAUSE;
-                        end if;
-                    when PLAY =>
-                        if play_enable = '0' then
-                            state_next <= PAUSE;
-                        end if;
-                    when PAUSE =>
-                        if play_enable = '1' then
-                            state_next <= PLAY;
-                        end if;
-                    when others =>
-                end case;
-        end process;
-        
-        reg_logic : process(clock, reset_n)
-            begin
-                if reset_n = '1' then 
-                    state <= STOP;
-                elsif rising_edge(clock) then
-                    state <= state_next;
-                end if;
-        end process;
-        
-        output_logic : process(state)
-            begin
-                global_state <= "00";           
-                case state is
-                    when STOP => 
-                        global_state <= "00";
-                        
-                    when PLAY =>
-                        global_state <= "11";
-                        
-                    when PAUSE =>
-                        global_state <= "01";
-                        
-                    when others =>
-                        global_state <= "00";
-                end case;
-        end process;
+
         
     mclk(0) <= master_clk;  --output master clock to ADC
     mclk(1) <= master_clk;  --output master clock to DAC
