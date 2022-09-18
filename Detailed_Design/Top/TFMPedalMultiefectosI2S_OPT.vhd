@@ -85,32 +85,31 @@ ARCHITECTURE logic OF i2s_playback IS
         END COMPONENT;
 
     --declare I2S Transceiver component
-    component i2s is
-        generic (
-            ms_ratio_w: natural := 3;       -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
-            sw_ratio_w: natural := 6;       -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
-            
-            data_w:     natural := 16
-        );
-        port (
-            clk:       in  std_logic;
-            n_reset_a: in  std_logic;
-    
-            reset_s:   in  std_logic;
-        
-            sclk:      out std_logic;
-            ws:        out std_logic;
-            sd_in:     in  std_logic;
-            sd_out:    out std_logic;
-    
-            l_in:      out signed(data_w-1 downto 0);
-            r_in:      out signed(data_w-1 downto 0);
-            en_in:     out std_logic;
-    
-            l_out:     in  signed(data_w-1 downto 0);
-            r_out:     in  signed(data_w-1 downto 0);
-            en_out:    out std_logic
-        );
+    component i2s_transceiver is
+      generic (
+          g_ms_ratio_w : natural := 3; -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
+          g_sw_ratio_w : natural := 6; -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
+          g_data_w     : natural := 16
+      );
+      port (
+          clk        : in std_logic;
+          n_reset    : in std_logic;
+
+          i_reset_s  : in std_logic;
+      
+          sclk       : out std_logic;
+          ws         : out std_logic;
+          sd_in      : in std_logic;
+          sd_out     : out std_logic;
+
+          l_in       : out signed(g_data_w-1 downto 0);
+          r_in       : out signed(g_data_w-1 downto 0);
+          en_in      : out std_logic;
+
+          l_out      : in signed(g_data_w-1 downto 0);
+          r_out      : in signed(g_data_w-1 downto 0);
+          en_out     : out std_logic
+      );
     end component;
     
     component display_interface port(
@@ -180,12 +179,12 @@ BEGIN
         clk_out1 => master_clk
     );
   
-    --instantiate I2S Transceiver component
-    unit_i2s: i2s
+    -- Instance for I2S Transceiver component
+    unit_i2s_transceiver: i2s_transceiver
         PORT MAP(
         clk => master_clk,
-        n_reset_a => i2s_reset, 
-        reset_s => play_enable_SW0,
+        n_reset => i2s_reset, 
+        i_reset_s => play_enable_SW0,
         
         sclk => serial_clk, 
         ws => word_select, 
