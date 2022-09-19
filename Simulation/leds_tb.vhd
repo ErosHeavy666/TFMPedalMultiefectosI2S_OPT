@@ -88,7 +88,7 @@ begin
       s_i_l_data_rx <= "0000000000000000";     
       
       wait for 2*clk_period;    
-      for i in 0 to 65535 loop
+      for i in 0 to 524288 loop
           s_i_r_data_rx <= s_i_r_data_rx + 1;
           s_i_l_data_rx <= s_i_l_data_rx + 1;
           wait for 2*clk_period;

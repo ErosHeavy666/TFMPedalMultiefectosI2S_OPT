@@ -33,9 +33,27 @@ architecture arch_leds of leds is
   -- Signals
   signal r_r_LEDs, s_r_LEDs : std_logic_vector(g_width/2-1 downto 0);
   signal r_l_LEDs, s_l_LEDs : std_logic_vector(g_width/2-1 downto 0);
-
+  signal s_leds_rate : std_logic;  
+  
+  -- Components
+  component leds_counter is
+    port (  
+      clk         : in std_logic;
+      n_reset     : in std_logic;
+      o_leds_rate : out std_logic
+    );
+  end component; 
+  
 begin
   
+  -- Leds counter instance
+  unit_leds_counter : leds_counter 
+    port map(
+      clk         => clk,
+      n_reset     => n_reset,
+      o_leds_rate => s_leds_rate
+  );
+    
   -- Register process:
   r_leds_process : process(clk) --Proceso sensible al reloj de MCLK
   begin
@@ -43,7 +61,7 @@ begin
       if(n_reset = '0') then
         r_r_LEDs <= (others => '0');
         r_l_LEDs <= (others => '0');
-      else
+      elsif(s_leds_rate = '1') then
         r_r_LEDs <= s_r_LEDs;
         r_l_LEDs <= s_l_LEDs;
       end if;
@@ -53,45 +71,47 @@ begin
   -- Combinational logic process:
               ------------------------------------------------------ 
   s_r_LEDs <= "01011001" when (i_play_enable = '0') else -- Stand-by 
+              "00000000" when (signed(i_r_data_rx)  = x"0000") else -- No signal
               ------------------------------------------------------
-              "10000000" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000000000000001" and signed(i_r_data_rx) >= "000000000000000") else -- Positive
-              "11000000" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000000000000011" and signed(i_r_data_rx) >= "000000000000001") else 
-              "11100000" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000000000001111" and signed(i_r_data_rx) >= "000000000000011") else
-              "11110000" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000000000111111" and signed(i_r_data_rx) >= "000000000001111") else
-              "11111000" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000000011111111" and signed(i_r_data_rx) >= "000000000111111") else
-              "11111100" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000001111111111" and signed(i_r_data_rx) >= "000000011111111") else
-              "11111110" when (i_play_enable = '1' and signed(i_r_data_rx) <= "000111111111111" and signed(i_r_data_rx) >= "000001111111111") else
-              "11111111" when (i_play_enable = '1' and signed(i_r_data_rx) <= "011111111111111" and signed(i_r_data_rx) >= "000111111111111") else
+              "10000000" when (signed(i_r_data_rx) <= x"0FFF" and signed(i_r_data_rx) > x"0000") else -- Positive
+              "11000000" when (signed(i_r_data_rx) <= x"1FFF" and signed(i_r_data_rx) > x"0FFF") else 
+              "11100000" when (signed(i_r_data_rx) <= x"2FFF" and signed(i_r_data_rx) > x"1FFF") else
+              "11110000" when (signed(i_r_data_rx) <= x"3FFF" and signed(i_r_data_rx) > x"2FFF") else
+              "11111000" when (signed(i_r_data_rx) <= x"4FFF" and signed(i_r_data_rx) > x"3FFF") else
+              "11111100" when (signed(i_r_data_rx) <= x"5FFF" and signed(i_r_data_rx) > x"4FFF") else
+              "11111110" when (signed(i_r_data_rx) <= x"6FFF" and signed(i_r_data_rx) > x"5FFF") else
+              "11111111" when (signed(i_r_data_rx) <= x"7FFF" and signed(i_r_data_rx) > x"6FFF") else
               ------------------------------------------------------
-              "10000000" when (i_play_enable = '1' and signed(i_r_data_rx) = "111111111111111") else -- Negative
-              "11000000" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111111111111100" and signed(i_r_data_rx) <= "111111111111111") else 
-              "11100000" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111111111110000" and signed(i_r_data_rx) <= "111111111111100") else
-              "11110000" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111111111000000" and signed(i_r_data_rx) <= "111111111110000") else
-              "11111000" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111111100000000" and signed(i_r_data_rx) <= "111111111000000") else
-              "11111100" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111110000000000" and signed(i_r_data_rx) <= "111111100000000") else
-              "11111110" when (i_play_enable = '1' and signed(i_r_data_rx) >= "111000000000000" and signed(i_r_data_rx) <= "111110000000000") else
-              "11111111" when (i_play_enable = '1' and signed(i_r_data_rx) >= "100000000000000" and signed(i_r_data_rx) <= "111000000000000") else r_r_LEDs; -- Keep the last value
+              "10000000" when (signed(i_r_data_rx) >= x"F000" and signed(i_r_data_rx) < x"0000") else -- Negative
+              "11000000" when (signed(i_r_data_rx) >= x"E000" and signed(i_r_data_rx) < x"F000") else 
+              "11100000" when (signed(i_r_data_rx) >= x"D000" and signed(i_r_data_rx) < x"E000") else
+              "11110000" when (signed(i_r_data_rx) >= x"C000" and signed(i_r_data_rx) < x"D000") else
+              "11111000" when (signed(i_r_data_rx) >= x"B000" and signed(i_r_data_rx) < x"C000") else
+              "11111100" when (signed(i_r_data_rx) >= x"A000" and signed(i_r_data_rx) < x"B000") else
+              "11111110" when (signed(i_r_data_rx) >= x"9000" and signed(i_r_data_rx) < x"A000") else
+              "11111111" when (signed(i_r_data_rx) >= x"8000" and signed(i_r_data_rx) < x"9000") else r_r_LEDs; -- Keep the last value
               ------------------------------------------------------
               ------------------------------------------------------ 
   s_l_LEDs <= "10011010" when (i_play_enable = '0') else
+              "00000000" when (signed(i_l_data_rx)  = x"0000") else -- No signal
               ------------------------------------------------------
-              "00000001" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000000000000001" and signed(i_r_data_rx) >= "000000000000000") else -- Positive                                  
-              "00000011" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000000000000011" and signed(i_l_data_rx) >= "000000000000001") else 
-              "00000111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000000000001111" and signed(i_l_data_rx) >= "000000000000011") else 
-              "00001111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000000000111111" and signed(i_l_data_rx) >= "000000000001111") else 
-              "00011111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000000011111111" and signed(i_l_data_rx) >= "000000000111111") else 
-              "00111111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000001111111111" and signed(i_l_data_rx) >= "000000011111111") else 
-              "01111111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "000111111111111" and signed(i_l_data_rx) >= "000001111111111") else 
-              "11111111" when (i_play_enable = '1' and signed(i_l_data_rx) <= "011111111111111" and signed(i_l_data_rx) >= "000111111111111") else 
-              ------------------------------------------------------
-              "00000001" when (i_play_enable = '1' and signed(i_l_data_rx) = "111111111111111") else -- Negative                                                                      
-              "00000011" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111111111111100" and signed(i_l_data_rx) <= "111111111111111") else                                     
-              "00000111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111111111110000" and signed(i_l_data_rx) <= "111111111111100") else                                     
-              "00001111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111111111000000" and signed(i_l_data_rx) <= "111111111110000") else                                     
-              "00011111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111111100000000" and signed(i_l_data_rx) <= "111111111000000") else                                     
-              "00111111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111110000000000" and signed(i_l_data_rx) <= "111111100000000") else                                     
-              "01111111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "111000000000000" and signed(i_l_data_rx) <= "111110000000000") else                                     
-              "11111111" when (i_play_enable = '1' and signed(i_l_data_rx) >= "100000000000000" and signed(i_l_data_rx) <= "111000000000000") else r_l_LEDs; -- Keep the last value    
+              "00000001" when (signed(i_l_data_rx) <= x"0FFF" and signed(i_l_data_rx) > x"0000") else -- Positive                                  
+              "00000011" when (signed(i_l_data_rx) <= x"1FFF" and signed(i_l_data_rx) > x"0FFF") else 
+              "00000111" when (signed(i_l_data_rx) <= x"2FFF" and signed(i_l_data_rx) > x"1FFF") else 
+              "00001111" when (signed(i_l_data_rx) <= x"3FFF" and signed(i_l_data_rx) > x"2FFF") else 
+              "00011111" when (signed(i_l_data_rx) <= x"4FFF" and signed(i_l_data_rx) > x"3FFF") else 
+              "00111111" when (signed(i_l_data_rx) <= x"5FFF" and signed(i_l_data_rx) > x"4FFF") else 
+              "01111111" when (signed(i_l_data_rx) <= x"6FFF" and signed(i_l_data_rx) > x"5FFF") else 
+              "11111111" when (signed(i_l_data_rx) <= x"7FFF" and signed(i_l_data_rx) > x"6FFF") else 
+              ------------------------------------------------------                            
+              "00000001" when (signed(i_l_data_rx) >= x"F000" and signed(i_l_data_rx) < x"0000") else                                       
+              "00000011" when (signed(i_l_data_rx) >= x"E000" and signed(i_l_data_rx) < x"F000") else                                     
+              "00000111" when (signed(i_l_data_rx) >= x"D000" and signed(i_l_data_rx) < x"E000") else                                     
+              "00001111" when (signed(i_l_data_rx) >= x"C000" and signed(i_l_data_rx) < x"D000") else                                     
+              "00011111" when (signed(i_l_data_rx) >= x"B000" and signed(i_l_data_rx) < x"C000") else                                     
+              "00111111" when (signed(i_l_data_rx) >= x"A000" and signed(i_l_data_rx) < x"B000") else                                     
+              "01111111" when (signed(i_l_data_rx) >= x"9000" and signed(i_l_data_rx) < x"A000") else                                     
+              "11111111" when (signed(i_l_data_rx) >= x"8000" and signed(i_l_data_rx) < x"9000") else r_l_LEDs; -- Keep the last value    
               ------------------------------------------------------
 
   -- Output process:
