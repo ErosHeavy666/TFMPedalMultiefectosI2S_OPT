@@ -205,12 +205,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../Detailed_Design/LEDs_Displays/leds_counter.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../Detailed_Design/Genericos/register.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
