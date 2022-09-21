@@ -44,9 +44,9 @@ entity i2s_playback IS
       WS          : out std_logic_vector(1 downto 0);  --word select (or left-right clock)
       SD_IN       : in std_logic;                     --serial data in
       SD_OUT      : out std_logic;
-      SEG         : out std_logic_vector (6 downto 0);
-      AN          : out std_logic_vector (7 downto 0);
-      LED         : out std_logic_vector (g_width-1 downto 0)
+      SEG         : out std_logic_vector(6 downto 0);
+      AN          : out std_logic_vector(7 downto 0);
+      LED         : out std_logic_vector(g_width-1 downto 0)
   );                  
 end i2s_playback;
 
@@ -56,14 +56,14 @@ end i2s_playback;
 architecture arch_i2s_playback OF i2s_playback IS
 
   -- Signals
-  signal master_clk   :  std_logic; -- internal master clock signal
-  signal serial_clk   :  std_logic; -- internal serial clock signal
-  signal word_select  :  std_logic; -- internal word select signal
-  signal l_data_rx    :  std_logic_vector(g_width-1 downto 0);  -- left channel data received from I2S Transceiver component
-  signal r_data_rx    :  std_logic_vector(g_width-1 downto 0);  -- right channel data received from I2S Transceiver component
-  signal l_data_tx    :  std_logic_vector(g_width-1 downto 0);  -- left channel data to transmit using I2S Transceiver component
-  signal r_data_tx    :  std_logic_vector(g_width-1 downto 0);  -- right channel data to transmit using I2S Transceiver component
-  signal en_rx        :  std_logic;    
+  signal master_clk  : std_logic; -- internal master clock signal
+  signal serial_clk  : std_logic; -- internal serial clock signal
+  signal word_select : std_logic; -- internal word select signal
+  signal l_data_rx   : std_logic_vector(g_width-1 downto 0);  -- left channel data received from I2S Transceiver component
+  signal r_data_rx   : std_logic_vector(g_width-1 downto 0);  -- right channel data received from I2S Transceiver component
+  signal l_data_tx   : std_logic_vector(g_width-1 downto 0);  -- left channel data to transmit using I2S Transceiver component
+  signal r_data_tx   : std_logic_vector(g_width-1 downto 0);  -- right channel data to transmit using I2S Transceiver component
+  signal en_rx       : std_logic;    
   
   signal reset : std_logic;
   
@@ -145,6 +145,7 @@ begin
       clk           => master_clk,
       n_reset       => n_reset,
       i_play_enable => PLAY_ENABLE,
+      i_en_rx       => en_rx,
       i_r_data_rx   => r_data_rx,
       i_l_data_rx   => l_data_rx,
       o_leds        => LED

@@ -22,8 +22,8 @@ package pkg_components is
 
   component i2s_transceiver is
     generic (
-        g_ms_ratio_w : natural := 3; -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
-        g_sw_ratio_w : natural := 6; -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
+        g_ms_ratio_w : natural := 3; 
+        g_sw_ratio_w : natural := 6; 
         g_data_w     : natural := 16
     );
     port (
@@ -80,23 +80,24 @@ package pkg_components is
         SW12                  : in STD_LOGIC;
         SW13                  : in STD_LOGIC;
         SW14                  : in STD_LOGIC;
-        l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
+        l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); 
         l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-        r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
+        r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0);
         r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0)  
     );
     end component;
      
   component leds is
     generic(
-      g_width       : integer := 16);  -- Data width
+      g_width       : integer := 16);  
     port ( 
-      clk           : in std_logic; -- MCLK
-      n_reset       : in std_logic; -- Reset síncrono a nivel bajo del sistema global
-      i_play_enable : in std_logic; -- Enable que activa el sistema 
-      i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal derecho de audio a la entrada
-      i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal izquierdo de audio a la entrada
-      o_leds        : out std_logic_vector(g_width-1 downto 0) -- Vector de 15 Leds 
+      clk           : in std_logic; 
+      n_reset       : in std_logic; 
+      i_play_enable : in std_logic; 
+      i_en_rx       : in std_logic;  
+      i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); 
+      i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); 
+      o_leds        : out std_logic_vector(g_width-1 downto 0) 
     );
   end component;
     
