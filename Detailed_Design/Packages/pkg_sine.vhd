@@ -1,7 +1,17 @@
+----------------------------------
+-- Engineer: Eros Garcia Arroyo --
+----------------------------------
+
+---------------
+-- Libraries --
+---------------
 library ieee;
 use ieee.std_logic_1164.all;
 
-package sine_package is
+-------------
+-- Package --
+-------------
+package pkg_sine is
 
   constant max_table_value: integer := 127;
   subtype table_value_type is integer range 0 to max_table_value;
@@ -9,13 +19,16 @@ package sine_package is
   constant max_table_index: integer := 127;
   subtype table_index_type is integer range 0 to max_table_index;
 
-  subtype sine_vector_type is std_logic_vector( 7 downto 0 );
+  subtype sine_vector_type is std_logic_vector(7 downto 0);
 
   function get_table_value (table_index: table_index_type) return table_value_type;
 
-end;
+end pkg_sine;
 
-package body sine_package is
+------------------
+-- Package Body --
+------------------
+package body pkg_sine is
 
   function get_table_value (table_index: table_index_type) return table_value_type is
     variable table_value: table_value_type;
@@ -281,4 +294,4 @@ package body sine_package is
     return table_value;
   end;
 
-end;
+end pkg_sine;
