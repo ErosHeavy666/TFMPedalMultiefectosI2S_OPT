@@ -38,7 +38,7 @@ begin
   process(clk) 
   begin
     if(rising_edge(clk)) then
-      if(n_reset = '0') then       --Si el reset esta a cero en un evento de subida del reloj
+      if(n_reset = '1') then       --Si el reset esta a cero en un evento de subida del reloj
         r_data <= (others => '0'); --Se escribe un x"0000" a la salida del registro
       elsif (i_en = '1') then      --Si el reset no esta activado y se detecta que enable esta a uno en
         r_data <= s_data;          --un evento de subida del reloj, este coloca en la salida 

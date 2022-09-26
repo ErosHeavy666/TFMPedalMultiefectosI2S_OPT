@@ -463,9 +463,12 @@ begin
                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
                                         SW10 = '0'  and SW11 = '1' and SW12 = '0')) else -- DELAY
                 ------------------------------------------------------------------------------------------------                     
-                l_data_out_chorus when (SW0  = '0'  and SW1  = '1' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
-                                        SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
-                                        SW10 = '0'  and SW11 = '0' and SW12 = '0') else -- CHORUS
+                l_data_out_chorus when ((SW0  = '0'  and SW1  = '1' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
+                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
+                                         SW10 = '0'  and SW11 = '0' and SW12 = '0') or 
+                                        (SW0  = '0'  and SW1  = '0' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
+                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
+                                         SW10 = '0'  and SW11 = '0' and SW12 = '1')) else -- CHORUS
                 ------------------------------------------------------------------------------------------------                     
                 l_data_out_reverb when (SW0  = '0'  and SW1  = '0' and SW2  = '1' and SW3 = '0' and SW4 = '0' and 
                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
@@ -514,9 +517,12 @@ begin
                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
                                         SW10 = '0'  and SW11 = '1' and SW12 = '0')) else -- DELAY
                 ------------------------------------------------------------------------------------------------                     
-                r_data_out_chorus when (SW0  = '0'  and SW1  = '1' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
-                                        SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
-                                        SW10 = '0'  and SW11 = '0' and SW12 = '0') else -- CHORUS
+                r_data_out_chorus when ((SW0  = '0'  and SW1  = '1' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
+                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
+                                         SW10 = '0'  and SW11 = '0' and SW12 = '0') or 
+                                        (SW0  = '0'  and SW1  = '0' and SW2  = '0' and SW3 = '0' and SW4 = '0' and 
+                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 
+                                         SW10 = '0'  and SW11 = '0' and SW12 = '1')) else -- CHORUS
                 ------------------------------------------------------------------------------------------------                     
                 r_data_out_reverb when (SW0  = '0'  and SW1  = '0' and SW2  = '1' and SW3 = '0' and SW4 = '0' and 
                                         SW5  = '0'  and SW6  = '0' and SW7  = '0' and SW8 = '0' and SW9 = '0' and 

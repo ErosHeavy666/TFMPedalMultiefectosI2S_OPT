@@ -50,7 +50,7 @@ end Ruta_datos_Fir_bankfilter;
 architecture Behavioral of Ruta_datos_Fir_bankfilter is
 
 signal x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15 : std_logic_vector (d_width-1 downto 0); --Señales auxiliares para los registros de la ruta de datos
-signal c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15 : SIGNED (d_width-1 downto 0);  --Coeficientes del filtrado FIR
+signal c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15 : std_logic_vector (d_width-1 downto 0);  --Coeficientes del filtrado FIR
 
 component register_d is --Declaracion estructural para el fichero reg
   generic(
@@ -280,52 +280,52 @@ process (s_M12,M1_aux,M2_aux,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c
 begin
     case s_M12 is
       when "0000"  => 
-            M1_aux <= c0;
+            M1_aux <= signed(c0);
             M2_aux <= signed(x0);
       when "0001"  => 
-            M1_aux <= c1;
+            M1_aux <= signed(c1);
             M2_aux <= signed(x1);
       when "0010"  =>
-            M1_aux <= c2;
+            M1_aux <= signed(c2);
             M2_aux <= signed(x2);
       when "0011"  =>
-            M1_aux <= c3;
+            M1_aux <= signed(c3);
             M2_aux <= signed(x3);
       when "0100"  =>
-            M1_aux <= c4;
+            M1_aux <= signed(c4);
             M2_aux <= signed(x4);    
       when "0101"  =>
-            M1_aux <= c5;
+            M1_aux <= signed(c5);
             M2_aux <= signed(x5);
       when "0110"  =>    
-            M1_aux <= c6;      
+            M1_aux <= signed(c6);      
             M2_aux <= signed(x6);
       when "0111"  =>          
-            M1_aux <= c7;      
+            M1_aux <= signed(c7);      
             M2_aux <= signed(x7);     
       when "1000"  =>          
-            M1_aux <= c8;      
+            M1_aux <= signed(c8);      
             M2_aux <= signed(x8);   
       when "1001"  =>          
-            M1_aux <= c9;      
+            M1_aux <= signed(c9);      
             M2_aux <= signed(x9);      
       when "1010"  =>    
-            M1_aux <= c10;      
+            M1_aux <= signed(c10);      
             M2_aux <= signed(x10);
       when "1011"  =>     
-            M1_aux <= c11;
+            M1_aux <= signed(c11);
             M2_aux <= signed(x11);
       when "1100"  =>     
-            M1_aux <= c12;
+            M1_aux <= signed(c12);
             M2_aux <= signed(x12);
       when "1101"  =>     
-            M1_aux <= c13;
+            M1_aux <= signed(c13);
             M2_aux <= signed(x13);
       when "1110"  =>     
-            M1_aux <= c14;
+            M1_aux <= signed(c14);
             M2_aux <= signed(x14);               
       when others  => 
-            M1_aux <= c15;
+            M1_aux <= signed(c15);
             M2_aux <= signed(x15);   
     end case;
 end process;
