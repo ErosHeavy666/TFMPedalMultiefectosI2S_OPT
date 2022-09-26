@@ -26,7 +26,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.sine_package.all;
+use work.pkg_sine.all;
 
 entity sine_wave is
   port( clk, reset_n, enable_in: in std_logic;

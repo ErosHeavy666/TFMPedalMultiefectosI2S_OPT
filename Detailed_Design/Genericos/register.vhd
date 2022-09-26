@@ -22,12 +22,12 @@ entity register_d is
     i_data  : in std_logic_vector(g_width-1 downto 0); --Datos de entrada -> Sample_In -> Xn
     o_data  : out std_logic_vector(g_width-1 downto 0) --Datos de salida -> Xn -> Sample_Out
   );
-end reg;
+end register_d;
 
 ------------------
 -- Architecture --
 ------------------
-architecture Behavioral of reg is
+architecture arch_register_d of register_d is
 
   -- Signals
   signal r_data, s_data : std_logic_vector (g_width-1 downto 0);
@@ -52,4 +52,4 @@ begin
   -- Output process:
   o_data <= r_data;
   
-end Behavioral;
+end arch_register_d;

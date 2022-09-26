@@ -34,8 +34,7 @@ entity i2s_transceiver is
         en_in      : out std_logic;
 
         l_out      : in std_logic_vector(g_data_w-1 downto 0);
-        r_out      : in std_logic_vector(g_data_w-1 downto 0);
-        en_out     : out std_logic
+        r_out      : in std_logic_vector(g_data_w-1 downto 0)
     );
 end i2s_transceiver;
 
@@ -155,7 +154,6 @@ begin
   end process;
 
   en_in  <= en;
-  en_out <= en;
 
   ---
   -- i2s: datapath: registers

@@ -90,41 +90,39 @@ begin
       r_in      => r_data_rx, 
       en_in     => en_rx,
       l_out     => l_data_tx, 
-      r_out     => r_data_tx,
-      en_out    => open
+      r_out     => r_data_tx
   );
   
   reset <= not N_RESET;
   
-  unit_digital_efects : Digital_Efects
-  GENERIC MAP(d_width => 16)
-  PORT MAP(
-       clk => master_clk , 
-       reset_n => reset,
-       enable_in => en_rx ,
-       enable_out => open,
-       BTNR => BTNR,
-       BTNC => BTNC,
-       BTNL => BTNL,
-       BTND => BTND,
-       SW0 => SW0,
-       SW1 => SW1,
-       SW2 => SW2,
-       SW3 => SW3,
-       SW4 => SW4,
-       SW5 => SW5,
-       SW6 => SW6,
-       SW7 => SW7,
-       SW8 => SW8,
-       SW9 => SW9,
-       SW10 => SW10,
-       SW11 => SW11,
-       SW12 => SW12,
-       SW13 => SW13,
-       SW14 => SW14,
-       l_data_in => l_data_rx, 
+  unit_digital_efects : digital_efects
+  generic map(d_width => 16)
+  port map(
+       clk        => master_clk, 
+       reset_n    => reset,
+       enable_in  => en_rx,
+       BTNR       => BTNR,
+       BTNC       => BTNC,
+       BTNL       => BTNL,
+       BTND       => BTND,
+       SW0        => SW0,
+       SW1        => SW1,
+       SW2        => SW2,
+       SW3        => SW3,
+       SW4        => SW4,
+       SW5        => SW5,
+       SW6        => SW6,
+       SW7        => SW7,
+       SW8        => SW8,
+       SW9        => SW9,
+       SW10       => SW10,
+       SW11       => SW11,
+       SW12       => SW12,
+       SW13       => SW13,
+       SW14       => SW14,
+       l_data_in  => l_data_rx, 
+       r_data_in  => r_data_rx, 
        l_data_out => l_data_tx, 
-       r_data_in => r_data_rx, 
        r_data_out => r_data_tx
   ); 
 

@@ -49,17 +49,19 @@ end Ruta_datos_Fir_bankfilter;
 
 architecture Behavioral of Ruta_datos_Fir_bankfilter is
 
-signal x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15 : SIGNED (d_width-1 downto 0); --Señales auxiliares para los registros de la ruta de datos
+signal x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15 : std_logic_vector (d_width-1 downto 0); --Señales auxiliares para los registros de la ruta de datos
 signal c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15 : SIGNED (d_width-1 downto 0);  --Coeficientes del filtrado FIR
 
-component reg is --Declaracion estructural para el fichero reg
-    Port (
-        clk_12megas: in STD_LOGIC;
-        enable: in STD_LOGIC;
-        reset: in STD_LOGIC;
-        dato_in : in SIGNED(d_width-1 downto 0);
-        dato_out: out SIGNED(d_width-1 downto 0)
-    );
+component register_d is --Declaracion estructural para el fichero reg
+  generic(
+    g_width : integer := 16);
+  port (
+    clk     : in std_logic; --Entrada del reloj general del sistema de 12MHz
+    n_reset : in std_logic; --Reset síncrono del sistema 
+    i_en    : in std_logic; --Enable que activa el FF de tipo D (se asociará con Sample_In_Enable)
+    i_data  : in std_logic_vector(g_width-1 downto 0); --Datos de entrada -> Sample_In -> Xn
+    o_data  : out std_logic_vector(g_width-1 downto 0) --Datos de salida -> Xn -> Sample_Out
+  );
 end component;
    --Señales auxiliares de registros y operaciones de lógica combinacional de la ruta de datos diseñada
     signal R1_reg, R2_reg, R1_next, R2_next : signed((d_width*2 - 2) downto 0); --Registros R1 y R2
@@ -68,138 +70,154 @@ end component;
     signal M3_aux, M2_aux, M1_aux : signed(d_width-1 downto 0); 
     signal mult : signed (d_width*2-2 downto 0);
     signal sample_out_aux : signed(d_width-1 downto 0); 
-
+    
 begin
 
 --FIR-filter-Ruta de datos-Flujo de los datos Xn con sus Cn
-reg0: reg
+register_d_0: register_d
+GENERIC MAP (g_width => 16)
 PORT MAP(
-     clk_12megas => clk_12megas,  
-     enable =>  Sample_In_enable,
-     reset => reset,
-     dato_in => Sample_in, --Registramos Sample_In
-     dato_out => x0
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => std_logic_vector(Sample_in), --Registramos Sample_In
+     o_data => x0
 );  
-reg1: reg                            
-PORT MAP(                        
-     clk_12megas => clk_12megas,
-     enable =>  Sample_In_enable,
-     reset => reset,
-     dato_in => x0,      
-     dato_out => x1             
+register_d_1: register_d
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x0,
+     o_data => x1
 );                               
-reg2: reg                            
-PORT MAP(                        
-     clk_12megas => clk_12megas,
-     enable =>  Sample_In_enable,
-     reset => reset,
-     dato_in => x1,      
-     dato_out => x2             
-);                               
-reg3: reg                            
-PORT MAP(                        
-     clk_12megas => clk_12megas,
-     enable =>  Sample_In_enable,
-     reset => reset,
-     dato_in => x2,      
-     dato_out => x3             
-);                               
-reg4: reg                            
-PORT MAP(                        
-     clk_12megas => clk_12megas,
-     enable =>  Sample_In_enable,
-     reset => reset,
-     dato_in => x3,      
-     dato_out => x4             
-);                               
-reg5: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x4,      
-    dato_out => x5             
-);  
-reg6: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x5,      
-    dato_out => x6             
-);  
-reg7: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x6,      
-    dato_out => x7             
-); 
-reg8: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x7,      
-    dato_out => x8             
-);  
-reg9: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x8,      
-    dato_out => x9             
-);
-reg10: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x9,      
-    dato_out => x10             
-);
-reg11: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x10,      
-    dato_out => x11             
-); 
-reg12: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x11,      
-    dato_out => x12             
-); 
-reg13: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x12,      
-    dato_out => x13             
-);
-reg14: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x13,      
-    dato_out => x14             
-);     
-reg15: reg                            
-PORT MAP(                        
-    clk_12megas => clk_12megas,
-    enable =>  Sample_In_enable,
-    reset => reset,
-    dato_in => x14,      
-    dato_out => x15            
-); 
+register_d_2: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x1,
+     o_data => x2
+);                                 
+register_d_3: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x2,
+     o_data => x3
+);                                
+register_d_4: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x3,
+     o_data => x4
+);                                
+register_d_5: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x4,
+     o_data => x5
+);      
+register_d_6: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x5,
+     o_data => x6
+);      
+register_d_7: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x6,
+     o_data => x7
+);      
+register_d_8: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x7,
+     o_data => x8
+);      
+register_d_9: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x8,
+     o_data => x9
+);      
+register_d_10: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x9,
+     o_data => x10
+);      
+register_d_11: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x10,
+     o_data => x11
+);      
+register_d_12: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x11,
+     o_data => x12
+);      
+register_d_13: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x12,
+     o_data => x13
+);      
+register_d_14: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x13,
+     o_data => x14
+);         
+register_d_15: register_d                            
+GENERIC MAP (g_width => 16)
+PORT MAP(
+     clk => clk_12megas,  
+     n_reset => reset,
+     i_en =>  Sample_In_enable,
+     i_data => x14,
+     o_data => x15
+);      
                                                     
 process(clk_12megas) --Proceso que si 
 begin
@@ -263,52 +281,52 @@ begin
     case s_M12 is
       when "0000"  => 
             M1_aux <= c0;
-            M2_aux <= x0;
+            M2_aux <= signed(x0);
       when "0001"  => 
             M1_aux <= c1;
-            M2_aux <= x1;
+            M2_aux <= signed(x1);
       when "0010"  =>
             M1_aux <= c2;
-            M2_aux <= x2;
+            M2_aux <= signed(x2);
       when "0011"  =>
             M1_aux <= c3;
-            M2_aux <= x3;
+            M2_aux <= signed(x3);
       when "0100"  =>
             M1_aux <= c4;
-            M2_aux <= x4;      
+            M2_aux <= signed(x4);    
       when "0101"  =>
             M1_aux <= c5;
-            M2_aux <= x5; 
+            M2_aux <= signed(x5);
       when "0110"  =>    
             M1_aux <= c6;      
-            M2_aux <= x6;   
+            M2_aux <= signed(x6);
       when "0111"  =>          
             M1_aux <= c7;      
-            M2_aux <= x7;      
+            M2_aux <= signed(x7);     
       when "1000"  =>          
             M1_aux <= c8;      
-            M2_aux <= x8;      
+            M2_aux <= signed(x8);   
       when "1001"  =>          
             M1_aux <= c9;      
-            M2_aux <= x9;      
+            M2_aux <= signed(x9);      
       when "1010"  =>    
             M1_aux <= c10;      
-            M2_aux <= x10;
+            M2_aux <= signed(x10);
       when "1011"  =>     
             M1_aux <= c11;
-            M2_aux <= x11;
+            M2_aux <= signed(x11);
       when "1100"  =>     
             M1_aux <= c12;
-            M2_aux <= x12;
+            M2_aux <= signed(x12);
       when "1101"  =>     
             M1_aux <= c13;
-            M2_aux <= x13;   
+            M2_aux <= signed(x13);
       when "1110"  =>     
             M1_aux <= c14;
-            M2_aux <= x14;                   
+            M2_aux <= signed(x14);               
       when others  => 
             M1_aux <= c15;
-            M2_aux <= x15;      
+            M2_aux <= signed(x15);   
     end case;
 end process;
 

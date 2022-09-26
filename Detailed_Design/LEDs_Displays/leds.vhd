@@ -21,7 +21,7 @@ entity leds is
     i_play_enable : in std_logic; -- Enable que activa el sistema 
     i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal derecho de audio a la entrada
     i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal izquierdo de audio a la entrada
-    o_leds        : out std_logic_vector(g_width-1 downto 0) -- Vector de 15 Leds 
+    o_leds        : out std_logic_vector(g_width-1 downto 0) -- Vector de 16 Leds 
   );
 end leds;
 
