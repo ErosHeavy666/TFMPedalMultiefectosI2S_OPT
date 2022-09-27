@@ -176,8 +176,8 @@ begin
        enable_out => open
   ); 
   
-  Unit_EfectOVERDRIVE : EfectoOVERDRIVE  
-    generic map(d_width => 16)
+  Unit_EfectOVERDRIVE : efecto_overdrive  
+    generic map(g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -185,8 +185,7 @@ begin
        l_data_in  => l_data_in_overdrive, 
        l_data_out => l_data_out_overdrive, 
        r_data_in  => r_data_in_overdrive, 
-       r_data_out => r_data_out_overdrive,
-       enable_out => open
+       r_data_out => r_data_out_overdrive
   ); 
   
   Unit_EfectLOOPER : EfectoLOOPER 

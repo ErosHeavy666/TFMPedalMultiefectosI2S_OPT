@@ -124,21 +124,20 @@ Port (
 );
 end component;
 
-component EfectoOVERDRIVE is
-GENERIC(
-    d_width         : INTEGER := 16
+  component efecto_overdrive is
+    generic(
+      g_width : integer := 16 --Ancho del bus 
+      );
+    port ( 
+      clk        : in std_logic; --MCLK                                                
+      reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global     
+      enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);             
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                        
+      r_data_out : out std_logic_vector(g_width-1 downto 0)
     );
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : IN STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC
-);
-end component;
+  end component;
 
 component EfectoLOOPER is
 GENERIC(
