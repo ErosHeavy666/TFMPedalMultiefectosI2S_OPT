@@ -27,7 +27,7 @@ architecture Behavioral of tb_randomEfect is
   
   signal clk, reset_n, enable_in, enable_out : std_logic :='0';
 
-  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\sample_in.dat";
+  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\guitar_sample_in.dat";
   file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out.dat";
   file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out.dat";
   
@@ -144,17 +144,17 @@ begin
 --     enable_out => enable_out
 --); 
 
-Unit_EfectOVERDRIVE : efecto_overdrive
-  generic map(g_width => 16)
-  port map(
-    clk => clk,
-    reset_n => reset_n, 
-    enable_in => enable_in,
-    l_data_in => sample_in, 
-    r_data_in => sample_in, 
-    l_data_out => l_sample_out, 
-    r_data_out => r_sample_out
-  ); 
+--Unit_EfectOVERDRIVE : efecto_overdrive
+--  generic map(g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
 
 --Unit_EfectoBANKFILTER : EfectoBANKFILTER
 --GENERIC MAP(d_width => 16
@@ -181,7 +181,7 @@ Unit_EfectOVERDRIVE : efecto_overdrive
            ReadLine(data_in_file,in_line);
            report "line: " & in_line.all;
            read(in_line, in_int, in_read_ok);
-           sample_in <= std_logic_vector(to_signed(in_int, 16)); -- 16 = the bit width
+           sample_in <= std_logic_vector(to_signed(in_int, d_width)); 
            enable_in <= '1';
          else
            assert false report "Simulation Finished" severity failure;           
@@ -217,12 +217,13 @@ Unit_EfectOVERDRIVE : efecto_overdrive
       end if;
   end process;
 
-  stim_proc : process
-  begin
+  enable_out <= enable_in;   
+      
+  reset_proc : process
+  begin  
       reset_n <= '1';
       wait for CLK_period*10;
       reset_n <= '0';  
-      enable_out <= enable_in;     
       wait;
   end process;
 

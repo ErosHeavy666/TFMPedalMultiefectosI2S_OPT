@@ -30,9 +30,9 @@ end efecto_overdrive;
 architecture arch_efecto_overdrive of efecto_overdrive is
 
   -- Constants for threshold
-  constant Vth_negative : signed(g_width-1 downto 0) := x"D000"; --Umbral negativo
-  constant Vth_positive : signed(g_width-1 downto 0) := x"3000"; --Umbral positivo
-  constant Vth_zero : signed(g_width-1 downto 0) := x"0000";
+  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := x"D000"; --Umbral negativo
+  constant Vth_POSITIVE : signed(g_width-1 downto 0) := x"3000"; --Umbral positivo
+  constant Vth_ZERO : signed(g_width-1 downto 0) := x"0000";
   
   -- Signals 
   signal l_data_in_reg, l_data_in_next : signed(g_width-1 downto 0);
@@ -41,7 +41,7 @@ architecture arch_efecto_overdrive of efecto_overdrive is
   signal r_data_out_reg, r_data_out_next : signed(g_width-1 downto 0);
 
 begin
-
+  -------------------------------------------------------------------------------------------------------------------------------
   -- Register process:
   process(clk)
   begin
@@ -59,26 +59,25 @@ begin
       end if;
     end if;  
   end process;
-
+  -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process:
   -------------------------------------------------------------------------------------------------------------------------------
   l_data_in_next <= signed(l_data_in);
   r_data_in_next <= signed(r_data_in);  
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_out_next <= l_data_in_reg when (enable_in = '1' and (Vth_zero <= l_data_in_reg) and (l_data_in_reg < Vth_positive)) else
-                     Vth_positive  when (enable_in = '1' and (l_data_in_reg >= Vth_positive))                                else
-                     l_data_in_reg when (enable_in = '1' and (l_data_in_reg > Vth_negative) and (l_data_in_reg < Vth_zero))  else
-                     Vth_negative  when (enable_in = '1' and (l_data_in_reg <= Vth_negative))                                else
+  l_data_out_next <= l_data_in_reg when (enable_in = '1' and (Vth_zero <= l_data_in_reg) and (l_data_in_reg < Vth_POSITIVE)) else
+                     Vth_POSITIVE  when (enable_in = '1' and (l_data_in_reg >= Vth_POSITIVE))                                else
+                     l_data_in_reg when (enable_in = '1' and (l_data_in_reg > Vth_NEGATIVE) and (l_data_in_reg < Vth_zero))  else
+                     Vth_NEGATIVE  when (enable_in = '1' and (l_data_in_reg <= Vth_NEGATIVE))                                else
                      l_data_out_reg;  
-  r_data_out_next <= r_data_in_reg when (enable_in = '1' and (Vth_zero <= r_data_in_reg) and (r_data_in_reg < Vth_positive)) else
-                     Vth_positive  when (enable_in = '1' and (r_data_in_reg >= Vth_positive))                                else
-                     r_data_in_reg when (enable_in = '1' and (r_data_in_reg > Vth_negative) and (r_data_in_reg < Vth_zero))  else
-                     Vth_negative  when (enable_in = '1' and (r_data_in_reg <= Vth_negative))                                else
+  r_data_out_next <= r_data_in_reg when (enable_in = '1' and (Vth_zero <= r_data_in_reg) and (r_data_in_reg < Vth_POSITIVE)) else
+                     Vth_POSITIVE  when (enable_in = '1' and (r_data_in_reg >= Vth_POSITIVE))                                else
+                     r_data_in_reg when (enable_in = '1' and (r_data_in_reg > Vth_NEGATIVE) and (r_data_in_reg < Vth_zero))  else
+                     Vth_NEGATIVE  when (enable_in = '1' and (r_data_in_reg <= Vth_NEGATIVE))                                else
                      r_data_out_reg;
   -------------------------------------------------------------------------------------------------------------------------------
-
   -- Output process:
   l_data_out <= std_logic_vector(l_data_out_reg);   
   r_data_out <= std_logic_vector(r_data_out_reg); 
-
+  -------------------------------------------------------------------------------------------------------------------------------
 end arch_efecto_overdrive;
