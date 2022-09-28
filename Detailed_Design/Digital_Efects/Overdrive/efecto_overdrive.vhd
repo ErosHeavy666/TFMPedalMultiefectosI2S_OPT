@@ -41,6 +41,7 @@ architecture arch_efecto_overdrive of efecto_overdrive is
   signal r_data_out_reg, r_data_out_next : signed(g_width-1 downto 0);
 
 begin
+
   -------------------------------------------------------------------------------------------------------------------------------
   -- Register process:
   process(clk)
