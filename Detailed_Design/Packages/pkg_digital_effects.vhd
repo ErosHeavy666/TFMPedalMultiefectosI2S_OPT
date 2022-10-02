@@ -110,12 +110,12 @@ end component;
 
   component efecto_compressor is
     generic(
-      g_width : integer := 16 --Ancho del bus 
+      g_width : integer := 16 
       );
     port ( 
-      clk        : in std_logic; --MCLK                                                
-      reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global     
-      enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
+      clk        : in std_logic;   
+      reset_n    : in std_logic;   
+      enable_in  : in std_logic;   
       l_data_in  : in std_logic_vector(g_width-1 downto 0);             
       r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
       l_data_out : out std_logic_vector(g_width-1 downto 0);                        
@@ -125,12 +125,12 @@ end component;
 
   component efecto_overdrive is
     generic(
-      g_width : integer := 16 --Ancho del bus 
+      g_width : integer := 16 
       );
     port ( 
-      clk        : in std_logic; --MCLK                                                
-      reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global     
-      enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
+      clk        : in std_logic;    
+      reset_n    : in std_logic;    
+      enable_in  : in std_logic;    
       l_data_in  : in std_logic_vector(g_width-1 downto 0);             
       r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
       l_data_out : out std_logic_vector(g_width-1 downto 0);                        

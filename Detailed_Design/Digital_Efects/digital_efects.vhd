@@ -80,7 +80,6 @@ architecture arch_digital_efects of digital_efects is
 
 begin
   
-  
   -- Instance for ES Difital Efect component
   Unit_EfectES : EfectoES 
     generic map(d_width => 16)
