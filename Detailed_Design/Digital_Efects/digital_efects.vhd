@@ -80,7 +80,6 @@ architecture arch_digital_efects of digital_efects is
 
 begin
   
-  
   -- Instance for ES Difital Efect component
   Unit_EfectES : EfectoES 
     generic map(d_width => 16)
@@ -163,8 +162,8 @@ begin
        enable_out => open
   );
   
-  Unit_EfectCOMPRESSOR : EfectCOMPRESSOR  
-    generic map(d_width => 16)
+  Unit_EfectCOMPRESSOR : efecto_compressor  
+    generic map(g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -172,8 +171,7 @@ begin
        l_data_in  => l_data_in_compressor, 
        l_data_out => l_data_out_compressor, 
        r_data_in  => r_data_in_compressor, 
-       r_data_out => r_data_out_compressor,
-       enable_out => open
+       r_data_out => r_data_out_compressor
   ); 
   
   Unit_EfectOVERDRIVE : efecto_overdrive  

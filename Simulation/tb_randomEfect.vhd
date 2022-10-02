@@ -20,19 +20,23 @@ end tb_randomEfect;
 ------------------
 -- Architecture --
 ------------------
-architecture Behavioral of tb_randomEfect is
+architecture tb_randomEfect_arch of tb_randomEfect is
 
-  constant d_width : integer := 16;
-  constant clk_period : time := 10ns;
+  -- Constants
+  constant g_width : integer := 16;
+  constant clk_period : time := 45.35us;
+  constant haha_duration : time := 1000ms;
   
-  signal clk, reset_n, enable_in, enable_out : std_logic :='0';
-
-  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\guitar_sample_in.dat";
+   -- Signals
+  signal clk, reset_n, enable_out : std_logic := '1';
+  signal enable_in : std_logic := '0';
+  signal sample_in, l_sample_out, r_sample_out : std_logic_vector(g_width-1 downto 0);
+  signal SW14 : std_logic := '1';
+  
+  -- Files
+  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in.dat";
   file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out.dat";
   file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out.dat";
-  
-  signal sample_in, l_sample_out, r_sample_out : std_logic_vector(15 downto 0);
-  signal SW14 : std_logic := '1';
 
 begin
   
@@ -43,14 +47,6 @@ begin
     clk <= '0';
     wait for clk_period/2;
   end process; 
-
---enable_process :process
---begin    
---    enable_in <= '1';
---    wait for clk_period;
---    enable_in <= '0';
---    wait for 64*clk_period;
---end process; 
 
 --Unit_EfectES : EfectoES 
 --GENERIC MAP(d_width => 16)
@@ -130,21 +126,7 @@ begin
 --     enable_out => enable_out
 --); 
 
---Unit_EfectCOMPRESSOR : EfectCOMPRESSOR
---GENERIC MAP(d_width => 16
---            )
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
-
---Unit_EfectOVERDRIVE : efecto_overdrive
+--Unit_EfectCOMPRESSOR : efecto_compressor
 --  generic map(g_width => 16)
 --  port map(
 --    clk => clk,
@@ -155,6 +137,18 @@ begin
 --    l_data_out => l_sample_out, 
 --    r_data_out => r_sample_out
 --  ); 
+
+Unit_EfectOVERDRIVE : efecto_overdrive
+  generic map(g_width => 16)
+  port map(
+    clk => clk,
+    reset_n => reset_n, 
+    enable_in => enable_in,
+    l_data_in => sample_in, 
+    r_data_in => sample_in, 
+    l_data_out => l_sample_out, 
+    r_data_out => r_sample_out
+  ); 
 
 --Unit_EfectoBANKFILTER : EfectoBANKFILTER
 --GENERIC MAP(d_width => 16
@@ -181,50 +175,47 @@ begin
            ReadLine(data_in_file,in_line);
            report "line: " & in_line.all;
            read(in_line, in_int, in_read_ok);
-           sample_in <= std_logic_vector(to_signed(in_int, d_width)); 
-           enable_in <= '1';
-         else
-           assert false report "Simulation Finished" severity failure;           
+           sample_in <= std_logic_vector(to_signed(in_int, g_width)); 
          end if;
       end if;
   end process;
-
-  l_write_process: process(clk)
-  variable out_line : line;
-  variable out_int : integer;
-  variable out_integer : integer;
-  begin
-      if (rising_edge(clk)) then
-          if(enable_out = '1') then
-              out_integer := to_integer(signed(l_sample_out));
-              Write(out_line, out_integer);
-              Writeline(l_data_out_file, out_line);
-          end if;
-      end if;
-  end process;
   
-  r_write_process: process(clk)
-  variable out_line : line;
-  variable out_int : integer;
-  variable out_integer : integer;
+  write_process: process(clk)
+  variable r_out_line : line;
+  variable r_out_int : integer;
+  variable r_out_integer : integer;
+  variable l_out_line : line;
+  variable l_out_int : integer;
+  variable l_out_integer : integer;
   begin
       if (rising_edge(clk)) then
           if(enable_out = '1') then
-              out_integer := to_integer(signed(r_sample_out));
-              Write(out_line, out_integer);
-              Writeline(r_data_out_file, out_line);
+            r_out_integer := to_integer(signed(r_sample_out));
+            l_out_integer := to_integer(signed(l_sample_out));
+            Write(r_out_line, r_out_integer);
+            Write(l_out_line, l_out_integer);
+            Writeline(r_data_out_file, r_out_line);
+            Writeline(l_data_out_file, l_out_line);
+          else
+            assert false report "Simulation Finished" severity failure;
           end if;
       end if;
   end process;
 
-  enable_out <= enable_in;   
-      
-  reset_proc : process
+  stim_proc : process
   begin  
       reset_n <= '1';
+      enable_out <= '1';
+      enable_in <= '0';
       wait for CLK_period*10;
       reset_n <= '0';  
+      enable_out <= '1';
+      enable_in <= '1';
+      wait for haha_duration;
+      reset_n <= '0'; 
+      enable_out <= '0';
+      enable_in <= '0';
       wait;
   end process;
 
-end Behavioral;
+end tb_randomEfect_arch;
