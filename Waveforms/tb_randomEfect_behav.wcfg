@@ -12,125 +12,117 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="165728050000000fs"></ZoomStartTime>
-      <ZoomEndTime time="293228050000001fs"></ZoomEndTime>
-      <Cursor1Time time="186978050000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2558000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="313005700000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="219"></NameColumnWidth>
-      <ValueColumnWidth column_width="102"></ValueColumnWidth>
+      <ValueColumnWidth column_width="98"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
-   <wvobject fp_name="/tb_randomEfect/clk" type="logic">
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/reset_n" type="logic">
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/reset_n" type="logic">
       <obj_property name="ElementShortName">reset_n</obj_property>
       <obj_property name="ObjectShortName">reset_n</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/enable_in" type="logic">
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/enable_in" type="logic">
       <obj_property name="ElementShortName">enable_in</obj_property>
       <obj_property name="ObjectShortName">enable_in</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/enable_out" type="logic">
-      <obj_property name="ElementShortName">enable_out</obj_property>
-      <obj_property name="ObjectShortName">enable_out</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/l_data_in" type="array">
+      <obj_property name="ElementShortName">l_data_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_data_in[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/sample_in" type="array">
-      <obj_property name="ElementShortName">sample_in[15:0]</obj_property>
-      <obj_property name="ObjectShortName">sample_in[15:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/r_data_in" type="array">
+      <obj_property name="ElementShortName">r_data_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_data_in[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/l_sample_out" type="array">
-      <obj_property name="ElementShortName">l_sample_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">l_sample_out[15:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/l_data_out" type="array">
+      <obj_property name="ElementShortName">l_data_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_data_out[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/r_data_out" type="array">
+      <obj_property name="ElementShortName">r_data_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_data_out[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/r_sample_out" type="array">
-      <obj_property name="ElementShortName">r_sample_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">r_sample_out[15:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">15</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_randomEfect/SW14" type="logic">
-      <obj_property name="ElementShortName">SW14</obj_property>
-      <obj_property name="ObjectShortName">SW14</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_randomEfect/clk_period" type="other">
-      <obj_property name="ElementShortName">clk_period</obj_property>
-      <obj_property name="ObjectShortName">clk_period</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_randomEfect/Unit_EfectCOMPRESSOR/Vth_NEGATIVE" type="array">
-      <obj_property name="ElementShortName">Vth_NEGATIVE[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Vth_NEGATIVE[15:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/l_data_in_reg[3999]" type="array">
+      <obj_property name="ElementShortName">[3999][15:0]</obj_property>
+      <obj_property name="ObjectShortName">[3999][15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/Unit_EfectCOMPRESSOR/Vth_POSITIVE" type="array">
-      <obj_property name="ElementShortName">Vth_POSITIVE[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Vth_POSITIVE[15:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/r_data_in_reg[0]" type="array">
+      <obj_property name="ElementShortName">[0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">[0][15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/Unit_EfectCOMPRESSOR/Vth_ZERO" type="array">
-      <obj_property name="ElementShortName">Vth_ZERO[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Vth_ZERO[15:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/l_data_out_reg" type="array">
+      <obj_property name="ElementShortName">l_data_out_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_data_out_reg[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/Unit_EfectCOMPRESSOR/g1" type="array">
-      <obj_property name="ElementShortName">g1[7:0]</obj_property>
-      <obj_property name="ObjectShortName">g1[7:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/l_data_out_next" type="array">
+      <obj_property name="ElementShortName">l_data_out_next[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_data_out_next[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">7</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_randomEfect/Unit_EfectCOMPRESSOR/g2" type="array">
-      <obj_property name="ElementShortName">g2[7:0]</obj_property>
-      <obj_property name="ObjectShortName">g2[7:0]</obj_property>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/r_data_out_reg" type="array">
+      <obj_property name="ElementShortName">r_data_out_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_data_out_reg[15:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">7</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/r_data_out_next" type="array">
+      <obj_property name="ElementShortName">r_data_out_next[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_data_out_next[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/n" type="other">
+      <obj_property name="ElementShortName">n</obj_property>
+      <obj_property name="ObjectShortName">n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_randomEfect/Unit_EfectDELAY/g_width" type="other">
+      <obj_property name="ElementShortName">g_width</obj_property>
+      <obj_property name="ObjectShortName">g_width</obj_property>
    </wvobject>
 </wave_config>

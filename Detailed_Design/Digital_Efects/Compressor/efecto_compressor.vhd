@@ -18,7 +18,7 @@ entity efecto_compressor is
     );
   port ( 
     clk        : in std_logic; --MCLK                                                
-    reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global     
+    reset_n    : in std_logic; --Reset síncrono a nivel alto del sistema global     
     enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
     l_data_in  : in std_logic_vector(g_width-1 downto 0);             
     r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
@@ -27,6 +27,9 @@ entity efecto_compressor is
 );
 end efecto_compressor;
 
+------------------
+-- Architecture --
+------------------
 architecture arch_efecto_compressor of efecto_compressor is
  
   -- Constants for threshold
@@ -47,6 +50,7 @@ begin
 
   -------------------------------------------------------------------------------------------------------------------------------
   -- Register process:
+  -------------------------------------------------------------------------------------------------------------------------------
   process(clk)
   begin
     if (rising_edge(clk)) then --MCLK
@@ -86,6 +90,7 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: --> Hay que castear la señal ya que por las multiplicaciones hay que subirla a 32 bits,
                      --- Nos quedamos con el signo y los decimales más significativos.
+  -------------------------------------------------------------------------------------------------------------------------------
   l_data_out <= std_logic_vector(l_data_out_reg((g_width*3/2)-2 downto g_width/2-1));   
   r_data_out <= std_logic_vector(r_data_out_reg((g_width*3/2)-2 downto g_width/2-1));  
   -------------------------------------------------------------------------------------------------------------------------------

@@ -48,44 +48,41 @@ begin
     wait for clk_period/2;
   end process; 
 
---Unit_EfectES : EfectoES 
---GENERIC MAP(d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
+--  Unit_EfectES : efecto_es 
+--  generic map(g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
 
---Unit_EfectDELAY : EfectoDELAY 
---GENERIC MAP(n => 4000, d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
+--  Unit_EfectDELAY : efecto_delay 
+--  generic map(n => 4000, g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
 
---Unit_EfectCHORUS : EfectoCHORUS
---GENERIC MAP(n => 1000, d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
+  Unit_EfectCHORUS : efecto_chorus 
+  generic map(n => 1000, g_width => 16)
+  port map(
+    clk => clk,
+    reset_n => reset_n, 
+    enable_in => enable_in,
+    l_data_in => sample_in, 
+    r_data_in => sample_in, 
+    l_data_out => l_sample_out, 
+    r_data_out => r_sample_out
+  ); 
 
 --Unit_EfectVIBRATO : EfectoVIBRATO
 --GENERIC MAP(n => 500, d_width => 16)
@@ -138,17 +135,17 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
 
-Unit_EfectOVERDRIVE : efecto_overdrive
-  generic map(g_width => 16)
-  port map(
-    clk => clk,
-    reset_n => reset_n, 
-    enable_in => enable_in,
-    l_data_in => sample_in, 
-    r_data_in => sample_in, 
-    l_data_out => l_sample_out, 
-    r_data_out => r_sample_out
-  ); 
+--Unit_EfectOVERDRIVE : efecto_overdrive
+--  generic map(g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
 
 --Unit_EfectoBANKFILTER : EfectoBANKFILTER
 --GENERIC MAP(d_width => 16

@@ -18,7 +18,7 @@ entity efecto_overdrive is
     );
   port ( 
     clk        : in std_logic; --MCLK                                                
-    reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global     
+    reset_n    : in std_logic; --Reset síncrono a nivel alto del sistema global     
     enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
     l_data_in  : in std_logic_vector(g_width-1 downto 0);             
     r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
@@ -27,6 +27,9 @@ entity efecto_overdrive is
   );
 end efecto_overdrive;
 
+------------------
+-- Architecture --
+------------------
 architecture arch_efecto_overdrive of efecto_overdrive is
 
   -- Constants for threshold
@@ -44,6 +47,7 @@ begin
 
   -------------------------------------------------------------------------------------------------------------------------------
   -- Register process:
+  -------------------------------------------------------------------------------------------------------------------------------
   process(clk)
   begin
     if (rising_edge(clk)) then --MCLK
@@ -78,6 +82,7 @@ begin
                      r_data_out_reg;
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process:
+  -------------------------------------------------------------------------------------------------------------------------------
   l_data_out <= std_logic_vector(l_data_out_reg);   
   r_data_out <= std_logic_vector(r_data_out_reg); 
   -------------------------------------------------------------------------------------------------------------------------------
