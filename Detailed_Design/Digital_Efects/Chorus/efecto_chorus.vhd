@@ -56,7 +56,7 @@ begin
   -- Wave Instance to modulate the retard line:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_sine_wave_chorus : sine_wave_chorus 
-  PORT MAP(
+  port map(
       clk       => clk,
       reset_n   => reset_n,
       enable_in => enable_in,
@@ -84,7 +84,7 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Data_Output to the fifo_t
   -------------------------------------------------------------------------------------------------------------------------------
-  process (l_data_in, r_data_in, l_data_in_reg, r_data_in_reg)
+  process (l_data_in_reg, r_data_in_reg, l_data_out_reg, r_data_out_reg, wave_out_retard)
   begin
     l_data_out_next(0) <= l_data_in_reg + shift_right(l_data_out_reg(n-to_integer(unsigned(wave_out_retard))-1),1);
     r_data_out_next(0) <= r_data_in_reg + shift_right(r_data_out_reg(n-to_integer(unsigned(wave_out_retard))-1),1);

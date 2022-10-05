@@ -72,8 +72,44 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
 
-  Unit_EfectCHORUS : efecto_chorus 
-  generic map(n => 1000, g_width => 16)
+--  Unit_EfectCHORUS : efecto_chorus 
+--  generic map(n => 1000, g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
+
+--  Unit_EfectVIBRATO : efecto_vibrato 
+--  generic map(n => 500, g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
+
+--  Unit_EfectREVERB : efecto_reverb
+--  generic map(n => 500, g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
+  
+  Unit_EfectECO : efecto_eco
+  generic map(n => 5000, g_width => 16)
   port map(
     clk => clk,
     reset_n => reset_n, 
@@ -83,45 +119,6 @@ begin
     l_data_out => l_sample_out, 
     r_data_out => r_sample_out
   ); 
-
---Unit_EfectVIBRATO : EfectoVIBRATO
---GENERIC MAP(n => 500, d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---);
-
---Unit_EfectREVERB : EfectoREVERB
---GENERIC MAP(n => 500, d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
-
---Unit_EfectoECO : EfectoECO
---GENERIC MAP(n => 5000, d_width => 16)
---PORT MAP(
---     clk => clk,
---     reset_n => reset_n, 
---     enable_in => enable_in,
---     l_data_in => Sample_In, 
---     l_data_out => open, 
---     r_data_in => Sample_In, 
---     r_data_out => Sample_out,
---     enable_out => enable_out
---); 
 
 --Unit_EfectCOMPRESSOR : efecto_compressor
 --  generic map(g_width => 16)

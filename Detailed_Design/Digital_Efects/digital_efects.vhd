@@ -116,44 +116,41 @@ begin
        r_data_out => r_data_out_chorus
   );
   
---  Unit_EfectVIBRATO : EfectoVIBRATO
---    generic map(n => 500, d_width => 16)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       enable_in  => enable_in_vibrato,
---       l_data_in  => l_data_in_vibrato, 
---       l_data_out => l_data_out_vibrato, 
---       r_data_in  => r_data_in_vibrato, 
---       r_data_out => r_data_out_vibrato,
---       enable_out => open
---  );
+  Unit_EfectVIBRATO : efecto_vibrato
+    generic map(n => 500, g_width => 16)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_vibrato,
+       l_data_in  => l_data_in_vibrato, 
+       r_data_in  => r_data_in_vibrato, 
+       l_data_out => l_data_out_vibrato, 
+       r_data_out => r_data_out_vibrato
+  );
   
---  Unit_EfectREVERB : EfectoREVERB
---    generic map(n => 500, d_width => 16)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       enable_in  => enable_in_reverb,
---       l_data_in  => l_data_in_reverb, 
---       l_data_out => l_data_out_reverb, 
---       r_data_in  => r_data_in_reverb, 
---       r_data_out => r_data_out_reverb,
---       enable_out => open
---  );
+  Unit_EfectREVERB : efecto_reverb
+    generic map(n => 500, g_width => 16)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_reverb,
+       l_data_in  => l_data_in_reverb, 
+       r_data_in  => r_data_in_reverb, 
+       l_data_out => l_data_out_reverb, 
+       r_data_out => r_data_out_reverb
+  );
   
---  Unit_EfectECO : EfectoECO
---    generic map(n => 5000, d_width => 16)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       enable_in  => enable_in_eco,
---       l_data_in  => l_data_in_eco, 
---       l_data_out => l_data_out_eco, 
---       r_data_in  => r_data_in_eco, 
---       r_data_out => r_data_out_eco,
---       enable_out => open
---  );
+  Unit_EfectECO : efecto_eco
+    generic map(n => 5000, g_width => 16)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_eco,
+       l_data_in  => l_data_in_eco, 
+       r_data_in  => r_data_in_eco, 
+       l_data_out => l_data_out_eco, 
+       r_data_out => r_data_out_eco
+  );
   
   Unit_EfectCOMPRESSOR : efecto_compressor  
     generic map(g_width => 16)
@@ -179,52 +176,52 @@ begin
        r_data_out => r_data_out_overdrive
   ); 
   
---  Unit_EfectLOOPER : EfectoLOOPER 
---    generic map(d_width => 16, d_deep => 19)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       SW13       => SW13,
---       enable_in  => enable_in_looper,
---       SW5        => SW5,
---       SW6        => SW6,
---       l_data_in  => l_data_in_looper, 
---       l_data_out => l_data_out_looper, 
---       r_data_in  => r_data_in_looper, 
---       r_data_out => r_data_out_looper,
---       enable_out => open
---  ); 
+  Unit_EfectLOOPER : EfectoLOOPER 
+    generic map(d_width => 16, d_deep => 19)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       SW13       => SW13,
+       enable_in  => enable_in_looper,
+       SW5        => SW5,
+       SW6        => SW6,
+       l_data_in  => l_data_in_looper, 
+       l_data_out => l_data_out_looper, 
+       r_data_in  => r_data_in_looper, 
+       r_data_out => r_data_out_looper,
+       enable_out => open
+  ); 
   
---  Unit_EfectBANKFILTER : EfectoBANKFILTER  
---    generic map(d_width => 16)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       enable_in  => enable_in_bankfilter,
---       SW14       => SW14,
---       l_data_in  => l_data_in_bankfilter, 
---       l_data_out => l_data_out_bankfilter, 
---       r_data_in  => r_data_in_bankfilter, 
---       r_data_out => r_data_out_bankfilter,
---       enable_out => open
---  ); 
+  Unit_EfectBANKFILTER : EfectoBANKFILTER  
+    generic map(d_width => 16)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_bankfilter,
+       SW14       => SW14,
+       l_data_in  => l_data_in_bankfilter, 
+       l_data_out => l_data_out_bankfilter, 
+       r_data_in  => r_data_in_bankfilter, 
+       r_data_out => r_data_out_bankfilter,
+       enable_out => open
+  ); 
   
---  Unit_EfectREVERB_PARAMETRIZADO : EfectoREVERB_PARAMETRIZADO
---    generic map(n1 => 1500, d_width => 16)
---    port map(
---       clk        => clk,
---       reset_n    => reset_n, 
---       enable_in  => enable_in_config_reverb,
---       BTNC       => BTNC,
---       BTNL       => BTNL,
---       BTND       => BTND,
---       BTNR       => BTNR,
---       l_data_in  => l_data_in_config_reverb, 
---       l_data_out => l_data_out_config_reverb, 
---       r_data_in  => r_data_in_config_reverb, 
---       r_data_out => r_data_out_config_reverb,
---       enable_out => open
---  );
+  Unit_EfectREVERB_PARAMETRIZADO : EfectoREVERB_PARAMETRIZADO
+    generic map(n1 => 1500, d_width => 16)
+    port map(
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_config_reverb,
+       BTNC       => BTNC,
+       BTNL       => BTNL,
+       BTND       => BTND,
+       BTNR       => BTNR,
+       l_data_in  => l_data_in_config_reverb, 
+       l_data_out => l_data_out_config_reverb, 
+       r_data_in  => r_data_in_config_reverb, 
+       r_data_out => r_data_out_config_reverb,
+       enable_out => open
+  );
 
   -- Combinational logic process: Effect Selector (Enable + Input Right/Left_Data)
   --------

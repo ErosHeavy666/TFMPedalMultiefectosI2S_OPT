@@ -58,53 +58,53 @@ package pkg_digital_effects is
     ); 
   end component;
 
-component EfectoVIBRATO is
-  generic(
-    n               :  INTEGER := 500;
-    d_width         :  INTEGER := 16);
-  port( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : in STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC  
-); 
-end component;
+  component efecto_vibrato is
+    generic(
+      n       : integer := 500;
+      g_width : integer := 16 
+    );
+    port( 
+      clk        : in std_logic;                                         
+      reset_n    : in std_logic;
+      enable_in  : in std_logic; 
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);                         
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                           
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                            
+      r_data_out : out std_logic_vector(g_width-1 downto 0) 
+  ); 
+  end component;
 
-component EfectoREVERB is
-GENERIC(
-    n               :  INTEGER := 500;
-    d_width         :  INTEGER := 16);
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : in STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC  
-); 
-end component;
+  component efecto_reverb is
+    generic(
+      n       : integer := 500;
+      g_width : integer := 16 
+    );
+    port( 
+      clk        : in std_logic; 
+      reset_n    : in std_logic; 
+      enable_in  : in std_logic; 
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);                      
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                        
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                         
+      r_data_out : out std_logic_vector(g_width-1 downto 0) 
+    ); 
+  end component;
 
-component EfectoECO is
-GENERIC(
-    n               :  INTEGER := 5000;
-    d_width         :  INTEGER := 16);
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : in STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC  
-); 
-end component;
+  component efecto_eco is
+    generic(
+      n       : integer := 5000;
+      g_width : integer := 16 
+    );
+    port( 
+      clk        : in std_logic; 
+      reset_n    : in std_logic; 
+      enable_in  : in std_logic; 
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);                      
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                        
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                         
+      r_data_out : out std_logic_vector(g_width-1 downto 0) 
+    ); 
+  end component;
 
   component efecto_compressor is
     generic(
