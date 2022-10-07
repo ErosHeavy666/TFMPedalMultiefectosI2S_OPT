@@ -172,25 +172,24 @@ Port (
 ); 
 end component;
 
-component EfectoREVERB_PARAMETRIZADO is
-GENERIC(
-    n1              : INTEGER := 1500;
-    d_width         : INTEGER := 16);
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : in STD_LOGIC;
-    BTNC                  : in STD_LOGIC; 
-    BTNL                  : in STD_LOGIC; 
-    BTND                  : in STD_LOGIC;
-    BTNR                  : in STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC  
-); 
-end component;
+  component efecto_config_reverb is
+    generic(
+      n1      : integer := 1500;
+      g_width : integer := 16); 
+    port( 
+      clk        : in std_logic;
+      reset_n    : in std_logic;
+      enable_in  : in std_logic;
+      BTNC       : in std_logic;
+      BTNL       : in std_logic;
+      BTND       : in std_logic;
+      BTNR       : in std_logic;
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);                         
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                           
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                            
+      r_data_out : out std_logic_vector(g_width-1 downto 0) 
+    ); 
+  end component;
 
     
 end pkg_digital_effects;

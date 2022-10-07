@@ -206,8 +206,8 @@ begin
        enable_out => open
   ); 
   
-  Unit_EfectREVERB_PARAMETRIZADO : EfectoREVERB_PARAMETRIZADO
-    generic map(n1 => 1500, d_width => 16)
+  Unit_EfectCONFIG_REVERB : efecto_config_reverb
+    generic map(n1 => 1500, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -217,10 +217,9 @@ begin
        BTND       => BTND,
        BTNR       => BTNR,
        l_data_in  => l_data_in_config_reverb, 
-       l_data_out => l_data_out_config_reverb, 
        r_data_in  => r_data_in_config_reverb, 
-       r_data_out => r_data_out_config_reverb,
-       enable_out => open
+       l_data_out => l_data_out_config_reverb, 
+       r_data_out => r_data_out_config_reverb
   );
 
   -- Combinational logic process: Effect Selector (Enable + Input Right/Left_Data)
