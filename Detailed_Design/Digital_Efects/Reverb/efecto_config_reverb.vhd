@@ -142,9 +142,9 @@ begin
   BTNC_re_detection_next <= '1' when (BTNC_next = '1' and BTNC_reg = '0') else '0';
   -------------------------------------------------------------------------------------------------------------------------------  
   state_n_next  <= state_n_reg  + 1 when BTNR_re_detection_reg = '1' else state_n_reg;      
-  state_g1_next <= state_g1_reg + 1 when BTNR_re_detection_reg = '1' else state_g1_reg;      
-  state_g2_next <= state_g2_reg + 1 when BTNR_re_detection_reg = '1' else state_g2_reg;      
-  state_g3_next <= state_g3_reg + 1 when BTNR_re_detection_reg = '1' else state_g3_reg;      
+  state_g1_next <= state_g1_reg + 1 when BTND_re_detection_reg = '1' else state_g1_reg;      
+  state_g2_next <= state_g2_reg + 1 when BTNL_re_detection_reg = '1' else state_g2_reg;      
+  state_g3_next <= state_g3_reg + 1 when BTNC_re_detection_reg = '1' else state_g3_reg;      
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Data_Input to the fifo_t
   -------------------------------------------------------------------------------------------------------------------------------
