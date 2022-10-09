@@ -54,12 +54,11 @@ package pkg_components is
 
   component digital_efects is
     generic(
-      d_width    : integer := 16);
+      g_width    : integer := 16);
     port( 
       clk        : in std_logic;
       reset_n    : in std_logic;
       enable_in  : in std_logic; 
-      enable_out : out std_logic;
       BTNR       : in std_logic;
       BTNC       : in std_logic; 
       BTNL       : in std_logic; 
@@ -79,10 +78,10 @@ package pkg_components is
       SW12       : in std_logic;
       SW13       : in std_logic;
       SW14       : in std_logic;
-      l_data_in  : in std_logic_vector(d_width-1 downto 0);     
-      r_data_in  : in std_logic_vector(d_width-1 downto 0); 
-      l_data_out : out std_logic_vector(d_width-1 downto 0);
-      r_data_out : out std_logic_vector(d_width-1 downto 0)  
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);     
+      r_data_in  : in std_logic_vector(g_width-1 downto 0); 
+      l_data_out : out std_logic_vector(g_width-1 downto 0);
+      r_data_out : out std_logic_vector(g_width-1 downto 0)  
     );
   end component;
   

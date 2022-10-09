@@ -46,22 +46,115 @@ architecture arch_efecto_config_reverb of efecto_config_reverb is
   signal g1 : integer; --Volumen muestra original --> BTNL
   signal g2 : integer; --Volumen muestra retardada salida --> BTND
   signal g3 : integer; --Volumen muestra retardada entrada --> BTNC
-  signal enable_n1, enable_n2, enable_n3, enable_n4 : std_logic := '0'; 
-  
-  signal state_n_next, state_n_reg: unsigned(1 downto 0) := "00"; 
-  signal state_g1_next, state_g1_reg: unsigned(1 downto 0) := "00"; 
-  signal state_g2_next, state_g2_reg: unsigned(1 downto 0) := "00"; 
-  signal state_g3_next, state_g3_reg: unsigned(1 downto 0) := "00"; 
-  signal BTNR_next, BTNR_reg : std_logic;
-  signal BTND_next, BTND_reg : std_logic;
-  signal BTNL_next, BTNL_reg : std_logic;
-  signal BTNC_next, BTNC_reg : std_logic;
-  signal BTNR_re_detection_next, BTNR_re_detection_reg : std_logic;
-  signal BTND_re_detection_next, BTND_re_detection_reg : std_logic;
-  signal BTNL_re_detection_next, BTNL_re_detection_reg : std_logic;
-  signal BTNC_re_detection_next, BTNC_re_detection_reg : std_logic;
+
+  signal state_n : unsigned(1 downto 0) := "00"; 
+  signal state_g1, state_g2, state_g3 : unsigned(1 downto 0) := "00";
+  signal button_n : STD_LOGIC := '1'; 
+  signal button_g1, button_g2, button_g3 : STD_LOGIC := '1'; --Flag de control para no saturar el pulsador
+  signal enable_n1, enable_n2 : STD_LOGIC := '0'; 
+  signal enable_n3, enable_n4 : STD_LOGIC := '0';
    
 begin
+
+--Parametrización de n
+process(clk, reset_n, BTNR, state_n, button_n)
+begin
+    if reset_n = '1' then
+        state_n <= "00";
+        button_n <= '1';
+    elsif(rising_edge(clk))then
+        if(BTNR = '1' and button_n = '1')then
+            state_n <= state_n + 1; 
+            button_n <= '0';
+        elsif(BTNR = '1' and button_n = '0')then
+            state_n <= state_n; 
+            button_n <= '0';            
+        else
+            button_n <= '1';
+            state_n <= state_n;
+        end if;
+    end if;
+end process;
+
+enable_n1 <= '1' when state_n = "00" else '0';
+enable_n2 <= '1' when state_n = "01" else '0';
+enable_n3 <= '1' when state_n = "10" else '0';
+enable_n4 <= '1' when state_n = "11" else '0';
+
+--Parametrización de g1
+process(clk, reset_n, BTNL, state_g1, button_g1)
+begin
+    if reset_n = '1' then
+        state_g1 <= "00"; 
+        button_g1 <= '1';   
+    elsif(rising_edge(clk))then
+        if(BTNL = '1' and button_g1 = '1')then
+            state_g1 <= state_g1 + 1; 
+            button_g1 <= '0';
+        elsif(BTNL = '1' and button_g1 = '0')then
+            state_g1 <= state_g1; 
+            button_g1 <= '0';            
+        else
+            button_g1 <= '1';
+            state_g1 <= state_g1;
+        end if;
+    end if;
+end process;
+
+g1 <= 0 when state_g1 = "00" else
+      1 when state_g1 = "01" else
+      2 when state_g1 = "10" else
+      3;
+      
+--Parametrización de g2
+process(clk, reset_n, BTND, state_g2, button_g2)
+begin
+    if reset_n = '1' then
+        state_g2 <= "00";
+        button_g2 <= '1';   
+    elsif(rising_edge(clk))then
+        if(BTND = '1' and button_g2 = '1')then
+            state_g2 <= state_g2 + 1; 
+            button_g2 <= '0';
+        elsif(BTND = '1' and button_g2 = '0')then
+            state_g2 <= state_g2; 
+            button_g2 <= '0';            
+        else
+            button_g2 <= '1';
+            state_g2 <= state_g2;
+        end if;
+    end if;
+end process;
+
+g2 <= 1 when state_g2 = "00" else
+      2 when state_g2 = "01" else
+      3 when state_g2 = "10" else
+      4;
+
+--Parametrización de g3
+process(clk, reset_n, BTNC, state_g3, button_g3)
+begin
+    if reset_n = '1' then
+        state_g3 <= "00";
+        button_g3 <= '1';   
+    elsif(rising_edge(clk))then
+        if(BTNC = '1' and button_g3 = '1')then
+            state_g3 <= state_g3 + 1; 
+            button_g3 <= '0';
+        elsif(BTNC = '1' and button_g3 = '0')then
+            state_g3 <= state_g3; 
+            button_g3 <= '0';            
+        else
+            button_g3 <= '1';
+            state_g3 <= state_g3;
+        end if;
+    end if;
+end process;
+      
+g3 <= 0 when state_g3 = "00" else
+      1 when state_g3 = "01" else
+      2 when state_g3 = "10" else
+      3;
 
   -------------------------------------------------------------------------------------------------------------------------------
   -- Register process:
@@ -74,77 +167,14 @@ begin
         r_data_in_reg <= (others => (others => '0'));
         l_data_out_reg <= (others => (others => '0'));
         r_data_out_reg <= (others => (others => '0'));
-        ----------------------------------------------
-        BTNR_reg <= '0';
-        BTND_reg <= '0';
-        BTNL_reg <= '0';
-        BTNC_reg <= '0';
-        BTNR_re_detection_reg <= '0';
-        BTND_re_detection_reg <= '0';
-        BTNL_re_detection_reg <= '0';
-        BTNC_re_detection_reg <= '0';
-        state_n_reg <= (others => '0');        
-        state_g1_reg <= (others => '0');        
-        state_g2_reg <= (others => '0');        
-        state_g3_reg <= (others => '0');        
       elsif(enable_in = '1')then
         l_data_in_reg <= l_data_in_next;
         r_data_in_reg <= r_data_in_next;
         l_data_out_reg <= l_data_out_next;
         r_data_out_reg <= r_data_out_next;
-        ----------------------------------------------
-        BTNR_reg <= BTNR_next;
-        BTND_reg <= BTND_next;
-        BTNL_reg <= BTNL_next;
-        BTNC_reg <= BTNC_next;
-        BTNR_re_detection_reg <= BTNR_re_detection_next;
-        BTND_re_detection_reg <= BTND_re_detection_next;
-        BTNL_re_detection_reg <= BTNL_re_detection_next;
-        BTNC_re_detection_reg <= BTNC_re_detection_next;
-        state_n_reg <= state_n_next;        
-        state_g1_reg <= state_g1_next;        
-        state_g2_reg <= state_g2_next;        
-        state_g3_reg <= state_g3_next;          
       end if;
     end if;
   end process;
-  -------------------------------------------------------------------------------------------------------------------------------
-  -- Combinational logic process: Enable_n, g1, g2 y g3 generator to config the reverb stats
-  -------------------------------------------------------------------------------------------------------------------------------  
-  enable_n1 <= '1' when state_n_reg = "00" else '0';
-  enable_n2 <= '1' when state_n_reg = "01" else '0';
-  enable_n3 <= '1' when state_n_reg = "10" else '0';
-  enable_n4 <= '1' when state_n_reg = "11" else '0';
-  -------------------------------------------------------------------------------------------------------------------------------  
-  g1 <= 0 when state_g1_reg = "00" else
-        1 when state_g1_reg = "01" else
-        2 when state_g1_reg = "10" else
-        3;
-  -------------------------------------------------------------------------------------------------------------------------------  
-  g2 <= 1 when state_g2_reg = "00" else
-        2 when state_g2_reg = "01" else
-        3 when state_g2_reg = "10" else
-        4;
-  -------------------------------------------------------------------------------------------------------------------------------  
-  g3 <= 0 when state_g2_reg = "00" else
-        1 when state_g2_reg = "01" else
-        2 when state_g2_reg = "10" else
-        3;
-  -------------------------------------------------------------------------------------------------------------------------------  
-  BTNR_next <= BTNR;
-  BTND_next <= BTND;
-  BTNL_next <= BTNL;
-  BTNC_next <= BTNC;
-  -------------------------------------------------------------------------------------------------------------------------------  
-  BTNR_re_detection_next <= '1' when (BTNR_next = '1' and BTNR_reg = '0') else '0';
-  BTND_re_detection_next <= '1' when (BTND_next = '1' and BTND_reg = '0') else '0';
-  BTNL_re_detection_next <= '1' when (BTNL_next = '1' and BTNL_reg = '0') else '0';
-  BTNC_re_detection_next <= '1' when (BTNC_next = '1' and BTNC_reg = '0') else '0';
-  -------------------------------------------------------------------------------------------------------------------------------  
-  state_n_next  <= state_n_reg  + 1 when BTNR_re_detection_reg = '1' else state_n_reg;      
-  state_g1_next <= state_g1_reg + 1 when BTND_re_detection_reg = '1' else state_g1_reg;      
-  state_g2_next <= state_g2_reg + 1 when BTNL_re_detection_reg = '1' else state_g2_reg;      
-  state_g3_next <= state_g3_reg + 1 when BTNC_re_detection_reg = '1' else state_g3_reg;      
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Data_Input to the fifo_t
   -------------------------------------------------------------------------------------------------------------------------------
