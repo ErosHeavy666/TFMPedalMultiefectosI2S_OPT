@@ -15,12 +15,11 @@ use work.pkg_digital_effects.all;
 ------------
 entity digital_efects is
   generic(
-    d_width    : integer := 16);
+    g_width    : integer := 16);
   port( 
     clk        : in std_logic;
     reset_n    : in std_logic;
     enable_in  : in std_logic; 
-    enable_out : out std_logic;
     BTNR       : in std_logic;
     BTNC       : in std_logic; 
     BTNL       : in std_logic; 
@@ -40,10 +39,10 @@ entity digital_efects is
     SW12       : in std_logic;
     SW13       : in std_logic;
     SW14       : in std_logic;
-    l_data_in  : in std_logic_vector(d_width-1 downto 0);     
-    r_data_in  : in std_logic_vector(d_width-1 downto 0); 
-    l_data_out : out std_logic_vector(d_width-1 downto 0);
-    r_data_out : out std_logic_vector(d_width-1 downto 0)  
+    l_data_in  : in std_logic_vector(g_width-1 downto 0);     
+    r_data_in  : in std_logic_vector(g_width-1 downto 0); 
+    l_data_out : out std_logic_vector(g_width-1 downto 0);
+    r_data_out : out std_logic_vector(g_width-1 downto 0)  
   );
 end Digital_Efects;
 
@@ -66,17 +65,17 @@ architecture arch_digital_efects of digital_efects is
   signal enable_in_config_reverb : std_logic;
 
   -- Signals to redirect the i2s data
-  signal r_data_out_es, l_data_out_es, r_data_in_es, l_data_in_es : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_delay, l_data_out_delay, r_data_in_delay, l_data_in_delay : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_chorus, l_data_out_chorus, r_data_in_chorus, l_data_in_chorus : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_vibrato, l_data_out_vibrato, r_data_in_vibrato, l_data_in_vibrato : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_reverb, l_data_out_reverb, r_data_in_reverb, l_data_in_reverb : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_eco, l_data_out_eco, r_data_in_eco, l_data_in_eco : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_compressor, l_data_out_compressor, r_data_in_compressor, l_data_in_compressor : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_overdrive, l_data_out_overdrive, r_data_in_overdrive, l_data_in_overdrive : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_looper, l_data_out_looper, r_data_in_looper, l_data_in_looper : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_bankfilter, l_data_out_bankfilter, r_data_in_bankfilter, l_data_in_bankfilter : std_logic_vector(d_width-1 downto 0);
-  signal r_data_out_config_reverb, l_data_out_config_reverb, r_data_in_config_reverb, l_data_in_config_reverb : std_logic_vector(d_width-1  downto 0);
+  signal r_data_out_es, l_data_out_es, r_data_in_es, l_data_in_es : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_delay, l_data_out_delay, r_data_in_delay, l_data_in_delay : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_chorus, l_data_out_chorus, r_data_in_chorus, l_data_in_chorus : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_vibrato, l_data_out_vibrato, r_data_in_vibrato, l_data_in_vibrato : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_reverb, l_data_out_reverb, r_data_in_reverb, l_data_in_reverb : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_eco, l_data_out_eco, r_data_in_eco, l_data_in_eco : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_compressor, l_data_out_compressor, r_data_in_compressor, l_data_in_compressor : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_overdrive, l_data_out_overdrive, r_data_in_overdrive, l_data_in_overdrive : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_looper, l_data_out_looper, r_data_in_looper, l_data_in_looper : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_bankfilter, l_data_out_bankfilter, r_data_in_bankfilter, l_data_in_bankfilter : std_logic_vector(g_width-1 downto 0);
+  signal r_data_out_config_reverb, l_data_out_config_reverb, r_data_in_config_reverb, l_data_in_config_reverb : std_logic_vector(g_width-1 downto 0);
 
 begin
   

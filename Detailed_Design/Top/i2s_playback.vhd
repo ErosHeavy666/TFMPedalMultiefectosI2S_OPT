@@ -96,7 +96,7 @@ begin
   reset <= not N_RESET;
   
   unit_digital_efects : digital_efects
-  generic map(d_width => 16)
+  generic map(g_width => 16)
   port map(
        clk        => master_clk, 
        reset_n    => reset,
