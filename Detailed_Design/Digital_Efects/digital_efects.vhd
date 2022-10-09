@@ -80,86 +80,76 @@ architecture arch_digital_efects of digital_efects is
 
 begin
   
-  -- Instance for ES Difital Efect component
-  Unit_EfectES : EfectoES 
-    generic map(d_width => 16)
+  Unit_EfectES : efecto_es 
+    generic map(g_width => 16)
     port map(
-     clk => clk,
-     reset_n    => reset_n, 
-     enable_in  => enable_in_es,
-     l_data_in  => l_data_in_es, 
-     l_data_out => l_data_out_es, 
-     r_data_in  => r_data_in_es, 
-     r_data_out => r_data_out_es,
-     enable_out => open
+       clk        => clk,
+       reset_n    => reset_n, 
+       enable_in  => enable_in_es,
+       l_data_in  => l_data_in_es, 
+       r_data_in  => r_data_in_es, 
+       l_data_out => l_data_out_es, 
+       r_data_out => r_data_out_es
   ); 
   
-  -- Instance for DELAY Difital Efect component
-  Unit_EfectDELAY : EfectoDELAY 
-    generic map(n => 4000, d_width => 16)
+  Unit_EfectDELAY : efecto_delay 
+    generic map(n => 4000, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_delay,
        l_data_in  => l_data_in_delay, 
-       l_data_out => l_data_out_delay, 
        r_data_in  => r_data_in_delay, 
-       r_data_out => r_data_out_delay,
-       enable_out => open
+       l_data_out => l_data_out_delay, 
+       r_data_out => r_data_out_delay
   ); 
   
-  -- Instance for CHORUS Difital Efect component
-  Unit_EfectCHORUS : EfectoCHORUS
-    generic map(n => 1000, d_width => 16)
+  Unit_EfectCHORUS : efecto_chorus
+    generic map(n => 1000, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_chorus,
        l_data_in  => l_data_in_chorus, 
-       l_data_out => l_data_out_chorus, 
        r_data_in  => r_data_in_chorus, 
-       r_data_out => r_data_out_chorus,
-       enable_out => open
+       l_data_out => l_data_out_chorus, 
+       r_data_out => r_data_out_chorus
   );
   
-  -- Instance for VIBRATO Difital Efect component
-  Unit_EfectVIBRATO : EfectoVIBRATO
-    generic map(n => 500, d_width => 16)
+  Unit_EfectVIBRATO : efecto_vibrato
+    generic map(n => 500, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_vibrato,
        l_data_in  => l_data_in_vibrato, 
-       l_data_out => l_data_out_vibrato, 
        r_data_in  => r_data_in_vibrato, 
-       r_data_out => r_data_out_vibrato,
-       enable_out => open
+       l_data_out => l_data_out_vibrato, 
+       r_data_out => r_data_out_vibrato
   );
   
-  Unit_EfectREVERB : EfectoREVERB
-    generic map(n => 500, d_width => 16)
+  Unit_EfectREVERB : efecto_reverb
+    generic map(n => 500, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_reverb,
        l_data_in  => l_data_in_reverb, 
-       l_data_out => l_data_out_reverb, 
        r_data_in  => r_data_in_reverb, 
-       r_data_out => r_data_out_reverb,
-       enable_out => open
+       l_data_out => l_data_out_reverb, 
+       r_data_out => r_data_out_reverb
   );
   
-  Unit_EfectECO : EfectoECO
-    generic map(n => 5000, d_width => 16)
+  Unit_EfectECO : efecto_eco
+    generic map(n => 5000, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_eco,
        l_data_in  => l_data_in_eco, 
-       l_data_out => l_data_out_eco, 
        r_data_in  => r_data_in_eco, 
-       r_data_out => r_data_out_eco,
-       enable_out => open
+       l_data_out => l_data_out_eco, 
+       r_data_out => r_data_out_eco
   );
   
   Unit_EfectCOMPRESSOR : efecto_compressor  
@@ -169,8 +159,8 @@ begin
        reset_n    => reset_n, 
        enable_in  => enable_in_compressor,
        l_data_in  => l_data_in_compressor, 
-       l_data_out => l_data_out_compressor, 
        r_data_in  => r_data_in_compressor, 
+       l_data_out => l_data_out_compressor, 
        r_data_out => r_data_out_compressor
   ); 
   
@@ -181,8 +171,8 @@ begin
        reset_n    => reset_n, 
        enable_in  => enable_in_overdrive,
        l_data_in  => l_data_in_overdrive, 
-       l_data_out => l_data_out_overdrive, 
        r_data_in  => r_data_in_overdrive, 
+       l_data_out => l_data_out_overdrive, 
        r_data_out => r_data_out_overdrive
   ); 
   
@@ -216,8 +206,8 @@ begin
        enable_out => open
   ); 
   
-  Unit_EfectREVERB_PARAMETRIZADO : EfectoREVERB_PARAMETRIZADO
-    generic map(n1 => 1500, d_width => 16)
+  Unit_EfectCONFIG_REVERB : efecto_config_reverb
+    generic map(n1 => 1500, g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -227,10 +217,9 @@ begin
        BTND       => BTND,
        BTNR       => BTNR,
        l_data_in  => l_data_in_config_reverb, 
-       l_data_out => l_data_out_config_reverb, 
        r_data_in  => r_data_in_config_reverb, 
-       r_data_out => r_data_out_config_reverb,
-       enable_out => open
+       l_data_out => l_data_out_config_reverb, 
+       r_data_out => r_data_out_config_reverb
   );
 
   -- Combinational logic process: Effect Selector (Enable + Input Right/Left_Data)
