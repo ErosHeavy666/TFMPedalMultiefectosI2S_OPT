@@ -23,7 +23,7 @@ end tb_randomEfect;
 architecture tb_randomEfect_arch of tb_randomEfect is
 
   -- Constants
-  constant g_width : integer := 16;
+  constant g_width : integer := 12;
   constant clk_period : time := 45.35us;
   constant haha_duration : time := 1000ms;
   
@@ -49,7 +49,7 @@ begin
   end process; 
 
 --  Unit_EfectES : efecto_es 
---  generic map(g_width => 16)
+--  generic map(g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -61,7 +61,7 @@ begin
 --  ); 
 
 --  Unit_EfectDELAY : efecto_delay 
---  generic map(n => 4000, g_width => 16)
+--  generic map(n => 4000, g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -73,7 +73,7 @@ begin
 --  ); 
 
 --  Unit_EfectCHORUS : efecto_chorus 
---  generic map(n => 1000, g_width => 16)
+--  generic map(n => 1000, g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -85,7 +85,7 @@ begin
 --  ); 
 
 --  Unit_EfectVIBRATO : efecto_vibrato 
---  generic map(n => 500, g_width => 16)
+--  generic map(n => 500, g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -97,7 +97,7 @@ begin
 --  ); 
 
 --  Unit_EfectREVERB : efecto_reverb
---  generic map(n => 500, g_width => 16)
+--  generic map(n => 500, g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -109,7 +109,7 @@ begin
 --  ); 
   
   Unit_EfectECO : efecto_eco
-  generic map(n => 5000, g_width => 16)
+  generic map(n => 5000, g_width => 12)
   port map(
     clk => clk,
     reset_n => reset_n, 
@@ -121,7 +121,7 @@ begin
   ); 
 
 --Unit_EfectCOMPRESSOR : efecto_compressor
---  generic map(g_width => 16)
+--  generic map(g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -133,7 +133,7 @@ begin
 --  ); 
 
 --Unit_EfectOVERDRIVE : efecto_overdrive
---  generic map(g_width => 16)
+--  generic map(g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -145,7 +145,7 @@ begin
 --  ); 
 
 --Unit_EfectoBANKFILTER : EfectoBANKFILTER
---GENERIC MAP(d_width => 16
+--GENERIC MAP(d_width => 12
 --            )
 --PORT MAP(
 --     clk          => clk,

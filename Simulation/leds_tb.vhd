@@ -21,7 +21,7 @@ end leds_tb;
 architecture arch_leds_tb of leds_tb is
 
   -- Constants
-  constant d_width    : integer := 16;
+  constant d_width    : integer := 12;
   constant clk_period : time := 90ns;
 
   -- Signals
@@ -35,7 +35,7 @@ architecture arch_leds_tb of leds_tb is
   -- Components
   component leds is
     generic(
-      g_width       : integer := 16);  -- Data width
+      g_width       : integer := 12);  -- Data width
     port ( 
       clk           : in std_logic; -- MCLK
       n_reset       : in std_logic; -- Reset síncrono a nivel bajo del sistema global
@@ -49,7 +49,7 @@ architecture arch_leds_tb of leds_tb is
 begin
 
   unit_leds : leds  
-    generic map(g_width => 16)
+    generic map(g_width => 12)
     port map(
       clk           => clk,
       n_reset       => n_reset,
@@ -70,22 +70,22 @@ begin
   stim_proc: process 
   begin
   
-      s_i_r_data_rx <= "0000000000001100";
-      s_i_l_data_rx <= "0000000000001100";
+      s_i_r_data_rx <= "000000000000";
+      s_i_l_data_rx <= "000000000000";
       n_reset <= '0';
       s_i_play_enable <= '0';
       wait for 10*clk_period;
   
-      s_i_r_data_rx <= "1100000000000110";
-      s_i_l_data_rx <= "1100000000000110";    
+      s_i_r_data_rx <= "110000000000";
+      s_i_l_data_rx <= "110000000000";    
       n_reset <= '1';
       s_i_play_enable <= '0';
       wait for 10*clk_period;
       
       n_reset <= '1';
       s_i_play_enable <= '1';
-      s_i_r_data_rx <= "0000000000000000";
-      s_i_l_data_rx <= "0000000000000000";     
+      s_i_r_data_rx <= "000000000000";
+      s_i_l_data_rx <= "000000000000";     
       
       wait for 2*clk_period;    
       for i in 0 to 524288 loop

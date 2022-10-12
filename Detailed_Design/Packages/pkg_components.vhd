@@ -24,7 +24,7 @@ package pkg_components is
     generic(
         g_ms_ratio_w : natural := 3; -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
         g_sw_ratio_w : natural := 6; -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
-        g_data_w     : natural := 16
+        g_data_w     : natural := 12
     );
     port(
         clk        : in std_logic;
@@ -54,7 +54,7 @@ package pkg_components is
 
   component digital_efects is
     generic(
-      g_width    : integer := 16);
+      g_width    : integer := 12);
     port( 
       clk        : in std_logic;
       reset_n    : in std_logic;
@@ -87,7 +87,7 @@ package pkg_components is
   
   component leds is
     generic(
-      g_width       : integer := 16);  
+      g_width       : integer := 12);  
     port ( 
       clk           : in std_logic; 
       n_reset       : in std_logic; 

@@ -34,7 +34,7 @@ use IEEE.STD_LOGIc_unsigned.all;
 
 entity EfectoLOOPER is
 GENERIC(
-    d_width         : INTEGER := 16; --Ancho del bus  
+    d_width         : INTEGER := 12; --Ancho del bus  
     d_deep          : INTEGER := 19); --Ancho de la memoria RAM
 Port ( 
     clk                   : in STD_LOGIC;--MCLK                                            
@@ -52,6 +52,8 @@ Port (
 end EfectoLOOPER;
 
 architecture Behavioral of EfectoLOOPER is
+
+constant zero_refilling : std_logic_vector(d_width/2-1 downto 0) := (others => '0');
 
 signal ena_RAM : STD_LOGIC;
 signal wea_RAM : STD_LOGIC_VECTOR (0 downto 0);
@@ -117,7 +119,7 @@ begin
             state_next <= inicio; 
         elsif (ena_RAM = '1') then
             -- Grabación
-            dina_next <= r_data_in(15 downto 8);
+            dina_next <= r_data_in(d_width-1 downto d_width/2);
             if(wea_RAM = "1") then
                 addra_next <= addra_max_reg;
                 state_next <= rec;
@@ -132,7 +134,7 @@ begin
            end if;
         else
            addra_next <= (others => '0');
-           dina_next <= r_data_in(15 downto 8);
+           dina_next <= r_data_in(d_width-1 downto d_width/2);
            state_next <= inicio;
         end if;
        
@@ -143,12 +145,12 @@ begin
             addra_max_next <= (others => '0');
             state_next <= inicio;       
         elsif(wea_RAM = "1" and enable_in = '1' and SW6='0' and SW5='1') then
-            dina_next <= r_data_in(15 downto 8);
+            dina_next <= r_data_in(d_width-1 downto d_width/2);
             addra_next <= addra_reg + 1;
             addra_max_next <= addra_reg + 1;
             state_next <= rec;
         elsif(wea_RAM = "1" and SW6='0' and SW5='1') then
-            dina_next <= r_data_in(15 downto 8);
+            dina_next <= r_data_in(d_width-1 downto d_width/2);
             state_next <= rec;
         else
             state_next <= inicio;
@@ -161,11 +163,11 @@ begin
             addra_max_next <= (others => '0');
             state_next <= inicio;       
         elsif(wea_RAM= "0" and enable_in = '1' and SW6='1' and SW5='1' and (addra_reg=addra_max_reg)) then
-            dina_next <= r_data_in(15 downto 8);
+            dina_next <= r_data_in(d_width-1 downto d_width/2);
             addra_next <= (others => '0');
             state_next <= play_fw;
         elsif(wea_RAM= "0" and enable_in = '1' and SW6='1' and SW5='1' and (addra_reg/=addra_max_reg)) then
-                dina_next <= r_data_in(15 downto 8);
+                dina_next <= r_data_in(d_width-1 downto d_width/2);
                 addra_next <= addra_reg + 1;
                 state_next <= play_fw;            
         elsif(wea_RAM= "0" and SW6='1' and SW5='1') then
@@ -213,25 +215,25 @@ begin
         enable_out <= enable_in;
         --Versión superpuesta para amplificador
         if(SW6 = '1' and SW5 = '1' and wea_RAM = "0") then
-            l_data_out <= l_data_in + (douta_RAM & "00000000");
+            l_data_out <= l_data_in + (douta_RAM & zero_refilling);
         else
-            l_data_out <= douta_RAM & "00000000";
+            l_data_out <= douta_RAM & zero_refilling;
         end if;
         if(SW6 = '1' and SW5 = '1' and wea_RAM = "0") then            
-            r_data_out <= r_data_in + (douta_RAM & "00000000");
+            r_data_out <= r_data_in + (douta_RAM & zero_refilling);
         else
-            r_data_out <= douta_RAM & "00000000";
+            r_data_out <= douta_RAM & zero_refilling;
         end if;
         --Versión full estéreo para auriculares
 --        if(SW6 = '1' and SW5 = '1') then
 --            l_data_out <= l_data_in;
 --        else
---            l_data_out <= douta_RAM & "00000000";
+--            l_data_out <= douta_RAM & zero_refilling;
 --        end if;
 --        if(SW6 = '1' and SW5 = '1' and wea_RAM = "0") then            
---            r_data_out <= douta_RAM & "00000000";
+--            r_data_out <= douta_RAM & zero_refilling;
 --        else
---            r_data_out <= douta_RAM & "00000000";
+--            r_data_out <= douta_RAM & zero_refilling;
 --        end if;
     end if;
 end process;

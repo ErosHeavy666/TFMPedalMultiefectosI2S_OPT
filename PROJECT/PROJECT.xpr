@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="39" Path="C:/Users/eros_/Downloads/TFMPedalMultiefectosI2S_OPT/PROJECT/PROJECT.xpr">
+<Project Version="7" Minor="39" Path="C:/Users/eros_/Downloads/TFMPedalMultiefectosI2S_OPT_12b/PROJECT/PROJECT.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="4ebe360bade147b9b7546bfedef36497"/>
@@ -23,7 +23,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
-    <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
+    <Option Name="IPOutputRepo" Val="C:/Users/eros_/Downloads/TFMPedalMultiefectosI2S_OPT/PROJECT/PROJECT.cache/ip"/>
     <Option Name="IPCachePermission" Val="read"/>
     <Option Name="IPCachePermission" Val="write"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
@@ -40,13 +40,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="5"/>
-    <Option Name="WTModelSimExportSim" Val="5"/>
-    <Option Name="WTQuestaExportSim" Val="5"/>
-    <Option Name="WTIesExportSim" Val="5"/>
-    <Option Name="WTVcsExportSim" Val="5"/>
-    <Option Name="WTRivieraExportSim" Val="5"/>
-    <Option Name="WTActivehdlExportSim" Val="5"/>
+    <Option Name="WTXSimExportSim" Val="6"/>
+    <Option Name="WTModelSimExportSim" Val="6"/>
+    <Option Name="WTQuestaExportSim" Val="6"/>
+    <Option Name="WTIesExportSim" Val="6"/>
+    <Option Name="WTVcsExportSim" Val="6"/>
+    <Option Name="WTRivieraExportSim" Val="6"/>
+    <Option Name="WTActivehdlExportSim" Val="6"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>

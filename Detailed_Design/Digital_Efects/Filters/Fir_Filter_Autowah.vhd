@@ -33,7 +33,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Fir_Filter_bankfilter is
 GENERIC(
-    d_width         :  INTEGER := 16);
+    d_width         :  INTEGER := 12);
 Port (  clk_12megas : in STD_LOGIC; --Entrada del reloj general del sistema de 12MHz
         Reset : in STD_LOGIC;  --Reset síncrono general del Fir
         Sample_In : in signed (d_width-1 downto 0); --Muestras de entrada codificadas en <1,15>

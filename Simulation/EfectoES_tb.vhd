@@ -37,12 +37,12 @@ end EfectoLOOPER_tb;
 
 architecture Behavioral of EfectoLOOPER_tb is
 
-constant d_width : INTEGER := 16;
+constant d_width : INTEGER := 12;
 constant d_deep  : INTEGER := 19;
 
 component EfectoLOOPER is
 GENERIC(
-    d_width         : INTEGER := 16;
+    d_width         : INTEGER := 12;
     d_deep          : INTEGER := 19
     );
 Port ( 
@@ -68,7 +68,7 @@ constant  clk_period : time := 89ns;
 begin
 
 Unit_EfectLOOPER : EfectoLOOPER 
-GENERIC MAP(d_width => 16, 
+GENERIC MAP(d_width => 12, 
             d_deep => 19 
             )
 PORT MAP(
@@ -100,8 +100,8 @@ PORT MAP(
           SW6 <= '0';
           SW13 <= '0';
           enable_in <= '0';
-          l_data_in <= "0000111100001111";
-          r_data_in <= "1111000011110000";
+          l_data_in <= "000011110000";
+          r_data_in <= "111100001111";
           wait for 10*clk_period;
           
           reset_n <= '0';
@@ -109,8 +109,8 @@ PORT MAP(
           SW6 <= '0';
           SW13 <= '0';
           enable_in <= '0';
-          l_data_in <= "0000111100001111";
-          r_data_in <= "1111000011110000";
+          l_data_in <= "000011110000";
+          r_data_in <= "111100001111";
           wait for 10*clk_period;
           
           reset_n <= '0';
@@ -118,8 +118,8 @@ PORT MAP(
           SW6 <= '0';
           SW13 <= '0';
           enable_in <= '1';
-          l_data_in <= "0000111100001100";
-          r_data_in <= "1111000011110011";
+          l_data_in <= "000011110000";
+          r_data_in <= "111100001111";
           wait for 10*clk_period;
           
           reset_n <= '0';
@@ -127,8 +127,8 @@ PORT MAP(
           SW6 <= '0';
           SW13 <= '0';
           enable_in <= '1';
-          l_data_in <= "0000100100001100";
-          r_data_in <= "1111011011110011";
+          l_data_in <= "000010010000";
+          r_data_in <= "111101101111";
           wait for 10*clk_period;
           
           reset_n <= '0';
@@ -136,8 +136,8 @@ PORT MAP(
           SW6 <= '0';
           SW13 <= '0';
           enable_in <= '1';
-          l_data_in <= "1100100100001100";
-          r_data_in <= "0011011011110011";
+          l_data_in <= "110010010000";
+          r_data_in <= "001101101111";
           wait for 10*clk_period;
                               
           reset_n <= '0';
@@ -145,8 +145,8 @@ PORT MAP(
           SW6 <= '1';
           SW13 <= '0';
           enable_in <= '1';
-          l_data_in <= "0000000000001111";
-          r_data_in <= "0011011111110011";
+          l_data_in <= "000000000000";
+          r_data_in <= "001101111111";
           wait for 90*clk_period;
           
           reset_n <= '1';
@@ -160,8 +160,8 @@ PORT MAP(
           SW6 <= '1';
           SW13 <= '0';
           enable_in <= '1';
-          l_data_in <= "0000000000001111";
-          r_data_in <= "0011011111110011";
+          l_data_in <= "000000000000";
+          r_data_in <= "001101111111";
           wait for 100*clk_period;
           
           reset_n <= '0';

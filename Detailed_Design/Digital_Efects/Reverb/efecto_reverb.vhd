@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity efecto_reverb is
   generic(
     n       : integer := 500; --Línea de retardo
-    g_width : integer := 16 --Ancho del bus 
+    g_width : integer := 12 --Ancho del bus 
   );
   port( 
     clk        : in std_logic; --MCLK                                            

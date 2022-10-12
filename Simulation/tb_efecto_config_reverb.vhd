@@ -23,7 +23,7 @@ end tb_efecto_config_reverb;
 architecture tb_efecto_config_reverb_arch of tb_efecto_config_reverb is
 
   -- Constants
-  constant g_width : integer := 16;
+  constant g_width : integer := 12;
   constant clk_period : time := 89ns;
   
   signal clk, reset_n, enable_in, enable_out, BTNC, BTNL, BTND, BTNR : std_logic;
@@ -32,7 +32,7 @@ architecture tb_efecto_config_reverb_arch of tb_efecto_config_reverb is
 begin
 
   Unit_EfectCONFIG_REVERB : efecto_config_reverb
-    generic map(n1 => 1500, g_width => 16)
+    generic map(n1 => 1500, g_width => 12)
     port map(
       clk        => clk,
       reset_n    => reset_n,
@@ -63,8 +63,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;
     
     reset_n <= '0';
@@ -73,8 +73,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period; 
     
     reset_n <= '0';
@@ -83,8 +83,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;
     
     reset_n <= '0';
@@ -93,8 +93,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;  
 
     reset_n <= '0';
@@ -103,8 +103,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period; 
      
     reset_n <= '0';
@@ -113,8 +113,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;
     
     reset_n <= '0';
@@ -123,8 +123,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;  
     
     reset_n <= '0';
@@ -133,8 +133,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;   
     
     reset_n <= '0';
@@ -143,8 +143,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;   
     
     reset_n <= '0';
@@ -153,8 +153,8 @@ begin
     BTND <= '0';
     BTNR <= '0';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;   
     
     reset_n <= '0';
@@ -163,8 +163,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait for 10*clk_period;     
           
     reset_n <= '1';
@@ -173,8 +173,8 @@ begin
     BTND <= '1';
     BTNR <= '1';
     enable_in <= '1';
-    l_data_in <= "0000111100001111";
-    r_data_in <= "1111000011110000";
+    l_data_in <= "000011110000";
+    r_data_in <= "111100001111";
     wait;   
                       
   end process;      

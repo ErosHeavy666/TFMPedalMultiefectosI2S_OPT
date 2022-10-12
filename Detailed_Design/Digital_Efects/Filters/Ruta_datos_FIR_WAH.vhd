@@ -34,7 +34,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Ruta_datos_Fir_bankfilter is
 GENERIC(
-    d_width         :  INTEGER := 16);
+    d_width         :  INTEGER := 12);
 Port (  s_M12: in STD_LOGIC_VECTOR(3 downto 0); --Señan de control del Mux con los registros R1 y R2
         s_M3: in STD_LOGIC; --Señal de control del Mux para el registro R3
         clk_12megas: in STD_LOGIC; --Entrada del reloj general del sistema de 12MHz
@@ -75,7 +75,7 @@ begin
 
 --FIR-filter-Ruta de datos-Flujo de los datos Xn con sus Cn
 register_d_0: register_d
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -84,7 +84,7 @@ PORT MAP(
      o_data => x0
 );  
 register_d_1: register_d
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -93,7 +93,7 @@ PORT MAP(
      o_data => x1
 );                               
 register_d_2: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -102,7 +102,7 @@ PORT MAP(
      o_data => x2
 );                                 
 register_d_3: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -111,7 +111,7 @@ PORT MAP(
      o_data => x3
 );                                
 register_d_4: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -120,7 +120,7 @@ PORT MAP(
      o_data => x4
 );                                
 register_d_5: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -129,7 +129,7 @@ PORT MAP(
      o_data => x5
 );      
 register_d_6: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -138,7 +138,7 @@ PORT MAP(
      o_data => x6
 );      
 register_d_7: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -147,7 +147,7 @@ PORT MAP(
      o_data => x7
 );      
 register_d_8: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -156,7 +156,7 @@ PORT MAP(
      o_data => x8
 );      
 register_d_9: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -165,7 +165,7 @@ PORT MAP(
      o_data => x9
 );      
 register_d_10: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -174,7 +174,7 @@ PORT MAP(
      o_data => x10
 );      
 register_d_11: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -183,7 +183,7 @@ PORT MAP(
      o_data => x11
 );      
 register_d_12: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -192,7 +192,7 @@ PORT MAP(
      o_data => x12
 );      
 register_d_13: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -201,7 +201,7 @@ PORT MAP(
      o_data => x13
 );      
 register_d_14: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -210,7 +210,7 @@ PORT MAP(
      o_data => x14
 );         
 register_d_15: register_d                            
-GENERIC MAP (g_width => 16)
+GENERIC MAP (g_width => 12)
 PORT MAP(
      clk => clk_12megas,  
      n_reset => reset,
@@ -237,39 +237,39 @@ end process;
 process(filter_select) --Selección del tipo de filtrado que deseamos realizar
 begin                
     if (filter_select = '1') then --LPF   
-        c0 <= "1111111111011111";
-        c1 <= "0000001011110010";
-        c2 <= "0000011000000100";
-        c3 <= "0000011011001001";
-        c4 <= "0000101000111101";
-        c5 <= "0000110000001000";
-        c6 <= "0000111000010100";
-        c7 <= "0000111011011001";
-        c8 <= "0000111011011001";
-        c9 <= "0000111000010100";
-        c10 <= "0000110000001000";
-        c11 <= "0000101000111101";
-        c12 <= "0000011011001001";  
-        c13 <= "0000011000000100";
-        c14 <= "0000001011110010";
-        c15 <= "1111111111011111";   
+        c0 <= "111111111101";
+        c1 <= "000000101111";
+        c2 <= "000001100000";
+        c3 <= "000001101100";
+        c4 <= "000010100011";
+        c5 <= "000011000000";
+        c6 <= "000011100001";
+        c7 <= "000011101101";
+        c8 <= "000011101101";
+        c9 <= "000011100001";
+        c10 <= "000011000000";
+        c11 <= "000010100011";
+        c12 <= "000001101100";  
+        c13 <= "000001100000";
+        c14 <= "000000101111";
+        c15 <= "111111111101";   
     else  --HPF      
-        c0 <= "0000000101001000";
-        c1 <= "0000001011110010";
-        c2 <= "1111001110010111";
-        c3 <= "1111111110011110";
-        c4 <= "1110101010100000";   
-        c5 <= "0000000111101100"; 
-        c6 <= "1101010111000011"; 
-        c7 <= "0100000010000011"; 
-        c8 <= "0100000010000011"; 
-        c9 <= "1101010111000011";  
-        c10 <= "0000000111101100";  
-        c11 <= "1110101010100000"; 
-        c12 <= "1111111110011110"; 
-        c13 <= "1111001110010110"; 
-        c14 <= "0000001011110010";
-        c15 <= "0000000101001000";    
+        c0 <= "000000010100";
+        c1 <= "000000101111";
+        c2 <= "111100111001";
+        c3 <= "111111111001";
+        c4 <= "111010101010";   
+        c5 <= "000000011110"; 
+        c6 <= "110101011100"; 
+        c7 <= "010000001000"; 
+        c8 <= "010000001000"; 
+        c9 <= "110101011100";  
+        c10 <= "000000011110";  
+        c11 <= "111010101010"; 
+        c12 <= "111111111001"; 
+        c13 <= "111100111001"; 
+        c14 <= "000000101111";
+        c15 <= "000000010100";    
             
     end if;
 end process;
@@ -362,7 +362,7 @@ end process;
 --Proceso que suma la salida del Mux3 con los 8 bits más significativos del registro R2 y los asocia a R3
 process(R2_reg, M3_aux)
 begin         
-    R3_next <= R2_reg(d_width*2-2 downto d_width*2-2-15) + M3_aux;
+    R3_next <= R2_reg(d_width*2-2 downto d_width*2-2-11) + M3_aux;
 end process;
 
 --Proceso que asigna a la señal auxiliar de salida el valor del registro R3 calcilado anteriormente 

@@ -34,7 +34,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity EfectoBANKFILTER is
 GENERIC(
-    d_width         :  INTEGER := 16); --Ancho del bus
+    d_width         :  INTEGER := 12); --Ancho del bus
 Port ( 
     clk                   : in STD_LOGIC; --MCLK
     reset_n               : in STD_LOGIC; --Reset asíncrono a nivel alto del sistema global
@@ -57,7 +57,7 @@ architecture Behavioral of EfectoBANKFILTER is
     
 component Fir_Filter_bankfilter is
 GENERIC(
-    d_width         :  INTEGER := 16);
+    d_width         :  INTEGER := 12);
 Port (  clk_12megas : in STD_LOGIC; --MCLK
         Reset : in STD_LOGIC;  --Reset asíncrono a nivel alto del sistema global
         Sample_In : in signed (d_width-1 downto 0); --Muestras de entrada codificadas en <1,15>
@@ -106,7 +106,7 @@ end process;
 --******
 
 Unit_FIR_Filter_bankfilter_L : Fir_Filter_bankfilter 
-GENERIC MAP(d_width => 16)
+GENERIC MAP(d_width => 12)
 PORT MAP (
     clk_12megas => clk,
     Reset => reset_n,
@@ -118,7 +118,7 @@ PORT MAP (
 );
 
 Unit_FIR_Filter_bankfilter_R : Fir_Filter_bankfilter 
-GENERIC MAP(d_width => 16)
+GENERIC MAP(d_width => 12)
 PORT MAP (
     clk_12megas => clk,
     Reset => reset_n,
