@@ -108,21 +108,8 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
   
-<<<<<<< HEAD
-  Unit_EfectECO : efecto_eco
-  generic map(n => 5000, g_width => 12)
-  port map(
-    clk => clk,
-    reset_n => reset_n, 
-    enable_in => enable_in,
-    l_data_in => sample_in, 
-    r_data_in => sample_in, 
-    l_data_out => l_sample_out, 
-    r_data_out => r_sample_out
-  ); 
-=======
 --  Unit_EfectECO : efecto_eco
---  generic map(n => 5000, g_width => 16)
+--  generic map(n => 5000, g_width => 12)
 --  port map(
 --    clk => clk,
 --    reset_n => reset_n, 
@@ -132,7 +119,6 @@ begin
 --    l_data_out => l_sample_out, 
 --    r_data_out => r_sample_out
 --  ); 
->>>>>>> main
 
 --Unit_EfectCOMPRESSOR : efecto_compressor
 --  generic map(g_width => 12)
@@ -158,24 +144,9 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
 
-<<<<<<< HEAD
---Unit_EfectoBANKFILTER : EfectoBANKFILTER
---GENERIC MAP(d_width => 12
---            )
---PORT MAP(
---     clk          => clk,
---     reset_n      => reset_n, 
---     enable_in    => enable_in,
---     SW14         => SW14,
---     l_data_in    => Sample_In, 
---     l_data_out   => open,      
---     r_data_in    => Sample_In, 
---     r_data_out   => Sample_out,
---     enable_out   => enable_out 
---);
-=======
+
 Unit_EfectoFILTER : efecto_filter
-  generic map(g_width => 16)
+  generic map(g_width => 12)
   port map(
     clk => clk,
     reset_n => reset_n, 
@@ -186,7 +157,6 @@ Unit_EfectoFILTER : efecto_filter
     l_data_out => l_sample_out, 
     r_data_out => r_sample_out
   ); 
->>>>>>> main
 
   process(clk)
   variable in_line : line;
