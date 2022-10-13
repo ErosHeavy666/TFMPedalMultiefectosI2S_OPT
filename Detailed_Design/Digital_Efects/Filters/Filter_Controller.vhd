@@ -36,7 +36,7 @@ begin
   process(clk) 
   begin
     if rising_edge(clk) then 
-      if(reset_n = '0')then
+      if(reset_n = '1')then
          state_cnt_reg <= (others => '0');       
       else
          state_cnt_reg <= state_cnt_next;      
