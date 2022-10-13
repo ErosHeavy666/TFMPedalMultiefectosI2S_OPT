@@ -136,41 +136,38 @@ package pkg_digital_effects is
     );
   end component;
 
-component EfectoLOOPER is
-GENERIC(
-    d_width         : INTEGER := 12;
-    d_deep          : INTEGER := 19
+  component efecto_looper is
+    generic(
+      g_width : integer := 16; --Ancho del bus  
+      d_deep  : integer := 19); --Ancho de la memoria RAM
+    port( 
+      clk        : in std_logic; --MCLK                                            
+      reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global 
+      SW13       : in std_logic; --RSTA                
+      enable_in  : in std_logic; --Enable proporcionado por el i2s2                
+      SW5        : in std_logic; --Switches de control para el looper --> Write
+      SW6        : in std_logic; --Switches de control para el looper --> Read                
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);             
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                        
+      r_data_out : out std_logic_vector(g_width-1 downto 0)
     );
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    SW13                  : in STD_LOGIC;
-    enable_in             : IN STD_LOGIC;
-    SW5                   : IN STD_LOGIC;
-    SW6                   : IN STD_LOGIC;
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC
-);
-end component;
+  end component;
 
-component EfectoBANKFILTER is
-GENERIC(
-    d_width         :  INTEGER := 12);
-Port ( 
-    clk                   : in STD_LOGIC;
-    reset_n               : in STD_LOGIC;
-    enable_in             : in STD_LOGIC;
-    SW14                  : IN STD_LOGIC; --Switch de control para el tipo de filtro
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC;
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0);
-    enable_out            : out STD_LOGIC  
-); 
-end component;
+  component efecto_filter is
+    generic(
+      g_width    : integer := 12); 
+    port ( 
+      clk        : in std_logic; 
+      reset_n    : in std_logic; 
+      enable_in  : in std_logic; 
+      SW14       : in std_logic; 
+      l_data_in  : in std_logic_vector(g_width-1 downto 0);             
+      r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
+      l_data_out : out std_logic_vector(g_width-1 downto 0);                        
+      r_data_out : out std_logic_vector(g_width-1 downto 0)
+    ); 
+  end component;
 
   component efecto_config_reverb is
     generic(

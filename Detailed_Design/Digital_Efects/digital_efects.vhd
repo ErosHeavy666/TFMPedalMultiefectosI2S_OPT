@@ -175,8 +175,8 @@ begin
        r_data_out => r_data_out_overdrive
   ); 
   
-  Unit_EfectLOOPER : EfectoLOOPER 
-    generic map(d_width => 12, d_deep => 19)
+  Unit_EfectLOOPER : efecto_looper
+    generic map(g_width => 16, d_deep => 19)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -185,24 +185,22 @@ begin
        SW5        => SW5,
        SW6        => SW6,
        l_data_in  => l_data_in_looper, 
-       l_data_out => l_data_out_looper, 
        r_data_in  => r_data_in_looper, 
-       r_data_out => r_data_out_looper,
-       enable_out => open
+       l_data_out => l_data_out_looper, 
+       r_data_out => r_data_out_looper
   ); 
   
-  Unit_EfectBANKFILTER : EfectoBANKFILTER  
-    generic map(d_width => 12)
+  Unit_EfectFILTER : efecto_filter  
+    generic map(g_width => 16)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
        enable_in  => enable_in_bankfilter,
        SW14       => SW14,
        l_data_in  => l_data_in_bankfilter, 
-       l_data_out => l_data_out_bankfilter, 
        r_data_in  => r_data_in_bankfilter, 
-       r_data_out => r_data_out_bankfilter,
-       enable_out => open
+       l_data_out => l_data_out_bankfilter, 
+       r_data_out => r_data_out_bankfilter
   ); 
   
   Unit_EfectCONFIG_REVERB : efecto_config_reverb

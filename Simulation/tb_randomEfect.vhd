@@ -31,7 +31,7 @@ architecture tb_randomEfect_arch of tb_randomEfect is
   signal clk, reset_n, enable_out : std_logic := '1';
   signal enable_in : std_logic := '0';
   signal sample_in, l_sample_out, r_sample_out : std_logic_vector(g_width-1 downto 0);
-  signal SW14 : std_logic := '1';
+  signal SW14 : std_logic := '0';
   
   -- Files
   file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in.dat";
@@ -108,6 +108,7 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
   
+<<<<<<< HEAD
   Unit_EfectECO : efecto_eco
   generic map(n => 5000, g_width => 12)
   port map(
@@ -119,6 +120,19 @@ begin
     l_data_out => l_sample_out, 
     r_data_out => r_sample_out
   ); 
+=======
+--  Unit_EfectECO : efecto_eco
+--  generic map(n => 5000, g_width => 16)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
+>>>>>>> main
 
 --Unit_EfectCOMPRESSOR : efecto_compressor
 --  generic map(g_width => 12)
@@ -144,6 +158,7 @@ begin
 --    r_data_out => r_sample_out
 --  ); 
 
+<<<<<<< HEAD
 --Unit_EfectoBANKFILTER : EfectoBANKFILTER
 --GENERIC MAP(d_width => 12
 --            )
@@ -158,6 +173,20 @@ begin
 --     r_data_out   => Sample_out,
 --     enable_out   => enable_out 
 --);
+=======
+Unit_EfectoFILTER : efecto_filter
+  generic map(g_width => 16)
+  port map(
+    clk => clk,
+    reset_n => reset_n, 
+    enable_in => enable_in,
+    SW14 => SW14,
+    l_data_in => sample_in, 
+    r_data_in => sample_in, 
+    l_data_out => l_sample_out, 
+    r_data_out => r_sample_out
+  ); 
+>>>>>>> main
 
   process(clk)
   variable in_line : line;

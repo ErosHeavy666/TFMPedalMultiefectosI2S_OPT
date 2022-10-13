@@ -29,6 +29,9 @@ entity efecto_vibrato is
 ); 
 end efecto_vibrato;
 
+------------------
+-- Architecture --
+------------------
 architecture arch_efecto_vibrato of efecto_vibrato is
 
   -- Type for fifo delay  
