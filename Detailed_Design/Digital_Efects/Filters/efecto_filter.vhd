@@ -91,12 +91,20 @@ begin
   begin
     if (rising_edge(clk)) then --MCLK
       if (reset_n = '1') then
-          l_data_filtered_reg <= (others => '0');
-          r_data_filtered_reg <= (others => '0');    
+        r_data_filtered_reg <= (others => '0');  
+      elsif (r_data_filtered_ready = '1') then
+        r_data_filtered_reg <= r_data_filtered_next;  
+      end if;
+    end if;
+  end process;
+  
+  process(clk)
+  begin
+    if (rising_edge(clk)) then --MCLK
+      if (reset_n = '1') then
+        l_data_filtered_reg <= (others => '0');
       elsif (l_data_filtered_ready = '1') then
         l_data_filtered_reg <= l_data_filtered_next;
-      elsif (r_data_filtered_ready = '1') then
-        r_data_filtered_reg <= r_data_filtered_next;
       end if;
     end if;
   end process;
