@@ -1,93 +1,75 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: Eros García Arroyo
--- 
--- Create Date: 17.11.2019 22:28:52
--- Design Name: 
--- Module Name: EfectoLOOPER - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
+----------------------------------
+-- Engineer: Eros Garcia Arroyo --
+----------------------------------
 
+---------------
+-- Libraries --
+---------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIc_unsigned.all;
+------------
+-- Entity --
+------------
+entity efecto_looper is
+  generic(
+    g_width : integer := 16; --Ancho del bus  
+    d_deep  : integer := 19); --Ancho de la memoria RAM
+  port( 
+    clk        : in std_logic; --MCLK                                            
+    reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global 
+    SW13       : in std_logic; --RSTA                
+    enable_in  : in std_logic; --Enable proporcionado por el i2s2                
+    SW5        : in std_logic; --Switches de control para el looper --> Write
+    SW6        : in std_logic; --Switches de control para el looper --> Read                
+    l_data_in  : in std_logic_vector(g_width-1 downto 0);             
+    r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
+    l_data_out : out std_logic_vector(g_width-1 downto 0);                        
+    r_data_out : out std_logic_vector(g_width-1 downto 0)
+  );
+end efecto_looper;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+architecture efecto_looper_arch of efecto_looper is
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+  signal ena_RAM : std_logic;
+  signal wea_RAM : std_logic_vector(0 downto 0);
+  signal dina_RAM, douta_RAM : std_logic_vector((g_width/2-1) downto 0);
+  signal addra_RAM : std_logic_vector(d_deep-1 downto 0);
+  
+  -- Señales para la máquina de estados
+  signal addra_reg, addra_next, addra_max_reg, addra_max_next : std_logic_vector(d_deep-1 DOWNTO 0);
+  signal dina_reg, dina_next: std_logic_vector((g_width/2-1) downto 0);
+  type state_type is(inicio, rec, play_fw); --Lista con el número de estados
+  signal state_reg, state_next: state_type;
 
-entity EfectoLOOPER is
-GENERIC(
-    d_width         : INTEGER := 16; --Ancho del bus  
-    d_deep          : INTEGER := 19); --Ancho de la memoria RAM
-Port ( 
-    clk                   : in STD_LOGIC;--MCLK                                            
-    reset_n               : in STD_LOGIC;--Reset asíncrono a nivel alto del sistema global 
-    SW13                  : in STD_LOGIC;--RSTA                
-    enable_in             : IN STD_LOGIC;--Enable proporcionado por el i2s2                
-    SW5                   : IN STD_LOGIC;--Switches de control para el looper --> Write
-    SW6                   : IN STD_LOGIC;--Switches de control para el looper --> Read
-    l_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC -> Datos de entrada izquierdos; 
-    l_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC -> Datos de salida izquierdos; 
-    r_data_in             : in STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC -> Datos de entrada derechos;   
-    r_data_out            : out STD_LOGIC_VECTOR (d_width-1  downto 0); -- STD_LOGIC -> Datos de salida derechos;   
-    enable_out            : out STD_LOGIC  --Enable out para la señal i2s2
-);
-end EfectoLOOPER;
-
-architecture Behavioral of EfectoLOOPER is
-
-signal ena_RAM : STD_LOGIC;
-signal wea_RAM : STD_LOGIC_VECTOR (0 downto 0);
-signal dina_RAM, douta_RAM : STD_LOGIC_VECTOR ((d_width/2-1) downto 0);
-signal addra_RAM : STD_LOGIC_VECTOR (d_deep-1 downto 0);
-
--- Señales para la máquina de estados
-signal addra_reg, addra_next, addra_max_reg, addra_max_next : std_logic_vector(d_deep-1 DOWNTO 0);
-signal dina_reg, dina_next: STD_LOGIC_VECTOR ((d_width/2-1) downto 0);
-type state_type is(inicio, rec, play_fw); --Lista con el número de estados
-signal state_reg, state_next: state_type;
-
-component blk_mem_gen_1 is
-PORT (
-    clka    : IN STD_LOGIC;
-    ena     : IN STD_LOGIC;
-    rsta    : IN STD_LOGIC;
-    wea     : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addra   : IN STD_LOGIC_VECTOR(d_deep-1 DOWNTO 0);
-    dina    : IN STD_LOGIC_VECTOR((d_width/2-1) DOWNTO 0);
-    douta   : OUT STD_LOGIC_VECTOR((d_width/2-1) DOWNTO 0)
-);
-end component;
+  -- Components declaration
+  component blk_mem_gen_1 is
+    port(
+        clka  : IN STD_LOGIC;
+        ena   : IN STD_LOGIC;
+        rsta  : IN STD_LOGIC;
+        wea   : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(d_deep-1 DOWNTO 0);
+        dina  : IN STD_LOGIC_VECTOR((g_width/2-1) DOWNTO 0);
+        douta : OUT STD_LOGIC_VECTOR((g_width/2-1) DOWNTO 0)
+    );
+  end component;
 
 begin
 
-Unit_RAM : blk_mem_gen_1 PORT MAP (
-    clka  => clk,
-    rsta  => SW13,
-    ena   => ena_RAM,
-    wea   => wea_RAM,
-    addra => addra_RAM,
-    dina  => dina_RAM,
-    douta => douta_ram 
-);
-
+  -------------------------------------------------------------------------------------------------------------------------------
+  -- BRAM Instance 
+  -------------------------------------------------------------------------------------------------------------------------------
+  Unit_BRAM : blk_mem_gen_1 PORT MAP (
+      clka  => clk,
+      rsta  => SW13,
+      ena   => ena_RAM,
+      wea   => wea_RAM,
+      addra => addra_RAM,
+      dina  => dina_RAM,
+      douta => douta_ram 
+  );
 --ASMD--------------------------------------------
 --state and data registers
     process(clk) 
@@ -208,9 +190,7 @@ begin
     if(reset_n = '1') then
         l_data_out <= (others => '0');
         r_data_out <= (others => '0');
-        enable_out <= '0';
     elsif (rising_edge(clk)) then --MCLK
-        enable_out <= enable_in;
         --Versión superpuesta para amplificador
         if(SW6 = '1' and SW5 = '1' and wea_RAM = "0") then
             l_data_out <= l_data_in + (douta_RAM & "00000000");
@@ -236,4 +216,4 @@ begin
     end if;
 end process;
       
-end Behavioral;
+end efecto_looper_arch;
