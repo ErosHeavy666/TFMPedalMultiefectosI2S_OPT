@@ -176,7 +176,7 @@ begin
   ); 
   
   Unit_EfectLOOPER : efecto_looper
-    generic map(g_width => 16, d_deep => 19)
+    generic map(g_width => 12, d_deep => 19)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -191,7 +191,7 @@ begin
   ); 
   
   Unit_EfectFILTER : efecto_filter  
-    generic map(g_width => 16)
+    generic map(g_width => 12)
     port map(
        clk        => clk,
        reset_n    => reset_n, 

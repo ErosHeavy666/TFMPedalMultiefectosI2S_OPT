@@ -38,7 +38,7 @@ architecture Fir_Filter_Bankfilter_arch of Fir_Filter_Bankfilter is
   -- Components declaration 
   component Filter_Datapath is 
     generic (
-      g_width : integer := 16
+      g_width : integer := 12
     );
     port(  
       clk           : in std_logic;

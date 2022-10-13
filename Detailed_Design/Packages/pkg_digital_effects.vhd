@@ -138,15 +138,15 @@ package pkg_digital_effects is
 
   component efecto_looper is
     generic(
-      g_width : integer := 16; --Ancho del bus  
-      d_deep  : integer := 19); --Ancho de la memoria RAM
+      g_width : integer := 12;   
+      d_deep  : integer := 19); 
     port( 
-      clk        : in std_logic; --MCLK                                            
-      reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global 
-      SW13       : in std_logic; --RSTA                
-      enable_in  : in std_logic; --Enable proporcionado por el i2s2                
-      SW5        : in std_logic; --Switches de control para el looper --> Write
-      SW6        : in std_logic; --Switches de control para el looper --> Read                
+      clk        : in std_logic;                                        
+      reset_n    : in std_logic; 
+      SW13       : in std_logic; 
+      enable_in  : in std_logic;     
+      SW5        : in std_logic; 
+      SW6        : in std_logic;                
       l_data_in  : in std_logic_vector(g_width-1 downto 0);             
       r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
       l_data_out : out std_logic_vector(g_width-1 downto 0);                        

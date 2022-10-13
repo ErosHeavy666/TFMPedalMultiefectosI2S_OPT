@@ -14,7 +14,7 @@ use ieee.std_logic_unsigned.all;
 ------------
 entity efecto_looper is
   generic(
-    g_width : integer := 16; --Ancho del bus  
+    g_width : integer := 12; --Ancho del bus  
     d_deep  : integer := 19); --Ancho de la memoria RAM
   port( 
     clk        : in std_logic; --MCLK                                            
@@ -32,29 +32,31 @@ end efecto_looper;
 
 architecture efecto_looper_arch of efecto_looper is
 
+constant zero_refilling : std_logic_vector(g_width/3-1 downto 0) := (others => '0');
+
   signal ena_RAM : std_logic;
   signal wea_RAM : std_logic_vector(0 downto 0);
-  signal dina_RAM, douta_RAM : std_logic_vector((g_width/2-1) downto 0);
-  signal addra_RAM : std_logic_vector(d_deep-1 downto 0);
-  
+  signal dina_RAM, douta_RAM : std_logic_vector((g_width*2/3-1) downto 0);
+  signal addra_RAM : std_logic_vector (d_deep-1 downto 0);
+
   -- Señales para la máquina de estados
   signal addra_reg, addra_next, addra_max_reg, addra_max_next : std_logic_vector(d_deep-1 DOWNTO 0);
-  signal dina_reg, dina_next: std_logic_vector((g_width/2-1) downto 0);
+  signal dina_reg, dina_next: std_logic_vector((g_width*2/3-1) downto 0);
   type state_type is(inicio, rec, play_fw); --Lista con el número de estados
   signal state_reg, state_next: state_type;
 
   -- Components declaration
   component blk_mem_gen_1 is
     port(
-        clka  : IN STD_LOGIC;
-        ena   : IN STD_LOGIC;
-        rsta  : IN STD_LOGIC;
-        wea   : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-        addra : IN STD_LOGIC_VECTOR(d_deep-1 DOWNTO 0);
-        dina  : IN STD_LOGIC_VECTOR((g_width/2-1) DOWNTO 0);
-        douta : OUT STD_LOGIC_VECTOR((g_width/2-1) DOWNTO 0)
-    );
-  end component;
+      clka  : in std_logic;
+      ena   : in std_logic;
+      rsta  : in std_logic;
+      wea   : in std_logic_vector(0 DOWNTO 0);
+      addra : in std_logic_vector(d_deep-1 DOWNTO 0);
+      dina  : in std_logic_vector((g_width*2/3-1) DOWNTO 0);
+      douta : out std_logic_vector((g_width*2/3-1) DOWNTO 0)
+);
+end component;
 
 begin
 
@@ -99,7 +101,7 @@ begin
             state_next <= inicio; 
         elsif (ena_RAM = '1') then
             -- Grabación
-            dina_next <= r_data_in(d_width-1 downto d_width/3);
+            dina_next <= r_data_in(g_width-1 downto g_width/3);
             if(wea_RAM = "1") then
                 addra_next <= addra_max_reg;
                 state_next <= rec;
@@ -114,7 +116,7 @@ begin
            end if;
         else
            addra_next <= (others => '0');
-           dina_next <= r_data_in(d_width-1 downto d_width/3);
+           dina_next <= r_data_in(g_width-1 downto g_width/3);
            state_next <= inicio;
         end if;
        
@@ -125,12 +127,12 @@ begin
             addra_max_next <= (others => '0');
             state_next <= inicio;       
         elsif(wea_RAM = "1" and enable_in = '1' and SW6='0' and SW5='1') then
-            dina_next <= r_data_in(d_width-1 downto d_width/3);
+            dina_next <= r_data_in(g_width-1 downto g_width/3);
             addra_next <= addra_reg + 1;
             addra_max_next <= addra_reg + 1;
             state_next <= rec;
         elsif(wea_RAM = "1" and SW6='0' and SW5='1') then
-            dina_next <= r_data_in(d_width-1 downto d_width/3);
+            dina_next <= r_data_in(g_width-1 downto g_width/3);
             state_next <= rec;
         else
             state_next <= inicio;
@@ -143,11 +145,11 @@ begin
             addra_max_next <= (others => '0');
             state_next <= inicio;       
         elsif(wea_RAM= "0" and enable_in = '1' and SW6='1' and SW5='1' and (addra_reg=addra_max_reg)) then
-            dina_next <= r_data_in(d_width-1 downto d_width/3);
+            dina_next <= r_data_in(g_width-1 downto g_width/3);
             addra_next <= (others => '0');
             state_next <= play_fw;
         elsif(wea_RAM= "0" and enable_in = '1' and SW6='1' and SW5='1' and (addra_reg/=addra_max_reg)) then
-                dina_next <= r_data_in(d_width-1 downto d_width/3);
+                dina_next <= r_data_in(g_width-1 downto g_width/3);
                 addra_next <= addra_reg + 1;
                 state_next <= play_fw;            
         elsif(wea_RAM= "0" and SW6='1' and SW5='1') then
