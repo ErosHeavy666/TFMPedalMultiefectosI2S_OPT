@@ -42,7 +42,7 @@ architecture Filter_Datapath_arch of Filter_Datapath is
   -- Components declaration   
   component register_d is 
     generic(
-      g_width : integer := 16);
+      g_width : integer := 12);
     port (
       clk     : in std_logic; 
       n_reset : in std_logic; 
