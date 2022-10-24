@@ -34,9 +34,9 @@ architecture tb_randomEfect_arch of tb_randomEfect is
   signal SW14 : std_logic := '0';
   
   -- Files
-  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in.dat";
-  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out.dat";
-  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out.dat";
+  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\haha_sample_in_12b.dat";
+  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\l_sample_out_12b.dat";
+  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\r_sample_out_12b.dat";
 
 begin
   
@@ -48,17 +48,17 @@ begin
     wait for clk_period/2;
   end process; 
 
---  Unit_EfectES : efecto_es 
---  generic map(g_width => 12)
---  port map(
---    clk => clk,
---    reset_n => reset_n, 
---    enable_in => enable_in,
---    l_data_in => sample_in, 
---    r_data_in => sample_in, 
---    l_data_out => l_sample_out, 
---    r_data_out => r_sample_out
---  ); 
+  Unit_EfectES : efecto_es 
+  generic map(g_width => 12)
+  port map(
+    clk => clk,
+    reset_n => reset_n, 
+    enable_in => enable_in,
+    l_data_in => sample_in, 
+    r_data_in => sample_in, 
+    l_data_out => l_sample_out, 
+    r_data_out => r_sample_out
+  ); 
 
 --  Unit_EfectDELAY : efecto_delay 
 --  generic map(n => 4000, g_width => 12)
@@ -145,18 +145,18 @@ begin
 --  ); 
 
 
-Unit_EfectoFILTER : efecto_filter
-  generic map(g_width => 12)
-  port map(
-    clk => clk,
-    reset_n => reset_n, 
-    enable_in => enable_in,
-    SW14 => SW14,
-    l_data_in => sample_in, 
-    r_data_in => sample_in, 
-    l_data_out => l_sample_out, 
-    r_data_out => r_sample_out
-  ); 
+--Unit_EfectoFILTER : efecto_filter
+--  generic map(g_width => 12)
+--  port map(
+--    clk => clk,
+--    reset_n => reset_n, 
+--    enable_in => enable_in,
+--    SW14 => SW14,
+--    l_data_in => sample_in, 
+--    r_data_in => sample_in, 
+--    l_data_out => l_sample_out, 
+--    r_data_out => r_sample_out
+--  ); 
 
   process(clk)
   variable in_line : line;
