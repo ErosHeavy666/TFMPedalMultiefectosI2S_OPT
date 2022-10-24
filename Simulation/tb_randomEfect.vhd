@@ -34,9 +34,9 @@ architecture tb_randomEfect_arch of tb_randomEfect is
   signal SW14 : std_logic := '0';
   
   -- Files
-  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\haha_sample_in_12b.dat";
-  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\l_sample_out_12b.dat";
-  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT_12b\MATLAB\r_sample_out_12b.dat";
+  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in_12b.dat";
+  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out_12b.dat";
+  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out_12b.dat";
 
 begin
   
