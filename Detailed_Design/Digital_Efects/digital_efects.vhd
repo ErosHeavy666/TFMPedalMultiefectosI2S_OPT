@@ -15,7 +15,7 @@ use work.pkg_digital_effects.all;
 ------------
 entity digital_efects is
   generic(
-    g_width    : integer := 12);
+    g_width    : integer := 14);
   port( 
     clk        : in std_logic;
     reset_n    : in std_logic;
@@ -80,7 +80,7 @@ architecture arch_digital_efects of digital_efects is
 begin
   
   Unit_EfectES : efecto_es 
-    generic map(g_width => 12)
+    generic map(g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -92,7 +92,7 @@ begin
   ); 
   
   Unit_EfectDELAY : efecto_delay 
-    generic map(n => 4000, g_width => 12)
+    generic map(n => 4000, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -104,7 +104,7 @@ begin
   ); 
   
   Unit_EfectCHORUS : efecto_chorus
-    generic map(n => 1000, g_width => 12)
+    generic map(n => 1000, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -116,7 +116,7 @@ begin
   );
   
   Unit_EfectVIBRATO : efecto_vibrato
-    generic map(n => 500, g_width => 12)
+    generic map(n => 500, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -128,7 +128,7 @@ begin
   );
   
   Unit_EfectREVERB : efecto_reverb
-    generic map(n => 500, g_width => 12)
+    generic map(n => 500, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -140,7 +140,7 @@ begin
   );
   
   Unit_EfectECO : efecto_eco
-    generic map(n => 5000, g_width => 12)
+    generic map(n => 5000, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -152,7 +152,7 @@ begin
   );
   
   Unit_EfectCOMPRESSOR : efecto_compressor  
-    generic map(g_width => 12)
+    generic map(g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -164,7 +164,7 @@ begin
   ); 
   
   Unit_EfectOVERDRIVE : efecto_overdrive  
-    generic map(g_width => 12)
+    generic map(g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -176,7 +176,7 @@ begin
   ); 
   
   Unit_EfectLOOPER : efecto_looper
-    generic map(g_width => 12, d_deep => 19)
+    generic map(g_width => 14, d_deep => 19)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -191,7 +191,7 @@ begin
   ); 
   
   Unit_EfectFILTER : efecto_filter  
-    generic map(g_width => 12)
+    generic map(g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -204,7 +204,7 @@ begin
   ); 
   
   Unit_EfectCONFIG_REVERB : efecto_config_reverb
-    generic map(n1 => 1500, g_width => 12)
+    generic map(n1 => 1500, g_width => 14)
     port map(
        clk        => clk,
        reset_n    => reset_n, 

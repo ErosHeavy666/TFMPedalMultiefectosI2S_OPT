@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity efecto_filter is
   generic(
-    g_width    : integer := 12); --Ancho del bus
+    g_width    : integer := 14); --Ancho del bus
   port ( 
     clk        : in std_logic; --MCLK
     reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global
@@ -38,7 +38,7 @@ architecture efecto_filter_arch of efecto_filter is
   -- Components declaration  
   component Fir_Filter_Bankfilter is
     generic(
-      g_width : integer := 16);
+      g_width : integer := 14);
     port (  
       clk              : in std_logic; 
       reset_n          : in std_logic;             
@@ -60,7 +60,7 @@ begin
   -- Filter Instance for Left channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_L : Fir_Filter_Bankfilter 
-  generic map(g_width => 12)
+  generic map(g_width => 14)
   port map(
     clk              => clk,
     reset_n          => reset_n,
@@ -74,7 +74,7 @@ begin
   -- Filter Instance for Right channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_R : Fir_Filter_Bankfilter 
-  generic map(g_width => 12)
+  generic map(g_width => 14)
   port map(
     clk              => clk,
     reset_n          => reset_n,

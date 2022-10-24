@@ -37,12 +37,12 @@ end EfectoLOOPER_tb;
 
 architecture Behavioral of EfectoLOOPER_tb is
 
-constant g_width : INTEGER := 12;
+constant g_width : INTEGER := 14;
 constant d_deep  : INTEGER := 19;
 
 component efecto_looper is
   generic(
-    g_width : integer := 12; --Ancho del bus  
+    g_width : integer := 14; --Ancho del bus  
     d_deep  : integer := 19); --Ancho de la memoria RAM
   port( 
     clk        : in std_logic; --MCLK                                            
@@ -66,7 +66,7 @@ constant clk_period : time := 89ns;
 begin
 
   Unit_EfectLOOPER : efecto_looper
-    generic map(g_width => 12, d_deep => 19)
+    generic map(g_width => 14, d_deep => 19)
     port map(
        clk        => clk,
        reset_n    => reset_n, 
@@ -95,8 +95,8 @@ begin
        SW6 <= '0';
        SW13 <= '0';
        enable_in <= '0';
-       l_data_in <= "000011110000";
-       r_data_in <= "111100001111";
+       l_data_in <= "00001111000011";
+       r_data_in <= "11110000111100";
        wait for 10*clk_period;
        
        reset_n <= '0';
@@ -104,8 +104,8 @@ begin
        SW6 <= '0';
        SW13 <= '0';
        enable_in <= '0';
-       l_data_in <= "000011110000";
-       r_data_in <= "111100001111";
+       l_data_in <= "00001111000011";
+       r_data_in <= "11110000111100";
        wait for 10*clk_period;
        
        reset_n <= '0';
@@ -113,8 +113,8 @@ begin
        SW6 <= '0';
        SW13 <= '0';
        enable_in <= '1';
-       l_data_in <= "000011110000";
-       r_data_in <= "111100001111";
+       l_data_in <= "00001111000011";
+       r_data_in <= "11110000111100";
        wait for 10*clk_period;
        
        reset_n <= '0';
@@ -122,8 +122,8 @@ begin
        SW6 <= '0';
        SW13 <= '0';
        enable_in <= '1';
-       l_data_in <= "000010010000";
-       r_data_in <= "111101101111";
+       l_data_in <= "00001001000011";
+       r_data_in <= "11110110111100";
        wait for 10*clk_period;
        
        reset_n <= '0';
@@ -131,8 +131,8 @@ begin
        SW6 <= '0';
        SW13 <= '0';
        enable_in <= '1';
-       l_data_in <= "110010010000";
-       r_data_in <= "001101101111";
+       l_data_in <= "11001001000011";
+       r_data_in <= "00110110111100";
        wait for 10*clk_period;
                            
        reset_n <= '0';
@@ -140,8 +140,8 @@ begin
        SW6 <= '1';
        SW13 <= '0';
        enable_in <= '1';
-       l_data_in <= "000000000000";
-       r_data_in <= "001101111111";
+       l_data_in <= "00000000000000";
+       r_data_in <= "00110111111111";
        wait for 90*clk_period;
        
        reset_n <= '1';
@@ -155,8 +155,8 @@ begin
        SW6 <= '1';
        SW13 <= '0';
        enable_in <= '1';
-       l_data_in <= "000000000000";
-       r_data_in <= "001101111111";
+       l_data_in <= "00000000000000";
+       r_data_in <= "00110111111111";
        wait for 100*clk_period;
        
        reset_n <= '0';

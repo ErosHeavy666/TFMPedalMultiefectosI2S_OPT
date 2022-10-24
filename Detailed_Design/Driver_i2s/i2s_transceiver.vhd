@@ -16,7 +16,7 @@ entity i2s_transceiver is
     generic (
         g_ms_ratio_w : natural := 3; -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
         g_sw_ratio_w : natural := 6; -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
-        g_data_w     : natural := 12
+        g_data_w     : natural := 14
     );
     port (
         clk        : in std_logic;

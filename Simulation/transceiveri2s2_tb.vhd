@@ -18,7 +18,7 @@ end transceiveri2s2_tb;
 architecture arch_transceiveri2s2_tb of transceiveri2s2_tb is
 
   -- Constants
-  constant g_data_w     : natural := 12;
+  constant g_data_w     : natural := 14;
   constant g_ms_ratio_w : natural := 3;  
   constant g_sw_ratio_w : natural := 6; 
   constant clk_period   : time := 89ns;
@@ -43,7 +43,7 @@ architecture arch_transceiveri2s2_tb of transceiveri2s2_tb is
     generic (
         g_ms_ratio_w : natural := 3; -- clk to sclk ratio = 2^ms_ratio_w (default = 8)
         g_sw_ratio_w : natural := 6; -- sclk to ws ratio  = 2^sw_ratio_w (default = 64)
-        g_data_w     : natural := 12
+        g_data_w     : natural := 14
     );
     port (
         clk        : in std_logic;

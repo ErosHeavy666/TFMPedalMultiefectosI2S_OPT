@@ -15,7 +15,7 @@ package pkg_digital_effects is
 
   component efecto_es is
     generic(
-      g_width : integer := 12 --Ancho del bus
+      g_width : integer := 14 --Ancho del bus
     ); 
     port( 
       clk        : in std_logic;
@@ -31,7 +31,7 @@ package pkg_digital_effects is
   component efecto_delay is
     generic(
       n       : integer := 4000;
-      g_width : integer := 12);
+      g_width : integer := 14);
     port( 
       clk        : in std_logic;   
       reset_n    : in std_logic;   
@@ -46,7 +46,7 @@ package pkg_digital_effects is
   component efecto_chorus is
     generic(
       n       : integer := 1000;
-      g_width : integer := 12);
+      g_width : integer := 14);
     port( 
       clk        : in std_logic;   
       reset_n    : in std_logic;   
@@ -61,7 +61,7 @@ package pkg_digital_effects is
   component efecto_vibrato is
     generic(
       n       : integer := 500;
-      g_width : integer := 12 
+      g_width : integer := 14 
     );
     port( 
       clk        : in std_logic;                                         
@@ -77,7 +77,7 @@ package pkg_digital_effects is
   component efecto_reverb is
     generic(
       n       : integer := 500;
-      g_width : integer := 12 
+      g_width : integer := 14 
     );
     port( 
       clk        : in std_logic; 
@@ -93,7 +93,7 @@ package pkg_digital_effects is
   component efecto_eco is
     generic(
       n       : integer := 5000;
-      g_width : integer := 12 
+      g_width : integer := 14 
     );
     port( 
       clk        : in std_logic; 
@@ -108,7 +108,7 @@ package pkg_digital_effects is
 
   component efecto_compressor is
     generic(
-      g_width : integer := 12 
+      g_width : integer := 14 
       );
     port ( 
       clk        : in std_logic;   
@@ -123,7 +123,7 @@ package pkg_digital_effects is
 
   component efecto_overdrive is
     generic(
-      g_width : integer := 12 
+      g_width : integer := 14 
       );
     port ( 
       clk        : in std_logic;    
@@ -138,7 +138,7 @@ package pkg_digital_effects is
 
   component efecto_looper is
     generic(
-      g_width : integer := 12;   
+      g_width : integer := 14;   
       d_deep  : integer := 19); 
     port( 
       clk        : in std_logic;                                        
@@ -156,7 +156,7 @@ package pkg_digital_effects is
 
   component efecto_filter is
     generic(
-      g_width    : integer := 12); 
+      g_width    : integer := 14); 
     port ( 
       clk        : in std_logic; 
       reset_n    : in std_logic; 
@@ -172,7 +172,7 @@ package pkg_digital_effects is
   component efecto_config_reverb is
     generic(
       n1      : integer := 1500;
-      g_width : integer := 12); 
+      g_width : integer := 14); 
     port( 
       clk        : in std_logic;
       reset_n    : in std_logic;
