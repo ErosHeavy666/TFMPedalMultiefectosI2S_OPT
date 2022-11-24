@@ -95,36 +95,36 @@ begin
   
   reset <= not N_RESET;
   
-  unit_digital_efects : digital_efects
-  generic map(g_width => 16)
-  port map(
-       clk        => master_clk, 
-       reset_n    => reset,
-       enable_in  => en_rx,
-       BTNR       => BTNR,
-       BTNC       => BTNC,
-       BTNL       => BTNL,
-       BTND       => BTND,
-       SW0        => SW0,
-       SW1        => SW1,
-       SW2        => SW2,
-       SW3        => SW3,
-       SW4        => SW4,
-       SW5        => SW5,
-       SW6        => SW6,
-       SW7        => SW7,
-       SW8        => SW8,
-       SW9        => SW9,
-       SW10       => SW10,
-       SW11       => SW11,
-       SW12       => SW12,
-       SW13       => SW13,
-       SW14       => SW14,
-       l_data_in  => l_data_rx, 
-       r_data_in  => r_data_rx, 
-       l_data_out => l_data_tx, 
-       r_data_out => r_data_tx
-  ); 
+--  unit_digital_efects : digital_efects
+--  generic map(g_width => 16)
+--  port map(
+--       clk        => master_clk, 
+--       reset_n    => reset,
+--       enable_in  => en_rx,
+--       BTNR       => BTNR,
+--       BTNC       => BTNC,
+--       BTNL       => BTNL,
+--       BTND       => BTND,
+--       SW0        => SW0,
+--       SW1        => SW1,
+--       SW2        => SW2,
+--       SW3        => SW3,
+--       SW4        => SW4,
+--       SW5        => SW5,
+--       SW6        => SW6,
+--       SW7        => SW7,
+--       SW8        => SW8,
+--       SW9        => SW9,
+--       SW10       => SW10,
+--       SW11       => SW11,
+--       SW12       => SW12,
+--       SW13       => SW13,
+--       SW14       => SW14,
+--       l_data_in  => l_data_rx, 
+--       r_data_in  => r_data_rx, 
+--       l_data_out => l_data_tx, 
+--       r_data_out => r_data_tx
+--  ); 
 
   -- Instance for display interface component
   unit_display_interface : display_interface 
