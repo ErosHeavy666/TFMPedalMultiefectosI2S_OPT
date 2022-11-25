@@ -18,8 +18,8 @@ package pkg_sine is
 
   constant max_table_index: integer := 127;
   subtype table_index_type is integer range 0 to max_table_index;
-
-  subtype sine_vector_type is std_logic_vector(7 downto 0);
+  
+  constant sine_vector_width : integer := 8;
 
   function get_table_value (table_index: table_index_type) return table_value_type;
 
