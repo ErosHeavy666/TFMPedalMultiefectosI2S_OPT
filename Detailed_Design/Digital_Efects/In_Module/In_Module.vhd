@@ -26,8 +26,8 @@ entity In_Module is
     enable_in    : in std_logic; --Enable proporcionado por el i2s2
     Sin_In       : in std_logic_vector(sine_vector_width-1 downto 0); --Señal senoidal para seleccionar el retardo modulable    
     GNL_selector : in std_logic_vector(g_total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
-    l_in         : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada izquierdos;                        
-    r_in         : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada derechos;                            
+    l_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada izquierdos;                        
+    r_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada derechos;                            
     l_data_in_0  : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
     r_data_in_0  : out std_logic_vector(g_width-1 downto 0);  -- Datos de salida derechos sin retardo;                         
     l_data_in_n  : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos con retardo;                            
@@ -47,7 +47,7 @@ architecture arch_In_Module of In_Module is
   signal l_data_in_reg, l_data_in_next : fifo_t;
   signal r_data_in_reg, r_data_in_next : fifo_t;
   signal l_data_in_n_muxed, r_data_in_n_muxed : signed(g_width-1 downto 0);
-  signal wave_out_retard : integer;
+  signal wave_in_retard : integer;
   
 begin
 
@@ -69,10 +69,10 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Data_Input to the fifo_t
   -------------------------------------------------------------------------------------------------------------------------------
-  process (l_in, r_in, l_data_in_reg, r_data_in_reg)
+  process (l_data_in, r_data_in, l_data_in_reg, r_data_in_reg)
   begin
-    l_data_in_next(0) <= signed(l_in);
-    r_data_in_next(0) <= signed(r_in);
+    l_data_in_next(0) <= signed(l_data_in);
+    r_data_in_next(0) <= signed(r_data_in);
     for i in 1 to n-1 loop
       l_data_in_next(i) <= l_data_in_reg(i-1);
       r_data_in_next(i) <= r_data_in_reg(i-1);
@@ -81,17 +81,17 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Sin_In for Vibrato 
   -------------------------------------------------------------------------------------------------------------------------------
-  wave_out_retard <= to_integer(unsigned(Sin_In)) when (GNL_selector = Vibrato_line_active) else 0;
+  wave_in_retard <= to_integer(unsigned(Sin_In)) when (GNL_selector = Vibrato_line_active) else 0;
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Muxed data for in_n Output
   -------------------------------------------------------------------------------------------------------------------------------
   l_data_in_n_muxed <= l_data_in_reg(3999)                when (GNL_selector = Delay_line_active)    else 
                        l_data_in_reg(4999)                when (GNL_selector = Eco_line_active)      else 
-                       l_data_in_reg(499-wave_out_retard) when (GNL_selector = Reverb_line_active or 
+                       l_data_in_reg(499-wave_in_retard)  when (GNL_selector = Reverb_line_active or 
                                                                 GNL_selector = Vibrato_line_active)  else (others => '0');                                                                                    
   r_data_in_n_muxed <= r_data_in_reg(3999)                when (GNL_selector = Delay_line_active)    else 
                        r_data_in_reg(4999)                when (GNL_selector = Eco_line_active)      else 
-                       r_data_in_reg(499-wave_out_retard) when (GNL_selector = Reverb_line_active or 
+                       r_data_in_reg(499-wave_in_retard)  when (GNL_selector = Reverb_line_active or 
                                                                 GNL_selector = Vibrato_line_active)  else (others => '0');
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
