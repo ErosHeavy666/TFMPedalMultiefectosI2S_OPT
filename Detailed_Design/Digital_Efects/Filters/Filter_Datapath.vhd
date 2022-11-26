@@ -58,7 +58,7 @@ begin
   -- Registers Instances for Datapath
   -------------------------------------------------------------------------------------------------------------------------------
   register_d_0: register_d
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -67,7 +67,7 @@ begin
        o_data => x0
   );  
   register_d_1: register_d
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -76,7 +76,7 @@ begin
        o_data => x1
   );                               
   register_d_2: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -85,7 +85,7 @@ begin
        o_data => x2
   );                                 
   register_d_3: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -94,7 +94,7 @@ begin
        o_data => x3
   );                                
   register_d_4: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -103,7 +103,7 @@ begin
        o_data => x4
   );                                
   register_d_5: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -112,7 +112,7 @@ begin
        o_data => x5
   );      
   register_d_6: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -121,7 +121,7 @@ begin
        o_data => x6
   );      
   register_d_7: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -130,7 +130,7 @@ begin
        o_data => x7
   );      
   register_d_8: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -139,7 +139,7 @@ begin
        o_data => x8
   );      
   register_d_9: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -148,7 +148,7 @@ begin
        o_data => x9
   );      
   register_d_10: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -157,7 +157,7 @@ begin
        o_data => x10
   );      
   register_d_11: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -166,7 +166,7 @@ begin
        o_data => x11
   );      
   register_d_12: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -175,7 +175,7 @@ begin
        o_data => x12
   );      
   register_d_13: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -184,7 +184,7 @@ begin
        o_data => x13
   );      
   register_d_14: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -193,7 +193,7 @@ begin
        o_data => x14
   );         
   register_d_15: register_d                            
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,

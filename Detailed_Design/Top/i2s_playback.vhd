@@ -9,6 +9,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.pkg_components.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
@@ -20,10 +21,10 @@ entity i2s_playback IS
       CLK_100MHZ  : in std_logic;                     
       N_RESET     : in std_logic;                     
       PLAY_ENABLE : in std_logic;
-      BTNR        : in std_logic;
-      BTNC        : in std_logic; 
-      BTNL        : in std_logic; 
-      BTND        : in std_logic;     
+--      BTNR        : in std_logic;
+--      BTNC        : in std_logic; 
+--      BTNL        : in std_logic; 
+--      BTND        : in std_logic;     
       SW0         : in std_logic;
       SW1         : in std_logic;
       SW2         : in std_logic;
@@ -34,9 +35,9 @@ entity i2s_playback IS
       SW7         : in std_logic;
       SW8         : in std_logic;
       SW9         : in std_logic;
-      SW10        : in std_logic;
-      SW11        : in std_logic;
-      SW12        : in std_logic;
+--      SW10        : in std_logic;
+--      SW11        : in std_logic;
+--      SW12        : in std_logic;
       SW13        : in std_logic;
       SW14        : in std_logic;                
       MCLK        : out std_logic_vector(1 downto 0);  --master clock
@@ -53,7 +54,7 @@ end i2s_playback;
 ------------------
 -- Architecture --
 ------------------
-architecture arch_i2s_playback OF i2s_playback IS
+architecture arch_i2s_playback of i2s_playback is
 
   -- Signals
   signal master_clk  : std_logic; -- internal master clock signal
@@ -95,36 +96,35 @@ begin
   
   reset <= not N_RESET;
   
---  unit_digital_efects : digital_efects
---  generic map(g_width => 16)
---  port map(
---       clk        => master_clk, 
---       reset_n    => reset,
---       enable_in  => en_rx,
---       BTNR       => BTNR,
---       BTNC       => BTNC,
---       BTNL       => BTNL,
---       BTND       => BTND,
---       SW0        => SW0,
---       SW1        => SW1,
---       SW2        => SW2,
---       SW3        => SW3,
---       SW4        => SW4,
---       SW5        => SW5,
---       SW6        => SW6,
---       SW7        => SW7,
---       SW8        => SW8,
---       SW9        => SW9,
---       SW10       => SW10,
---       SW11       => SW11,
---       SW12       => SW12,
---       SW13       => SW13,
---       SW14       => SW14,
---       l_data_in  => l_data_rx, 
---       r_data_in  => r_data_rx, 
---       l_data_out => l_data_tx, 
---       r_data_out => r_data_tx
---  ); 
+  unit_digital_effects : digital_effects 
+    generic map(
+      n                       => n,
+      g_width                 => g_width,
+      g_total_number_switches => g_total_number_switches,
+      g_total_delays_effects  => g_total_delays_effects,
+      g_total_normal_effects  => g_total_normal_effects
+    )
+    port map( 
+      clk          => master_clk,
+      reset_n      => reset,
+      enable_in    => en_rx,
+      SW0          => SW0,
+      SW1          => SW1,
+      SW2          => SW2,
+      SW3          => SW3,
+      SW4          => SW4,
+      SW5          => SW5,
+      SW6          => SW6,
+      SW7          => SW7,
+      SW8          => SW8,
+      SW9          => SW9,
+      SW13         => SW13,
+      SW14         => SW14,
+      l_data_in    => l_data_rx,                
+      r_data_in    => r_data_rx,
+      l_data_out   => l_data_tx,                         
+      r_data_out   => r_data_tx
+    );
 
   -- Instance for display interface component
   unit_display_interface : display_interface 
@@ -138,7 +138,7 @@ begin
   
   -- Instance for LEDs component
   unit_leds : leds  
-    generic map(g_width => 16)
+    generic map(g_width => g_width)
     port map(
       clk           => master_clk,
       n_reset       => n_reset,

@@ -58,11 +58,11 @@ begin
   begin
     if (rising_edge(clk)) then --MCLK
       if(reset_n = '1') then
-        GNL_selector_next <= (others => '0');
-        Out_selector_next <= (others => '0');
+        GNL_selector_reg <= (others => '0');
+        Out_selector_reg <= (others => '0');
       elsif(enable_in = '1')then
-        GNL_selector_next <= GNL_selector_reg;
-        Out_selector_next <= Out_selector_reg;
+        GNL_selector_reg <= GNL_selector_next;
+        Out_selector_reg <= Out_selector_next;
       end if;
     end if;  
   end process;
@@ -80,7 +80,7 @@ begin
                        Eco_line_active     when (SW_Vector = "0000010000") else
                        Disabled_delay_line;
   -------------------------------------------------------------------------------------------------------------------------------
-  -- Combinational logic process for GNL_Selector:
+  -- Combinational logic process for Out_selector:
   -------------------------------------------------------------------------------------------------------------------------------
   Out_selector_next <= ES_line_active         when (SW_Vector = "0000000000") else
                        Feedback_line_active   when (SW_Vector = "0000000001" or 

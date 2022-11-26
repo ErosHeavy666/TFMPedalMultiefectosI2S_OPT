@@ -60,7 +60,7 @@ begin
   -- Filter Instance for Left channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_L : Fir_Filter_Bankfilter 
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
     clk              => clk,
     reset_n          => reset_n,
@@ -74,7 +74,7 @@ begin
   -- Filter Instance for Right channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_R : Fir_Filter_Bankfilter 
-  generic map(g_width => 16)
+  generic map(g_width => g_width)
   port map(
     clk              => clk,
     reset_n          => reset_n,

@@ -66,6 +66,9 @@ architecture Fir_Filter_Bankfilter_arch of Fir_Filter_Bankfilter is
 begin
 
   Unit_Filter_Datapath : Filter_Datapath
+    generic map(
+      g_width => g_width
+    )
     port map(
       clk           => clk,
       reset_n       => reset_n,

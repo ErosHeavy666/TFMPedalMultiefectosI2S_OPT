@@ -52,36 +52,33 @@ package pkg_components is
     );
   end component;
 
-  component digital_efects is
+  component digital_effects is
     generic(
-      g_width    : integer := 16);
+      n                       : integer := 5000; 
+      g_width                 : integer := 16;   
+      g_total_number_switches : integer := 10;
+      g_total_delays_effects  : integer := 5;    
+      g_total_normal_effects  : integer := 6);   
     port( 
-      clk        : in std_logic;
-      reset_n    : in std_logic;
-      enable_in  : in std_logic; 
-      BTNR       : in std_logic;
-      BTNC       : in std_logic; 
-      BTNL       : in std_logic; 
-      BTND       : in std_logic; 
-      SW0        : in std_logic;
-      SW1        : in std_logic;
-      SW2        : in std_logic;
-      SW3        : in std_logic;
-      SW4        : in std_logic;
-      SW5        : in std_logic;
-      SW6        : in std_logic;
-      SW7        : in std_logic;
-      SW8        : in std_logic;
-      SW9        : in std_logic;
-      SW10       : in std_logic;
-      SW11       : in std_logic;
-      SW12       : in std_logic;
-      SW13       : in std_logic;
-      SW14       : in std_logic;
-      l_data_in  : in std_logic_vector(g_width-1 downto 0);     
-      r_data_in  : in std_logic_vector(g_width-1 downto 0); 
-      l_data_out : out std_logic_vector(g_width-1 downto 0);
-      r_data_out : out std_logic_vector(g_width-1 downto 0)  
+      clk          : in std_logic; 
+      reset_n      : in std_logic; 
+      enable_in    : in std_logic; 
+      SW0          : in std_logic; 
+      SW1          : in std_logic; 
+      SW2          : in std_logic; 
+      SW3          : in std_logic; 
+      SW4          : in std_logic; 
+      SW5          : in std_logic; 
+      SW6          : in std_logic; 
+      SW7          : in std_logic; 
+      SW8          : in std_logic; 
+      SW9          : in std_logic; 
+      SW13         : in std_logic; 
+      SW14         : in std_logic; 
+      l_data_in    : in std_logic_vector(g_width-1 downto 0);                     
+      r_data_in    : in std_logic_vector(g_width-1 downto 0);   
+      l_data_out   : out std_logic_vector(g_width-1 downto 0);                             
+      r_data_out   : out std_logic_vector(g_width-1 downto 0)        
     );
   end component;
   
