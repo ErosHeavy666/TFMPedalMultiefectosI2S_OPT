@@ -53,9 +53,9 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   signal r_sample_out : std_logic_vector(g_width-1 downto 0) := (others => '0');
   
   -- Files
-  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in.dat";
-  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out.dat";
-  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out.dat";
+  file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in_16b.dat";
+  file l_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\l_sample_out_re_arch_v1.dat";
+  file r_data_out_file: text open write_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\r_sample_out_re_arch_v1.dat";
   
   -- Components
   component digital_effects is
