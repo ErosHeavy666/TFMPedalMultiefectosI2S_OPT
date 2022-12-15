@@ -14,17 +14,18 @@ use work.pkg_project.all;
 ------------
 -- Entity --
 ------------
-entity i2s_playback IS
+entity i2s_playback is
   generic(
       g_width     :  integer := 16);                    
   port(
       CLK_100MHZ  : in std_logic;                     
       N_RESET     : in std_logic;                     
       PLAY_ENABLE : in std_logic;
---      BTNR        : in std_logic;
---      BTNC        : in std_logic; 
---      BTNL        : in std_logic; 
---      BTND        : in std_logic;     
+      BTNC        : in std_logic;
+      BTNU        : in std_logic; 
+      BTNL        : in std_logic; 
+      BTNR        : in std_logic;     
+      BTND        : in std_logic;     
       SW0         : in std_logic;
       SW1         : in std_logic;
       SW2         : in std_logic;
@@ -34,16 +35,11 @@ entity i2s_playback IS
       SW6         : in std_logic;
       SW7         : in std_logic;
       SW8         : in std_logic;
-      SW9         : in std_logic;
---      SW10        : in std_logic;
---      SW11        : in std_logic;
---      SW12        : in std_logic;
-      SW13        : in std_logic;
-      SW14        : in std_logic;                
+      SW9         : in std_logic;            
       MCLK        : out std_logic_vector(1 downto 0);  --master clock
       SCLK        : out std_logic_vector(1 downto 0);  --serial clock (or bit clock)
       WS          : out std_logic_vector(1 downto 0);  --word select (or left-right clock)
-      SD_IN       : in std_logic;                     --serial data in
+      SD_IN       : in std_logic;                      --serial data in
       SD_OUT      : out std_logic;
       SEG         : out std_logic_vector(6 downto 0);
       AN          : out std_logic_vector(7 downto 0);
@@ -101,6 +97,7 @@ begin
       n                       => n,
       g_width                 => g_width,
       g_total_number_switches => g_total_number_switches,
+      g_total_number_buttons  => g_total_number_buttons,
       g_total_delays_effects  => g_total_delays_effects,
       g_total_normal_effects  => g_total_normal_effects
     )
@@ -108,6 +105,11 @@ begin
       clk          => master_clk,
       reset_n      => reset,
       enable_in    => en_rx,
+      BTNC         => BTNC,
+      BTNU         => BTNU,
+      BTNL         => BTNL,
+      BTNR         => BTNR,
+      BTND         => BTND,
       SW0          => SW0,
       SW1          => SW1,
       SW2          => SW2,
@@ -118,8 +120,6 @@ begin
       SW7          => SW7,
       SW8          => SW8,
       SW9          => SW9,
-      SW13         => SW13,
-      SW14         => SW14,
       l_data_in    => l_data_rx,                
       r_data_in    => r_data_rx,
       l_data_out   => l_data_tx,                         

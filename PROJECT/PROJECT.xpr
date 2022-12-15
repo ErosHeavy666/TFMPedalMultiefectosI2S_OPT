@@ -79,13 +79,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../Detailed_Design/Packages/pkg_sine.vhd">
+      <File Path="$PPRDIR/../Detailed_Design/Packages/pkg_project.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../Detailed_Design/Packages/pkg_project.vhd">
+      <File Path="$PPRDIR/../Detailed_Design/Packages/pkg_sine.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -213,6 +213,13 @@
       </File>
       <File Path="$PPRDIR/../Detailed_Design/Top/i2s_playback.vhd">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/../Detailed_Design/Digital_Efects/Flags_Module/Flags_Module.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>

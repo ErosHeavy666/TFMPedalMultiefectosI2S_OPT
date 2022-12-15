@@ -7,6 +7,7 @@
 ---------------
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.math_real.all;
 
 -------------
 -- Package --
@@ -14,20 +15,28 @@ use ieee.std_logic_1164.all;
 package pkg_project is
   
   -- Constants for bus width
-  constant g_total_number_switches : integer := 10;
-  constant g_total_delays_effects  : integer := 5; 
-  constant g_total_normal_effects  : integer := 6; 
   constant n                       : integer := 5000;
   constant g_width                 : integer := 16;
-    
-  -- Constants for Encoding GNL selectors
-  constant Disabled_delay_line : std_logic_vector(g_total_delays_effects-1 downto 0) := "00000";
-  constant Delay_line_active   : std_logic_vector(g_total_delays_effects-1 downto 0) := "00001";
-  constant Chorus_line_active  : std_logic_vector(g_total_delays_effects-1 downto 0) := "00010";
-  constant Reverb_line_active  : std_logic_vector(g_total_delays_effects-1 downto 0) := "00100";
-  constant Vibrato_line_active : std_logic_vector(g_total_delays_effects-1 downto 0) := "01000";
-  constant Eco_line_active     : std_logic_vector(g_total_delays_effects-1 downto 0) := "10000";
+  constant g_total_feedback_delays : integer := 3;
+  constant g_total_number_switches : integer := 8;
+  constant g_total_number_buttons  : integer := 5;
+  constant g_total_delays_effects  : integer := 8; 
+  constant g_total_gain_effects    : integer := 4; 
+  constant g_total_global_effects  : integer := 6; 
+     
+  -- Constants for Encoding Input/Output LUTRAM selectors
+  constant delays_effects_binary : integer := integer(ceil(log2(real(g_total_delays_effects))));
+  constant gain_effects_binary   : integer := integer(ceil(log2(real(g_total_gain_effects))));
   
+  constant Disabled_delay_line : std_logic_vector(delays_effects_binary-1 downto 0) := "000";
+  constant Enabled_4999_line   : std_logic_vector(delays_effects_binary-1 downto 0) := "001";
+  constant Enabled_3999_line   : std_logic_vector(delays_effects_binary-1 downto 0) := "010";
+  constant Enabled_3499_line   : std_logic_vector(delays_effects_binary-1 downto 0) := "011";
+  constant Enabled_2999_line   : std_logic_vector(delays_effects_binary-1 downto 0) := "100";
+  constant Enabled_1999_line   : std_logic_vector(delays_effects_binary-1 downto 0) := "101";
+  constant Enabled_999_line    : std_logic_vector(delays_effects_binary-1 downto 0) := "110";
+  constant Enabled_499_line    : std_logic_vector(delays_effects_binary-1 downto 0) := "111";
+
   -- Constants for Encoding Out selectors
   constant Disabled_output_line   : std_logic_vector(g_total_normal_effects-1 downto 0) := "000000";
   constant ES_line_active         : std_logic_vector(g_total_normal_effects-1 downto 0) := "000001";

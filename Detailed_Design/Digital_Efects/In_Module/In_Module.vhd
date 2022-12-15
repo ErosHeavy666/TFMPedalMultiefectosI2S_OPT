@@ -17,15 +17,15 @@ use work.pkg_project.all;
 entity In_Module is
   generic(
     n                       : integer := 5000; --Línea de retardo
-    g_total_delays_effects  : integer := 5; --Número total de las lineas de retardo que se desea  
-    g_width                 : integer := 16 --Ancho del bus 
+    g_total_delays_effects  : integer := 8;    --Número total de las lineas de retardo que se desea  
+    g_width                 : integer := 16    --Ancho del bus 
   );
   port ( 
     clk          : in std_logic; --MCLK                                            
     reset_n      : in std_logic; --Reset síncrono a nivel alto del sistema global 
     enable_in    : in std_logic; --Enable proporcionado por el i2s2
     Sin_In       : in std_logic_vector(sine_vector_width-1 downto 0); --Señal senoidal para seleccionar el retardo modulable    
-    GNL_selector : in std_logic_vector(g_total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
+    BTN_selector : in std_logic_vector(g_total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
     l_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada izquierdos;                        
     r_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada derechos;                            
     l_data_in_0  : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
