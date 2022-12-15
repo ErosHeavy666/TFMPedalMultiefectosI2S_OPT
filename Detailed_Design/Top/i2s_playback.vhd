@@ -93,14 +93,6 @@ begin
   reset <= not N_RESET;
   
   unit_digital_effects : digital_effects 
-    generic map(
-      n                       => n,
-      g_width                 => g_width,
-      g_total_number_switches => g_total_number_switches,
-      g_total_number_buttons  => g_total_number_buttons,
-      g_total_delays_effects  => g_total_delays_effects,
-      g_total_normal_effects  => g_total_normal_effects
-    )
     port map( 
       clk          => master_clk,
       reset_n      => reset,

@@ -22,11 +22,8 @@ end tb_digitaleffects;
 architecture tb_digitaleffects_arch of tb_digitaleffects is
 
   -- Constants
-  constant n                       : integer := 5000; 
-  constant g_width                 : integer := 16;   
-  constant g_total_number_switches : integer := 10;
-  constant g_total_delays_effects  : integer := 5;    
-  constant g_total_normal_effects  : integer := 6;   
+  constant n      : integer := 5000;
+  constant width  : integer := 16;
   
   constant clk_period : time := 45.35us;
   constant haha_duration : time := 1000ms;
@@ -36,6 +33,11 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   signal reset_n      : std_logic := '0'; 
   signal enable_in    : std_logic := '0'; 
   signal enable_out   : std_logic := '0';
+  signal BTNC         : std_logic := '0'; 
+  signal BTNU         : std_logic := '0';  
+  signal BTNL         : std_logic := '0';  
+  signal BTNR         : std_logic := '0';      
+  signal BTND         : std_logic := '0';      
   signal SW0          : std_logic := '0'; 
   signal SW1          : std_logic := '0';  
   signal SW2          : std_logic := '0';  
@@ -46,11 +48,9 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   signal SW7          : std_logic := '0';  
   signal SW8          : std_logic := '0';  
   signal SW9          : std_logic := '0';  
-  signal SW13         : std_logic := '0';  
-  signal SW14         : std_logic := '0'; 
-  signal sample_in    : std_logic_vector(g_width-1 downto 0) := (others => '0');
-  signal l_sample_out : std_logic_vector(g_width-1 downto 0) := (others => '0');
-  signal r_sample_out : std_logic_vector(g_width-1 downto 0) := (others => '0');
+  signal sample_in    : std_logic_vector(width-1 downto 0) := (others => '0');
+  signal l_sample_out : std_logic_vector(width-1 downto 0) := (others => '0');
+  signal r_sample_out : std_logic_vector(width-1 downto 0) := (others => '0');
   
   -- Files
   file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in_16b.dat";
@@ -59,32 +59,29 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   
   -- Components
   component digital_effects is
-    generic(
-      n                       : integer := 5000; --Línea de retardo
-      g_width                 : integer := 16;   --Ancho del bus 
-      g_total_number_switches : integer := 10;
-      g_total_delays_effects  : integer := 5;    --Número total de las lineas de retardo que se desea
-      g_total_normal_effects  : integer := 6);   --Número total de los efectos que no son de delay
     port( 
-      clk          : in std_logic; -- MCLK                                                
-      reset_n      : in std_logic; -- Reset síncrono a nivel alto del sistema global    
-      enable_in    : in std_logic; -- Enable proporcionado por el i2s2         
-      SW0          : in std_logic; -- Delay
-      SW1          : in std_logic; -- Chorus
-      SW2          : in std_logic; -- Reverb
-      SW3          : in std_logic; -- Vibrato
-      SW4          : in std_logic; -- Eco
-      SW5          : in std_logic; -- Looper Write
-      SW6          : in std_logic; -- Looper Read
-      SW7          : in std_logic; -- Compressor
-      SW8          : in std_logic; -- Overdrive
-      SW9          : in std_logic; -- Filter
-      SW13         : in std_logic; -- RSTA
-      SW14         : in std_logic; -- Filter Selector
-      l_data_in    : in std_logic_vector(g_width-1 downto 0);                     
-      r_data_in    : in std_logic_vector(g_width-1 downto 0);   
-      l_data_out   : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
-      r_data_out   : out std_logic_vector(g_width-1 downto 0)  -- Datos de salida derechos sin retardo;          
+      clk          : in std_logic;    
+      reset_n      : in std_logic;  
+      enable_in    : in std_logic; 
+      BTNC         : in std_logic;
+      BTNU         : in std_logic; 
+      BTNL         : in std_logic; 
+      BTNR         : in std_logic;     
+      BTND         : in std_logic;      
+      SW0          : in std_logic; 
+      SW1          : in std_logic; 
+      SW2          : in std_logic; 
+      SW3          : in std_logic; 
+      SW4          : in std_logic; 
+      SW5          : in std_logic; 
+      SW6          : in std_logic; 
+      SW7          : in std_logic; 
+      SW8          : in std_logic; 
+      SW9          : in std_logic; 
+      l_data_in    : in std_logic_vector(width-1 downto 0);                     
+      r_data_in    : in std_logic_vector(width-1 downto 0);   
+      l_data_out   : out std_logic_vector(width-1 downto 0);                    
+      r_data_out   : out std_logic_vector(width-1 downto 0)         
     );
   end component;
   
@@ -98,18 +95,16 @@ begin
     wait for clk_period/2;
   end process; 
 
-  unit_digital_effects : digital_effects 
-    generic map(
-      n                       => n,
-      g_width                 => g_width,
-      g_total_number_switches => g_total_number_switches,
-      g_total_delays_effects  => g_total_delays_effects,  
-      g_total_normal_effects  => g_total_normal_effects
-    )   
+  unit_digital_effects : digital_effects   
     port map( 
       clk          => clk,
       reset_n      => reset_n,
       enable_in    => enable_in,
+      BTNC         => BTNC,
+      BTNU         => BTNU,
+      BTNL         => BTNL,
+      BTNR         => BTNR,    
+      BTND         => BTND,
       SW0          => SW0,
       SW1          => SW1,
       SW2          => SW2,
@@ -120,8 +115,6 @@ begin
       SW7          => SW7,
       SW8          => SW8,
       SW9          => SW9,
-      SW13         => SW13,
-      SW14         => SW14,
       l_data_in    => sample_in,
       r_data_in    => sample_in,
       l_data_out   => l_sample_out,                   
@@ -138,7 +131,7 @@ begin
            ReadLine(data_in_file,in_line);
            report "line: " & in_line.all;
            read(in_line, in_int, in_read_ok);
-           sample_in <= std_logic_vector(to_signed(in_int, g_width)); 
+           sample_in <= std_logic_vector(to_signed(in_int, width)); 
          end if;
       end if;
   end process;
@@ -174,9 +167,9 @@ begin
       reset_n <= '0';  
       enable_out <= '1';
       enable_in <= '1';
-      --  ---------------------> ES
-      --  SW0 <= '0';
-      --  SW1 <= '0';
+      --  ---------------------
+      --  SW0 <= '1';
+      --  SW1 <= '1';
       --  SW2 <= '0';
       --  SW3 <= '0';
       --  SW4 <= '0';
@@ -185,37 +178,11 @@ begin
       --  SW7 <= '0';
       --  SW8 <= '0';
       --  SW9 <= '0';
-      --  ---------------------> Delay
-      --  SW0 <= '1';
-      --  ---------------------> Chorus
-      --  SW1 <= '1';
-      --  ---------------------> Reverb
-        SW2 <= '1';
-      --  ---------------------> Vibrato
-      --  SW3 <= '1';
-      --  ---------------------> Looper
-      --  SW4 <= '1';
-      --  ---------------------> Looper_Write
-      --  SW5 <= '0';
-      --  SW6 <= '1';
-      --  ---------------------> Looper_Read
-      --  SW5 <= '1';
-      --  SW6 <= '1';
-      --  SW13 <= '0';
-      --  ---------------------> Looper_Read_Mute
-      --  SW5 <= '1';
-      --  SW6 <= '1';
-      --  SW13 <= '1';
-      --  ---------------------> Compressor
-      --  SW7 <= '1';
-      --  ---------------------> Overdrive
-      --  SW8 <= '1';
-      --  ---------------------> Filter High_Pass
-      --  SW9 <= '1';
-      --  SW14 <= '0';
-      --  ---------------------> Filter Low_Pass
-      --  SW9 <= '1';
-      --  SW14 <= '0';
+      --  BTNC <= '0';
+      --  BTNU <= '0';
+      --  BTNL <= '1';
+      --  BTNR <= '0'; 
+      --  BTND <= '0';     
       --  ---------------------
       wait for haha_duration;
       reset_n <= '0'; 

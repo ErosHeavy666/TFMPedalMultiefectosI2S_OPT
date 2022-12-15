@@ -8,47 +8,43 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity Filter_Datapath is
-  generic (
-    g_width : integer := 16
-  );
   port(  
     clk           : in std_logic;
     reset_n       : in std_logic;
     filter_select : in std_logic;
     M12           : in std_logic_vector(3 downto 0);
     M3            : in std_logic;
-    data_in       : in std_logic_vector(g_width-1 downto 0);
+    data_in       : in std_logic_vector(width-1 downto 0);
     data_in_ready : in std_logic;
-    data_out      : out std_logic_vector(g_width-1 downto 0)
+    data_out      : out std_logic_vector(width-1 downto 0)
   );     
 end Filter_Datapath;
 
 architecture Filter_Datapath_arch of Filter_Datapath is
   
   -- Signals 
-  signal x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15 : std_logic_vector(g_width-1 downto 0); 
-  signal c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15 : std_logic_vector(g_width-1 downto 0); 
-  signal R1_reg, R2_reg, R1_next, R2_next : signed((g_width*2 - 2) downto 0); --Registros R1 y R2
-  signal mult_aux: signed((g_width*2 - 1) downto 0); --Multiplicación
-  signal R3_reg, R3_next: signed(g_width-1 downto 0); --Registros R3
-  signal M3_aux, M2_aux, M1_aux : signed(g_width-1 downto 0); 
-  signal mult : signed (g_width*2-2 downto 0);
+  signal x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15 : std_logic_vector(width-1 downto 0); 
+  signal c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15 : std_logic_vector(width-1 downto 0); 
+  signal R1_reg, R2_reg, R1_next, R2_next : signed((width*2 - 2) downto 0); --Registros R1 y R2
+  signal mult_aux: signed((width*2 - 1) downto 0); --Multiplicación
+  signal R3_reg, R3_next: signed(width-1 downto 0); --Registros R3
+  signal M3_aux, M2_aux, M1_aux : signed(width-1 downto 0); 
+  signal mult : signed (width*2-2 downto 0);
   
   -- Components declaration   
   component register_d is 
-    generic(
-      g_width : integer := 16);
     port (
       clk     : in std_logic; 
       n_reset : in std_logic; 
       i_en    : in std_logic; 
-      i_data  : in std_logic_vector(g_width-1 downto 0); 
-      o_data  : out std_logic_vector(g_width-1 downto 0) 
+      i_data  : in std_logic_vector(width-1 downto 0); 
+      o_data  : out std_logic_vector(width-1 downto 0) 
     );
   end component;
  
@@ -58,7 +54,6 @@ begin
   -- Registers Instances for Datapath
   -------------------------------------------------------------------------------------------------------------------------------
   register_d_0: register_d
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -67,7 +62,6 @@ begin
        o_data => x0
   );  
   register_d_1: register_d
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -76,7 +70,6 @@ begin
        o_data => x1
   );                               
   register_d_2: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -85,7 +78,6 @@ begin
        o_data => x2
   );                                 
   register_d_3: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -94,7 +86,6 @@ begin
        o_data => x3
   );                                
   register_d_4: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -103,7 +94,6 @@ begin
        o_data => x4
   );                                
   register_d_5: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -112,7 +102,6 @@ begin
        o_data => x5
   );      
   register_d_6: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -121,7 +110,6 @@ begin
        o_data => x6
   );      
   register_d_7: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -130,7 +118,6 @@ begin
        o_data => x7
   );      
   register_d_8: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -139,7 +126,6 @@ begin
        o_data => x8
   );      
   register_d_9: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -148,7 +134,6 @@ begin
        o_data => x9
   );      
   register_d_10: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -157,7 +142,6 @@ begin
        o_data => x10
   );      
   register_d_11: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -166,7 +150,6 @@ begin
        o_data => x11
   );      
   register_d_12: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -175,7 +158,6 @@ begin
        o_data => x12
   );      
   register_d_13: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -184,7 +166,6 @@ begin
        o_data => x13
   );      
   register_d_14: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -193,7 +174,6 @@ begin
        o_data => x14
   );         
   register_d_15: register_d                            
-  generic map(g_width => g_width)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -320,14 +300,14 @@ begin
   -- Combinational logic process: DATAPATH
   -------------------------------------------------------------------------------------------------------------------------------
   mult_aux <= M1_aux * M2_aux; 
-  mult <= mult_aux(g_width*2-2 downto 0);
+  mult <= mult_aux(width*2-2 downto 0);
   R1_next <= mult;    
   R2_next <= R1_reg;    
-  R3_next <= R2_reg(g_width*2-2 downto g_width*2-2-15) + M3_aux;
+  R3_next <= R2_reg(width*2-2 downto width*2-2-15) + M3_aux;
   M3_aux <= R3_reg when (M3 = '1') else (others => '0');       
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
   -------------------------------------------------------------------------------------------------------------------------------  
-  data_out <= std_logic_vector(R3_reg(g_width-1 downto 0));
+  data_out <= std_logic_vector(R3_reg(width-1 downto 0));
   -------------------------------------------------------------------------------------------------------------------------------  
 end Filter_Datapath_arch;

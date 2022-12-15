@@ -8,22 +8,20 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity efecto_compressor is
-  generic(
-    g_width : integer := 16 --Ancho del bus 
-    );
   port ( 
     clk        : in std_logic; --MCLK                                                
     reset_n    : in std_logic; --Reset síncrono a nivel alto del sistema global     
     enable_in  : in std_logic; --Enable proporcionado por el i2s2                    
-    l_data_in  : in std_logic_vector(g_width-1 downto 0);             
-    r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
-    l_data_out : out std_logic_vector(g_width-1 downto 0);                        
-    r_data_out : out std_logic_vector(g_width-1 downto 0)
+    l_data_in  : in std_logic_vector(width-1 downto 0);             
+    r_data_in  : in std_logic_vector(width-1 downto 0);                             
+    l_data_out : out std_logic_vector(width-1 downto 0);                        
+    r_data_out : out std_logic_vector(width-1 downto 0)
 );
 end efecto_compressor;
 
@@ -33,18 +31,18 @@ end efecto_compressor;
 architecture arch_efecto_compressor of efecto_compressor is
  
   -- Constants for threshold
-  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := x"9FFF"; --Umbral de la zona no líneal negativa --> +0.75
-  constant Vth_POSITIVE : signed(g_width-1 downto 0) := x"6000"; --Umbral de la zona no lineal positiva --> -0.75
-  constant Vth_ZERO : signed(g_width-1 downto 0) := x"0000";
+  constant Vth_NEGATIVE : signed(width-1 downto 0) := x"9FFF"; --Umbral de la zona no líneal negativa --> +0.75
+  constant Vth_POSITIVE : signed(width-1 downto 0) := x"6000"; --Umbral de la zona no lineal positiva --> -0.75
+  constant Vth_ZERO : signed(width-1 downto 0) := x"0000";
   -- Constants for gain
-  constant g1 : signed((g_width/2-1) downto 0) := x"50"; --Ganancia para zona lineal --> 0.625
-  constant g2 : signed((g_width/2-1) downto 0) := x"10"; --Ganancia para zona no lineal --> 0.125
+  constant g1 : signed((width/2-1) downto 0) := x"50"; --Ganancia para zona lineal --> 0.625
+  constant g2 : signed((width/2-1) downto 0) := x"10"; --Ganancia para zona no lineal --> 0.125
 
   -- Signals 
-  signal l_data_in_reg, l_data_in_next : signed(g_width-1 downto 0);
-  signal r_data_in_reg, r_data_in_next : signed(g_width-1 downto 0);
-  signal l_data_out_reg, l_data_out_next : signed((g_width*3/2-1) downto 0);
-  signal r_data_out_reg, r_data_out_next : signed((g_width*3/2-1) downto 0);
+  signal l_data_in_reg, l_data_in_next : signed(width-1 downto 0);
+  signal r_data_in_reg, r_data_in_next : signed(width-1 downto 0);
+  signal l_data_out_reg, l_data_out_next : signed((width*3/2-1) downto 0);
+  signal r_data_out_reg, r_data_out_next : signed((width*3/2-1) downto 0);
 
 begin
 
@@ -91,7 +89,7 @@ begin
   -- Output process: --> Hay que castear la señal ya que por las multiplicaciones hay que subirla a 32 bits,
                      --- Nos quedamos con el signo y los decimales más significativos.
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_out <= std_logic_vector(l_data_out_reg((g_width*3/2)-2 downto g_width/2-1));   
-  r_data_out <= std_logic_vector(r_data_out_reg((g_width*3/2)-2 downto g_width/2-1));  
+  l_data_out <= std_logic_vector(l_data_out_reg((width*3/2)-2 downto width/2-1));   
+  r_data_out <= std_logic_vector(r_data_out_reg((width*3/2)-2 downto width/2-1));  
   -------------------------------------------------------------------------------------------------------------------------------
 end arch_efecto_compressor;

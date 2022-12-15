@@ -13,11 +13,11 @@ use work.pkg_project.all;
 ------------
 -- Entity --
 ------------
-entity Flags_Module is
+entity Control_Selector_Module is
   port ( 
-    clk           : in std_logic; --MCLK                                                
-    reset_n       : in std_logic; --Reset síncrono a nivel alto del sistema global    
-    enable_in     : in std_logic; --Enable proporcionado por el i2s2             
+    clk           : in std_logic; 
+    reset_n       : in std_logic; 
+    enable_in     : in std_logic; 
     BTNC          : in std_logic;
     BTNU          : in std_logic; 
     BTNL          : in std_logic; 
@@ -29,12 +29,12 @@ entity Flags_Module is
     BTNC_selector : out std_logic_vector(gain_effects_binary-1 downto 0);
     BTND_selector : out std_logic_vector(gain_effects_binary-1 downto 0)
 );
-end Flags_Module;
+end Control_Selector_Module;
 
 ------------------
 -- Architecture --
 ------------------
-architecture arch_Flags_Module of Flags_Module is
+architecture arch_Control_Selector_Module of Control_Selector_Module is
   
   -- Signals for register the input buttons
   signal BTNC_reg, BTNC_next : std_logic;
@@ -133,4 +133,4 @@ begin
   BTNC_selector <= std_logic_vector(BTNC_selector_reg);
   BTND_selector <= std_logic_vector(BTND_selector_reg);
   -------------------------------------------------------------------------------------------------------------------------------
-end arch_Flags_Module;
+end arch_Control_Selector_Module;

@@ -16,11 +16,11 @@ use work.pkg_project.all;
 ------------
 entity Sine_Generator is
   port ( 
-    clk          : in std_logic; --MCLK                                            
-    reset_n      : in std_logic; --Reset síncrono a nivel alto del sistema global 
-    enable_in    : in std_logic; --Enable proporcionado por el i2s2
-    Sin_In       : out std_logic_vector(sine_vector_width-1 downto 0); --Señal senoidal para seleccionar el retardo modulable         
-    Sin_Out      : out std_logic_vector(sine_vector_width-1 downto 0) --Señal senoidal para seleccionar el retardo modulable         
+    clk          : in std_logic; 
+    reset_n      : in std_logic; 
+    enable_in    : in std_logic; 
+    Sin_In       : out std_logic_vector(sine_vector_width-1 downto 0);    
+    Sin_Out      : out std_logic_vector(sine_vector_width-1 downto 0)    
 ); 
 end Sine_Generator;
 

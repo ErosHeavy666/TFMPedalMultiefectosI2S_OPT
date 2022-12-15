@@ -8,22 +8,20 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity efecto_es is
-  generic(
-    g_width : integer := 16 --Ancho del bus
-  ); 
   port( 
     clk        : in std_logic; --MCLK                                            
     reset_n    : in std_logic; --Reset síncrono a nivel alto del sistema global 
     enable_in  : in std_logic; --Enable proporcionado por el i2s2                
-    l_data_in  : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada izquierdos;                        
-    r_data_in  : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada derechos;                            
-    l_data_out : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos;                            
-    r_data_out : out std_logic_vector(g_width-1 downto 0)  -- Datos de salida derechos;  
+    l_data_in  : in std_logic_vector(width-1 downto 0); -- Datos de entrada izquierdos;                        
+    r_data_in  : in std_logic_vector(width-1 downto 0); -- Datos de entrada derechos;                            
+    l_data_out : out std_logic_vector(width-1 downto 0); -- Datos de salida izquierdos;                            
+    r_data_out : out std_logic_vector(width-1 downto 0)  -- Datos de salida derechos;  
   );
 end efecto_es;
 
@@ -33,10 +31,10 @@ end efecto_es;
 architecture arch_efecto_es of efecto_es is
 
   --Signals
-  signal l_data_in_reg, l_data_in_next : signed(g_width-1 downto 0);
-  signal r_data_in_reg, r_data_in_next : signed(g_width-1 downto 0);
-  signal l_data_out_reg, l_data_out_next : signed(g_width-1 downto 0);
-  signal r_data_out_reg, r_data_out_next : signed(g_width-1 downto 0);
+  signal l_data_in_reg, l_data_in_next : signed(width-1 downto 0);
+  signal r_data_in_reg, r_data_in_next : signed(width-1 downto 0);
+  signal l_data_out_reg, l_data_out_next : signed(width-1 downto 0);
+  signal r_data_out_reg, r_data_out_next : signed(width-1 downto 0);
   
 begin 
 
