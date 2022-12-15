@@ -239,13 +239,13 @@ begin
   process(FBK_selector, BTNU_selector, l_data_in_0, r_data_in_0)
   begin
     if (FBK_selector(0) = '1') then
-      if (BTNU_selector = Enabled_Unit_Gain) then
+      if (BTNU_selector = Enabled_Unit_Input_Gain) then
         l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),0));
         r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),0));
-      elsif(BTNU_selector = Enabled_Half_Gain) then
+      elsif(BTNU_selector = Enabled_Half_Input_Gain) then
         l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),1));
         r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),1));
-      elsif(BTNU_selector = Enabled_Quarter_Gain) then
+      elsif(BTNU_selector = Enabled_Quarter_Input_Gain) then
         l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),2));
         r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),2));
       else
@@ -263,13 +263,13 @@ begin
   process(FBK_selector, BTNC_selector, l_data_in_n, r_data_in_n)
   begin
     if (FBK_selector(1) = '1') then
-      if (BTNC_selector = Enabled_Unit_Gain) then
+      if (BTNC_selector = Enabled_Unit_Input_Gain) then
         l_data_in_n_to_out_next <= (shift_right(signed(l_data_in_n),0));
         r_data_in_n_to_out_next <= (shift_right(signed(r_data_in_n),0));
-      elsif(BTNC_selector = Enabled_Half_Gain) then
+      elsif(BTNC_selector = Enabled_Half_Input_Gain) then
         l_data_in_n_to_out_next <= (shift_right(signed(l_data_in_n),1));
         r_data_in_n_to_out_next <= (shift_right(signed(r_data_in_n),1));
-      elsif(BTNC_selector = Enabled_Quarter_Gain) then
+      elsif(BTNC_selector = Enabled_Quarter_Input_Gain) then
         l_data_in_n_to_out_next <= (shift_right(signed(l_data_in_n),2));
         r_data_in_n_to_out_next <= (shift_right(signed(r_data_in_n),2));
       else
@@ -287,18 +287,18 @@ begin
   process(FBK_selector, BTND_selector, l_data_out_n, r_data_out_n)
   begin
     if (FBK_selector(2) = '1') then
-      if (BTND_selector = Enabled_Unit_Gain) then
-        l_data_out_n_to_out_next <= (shift_right(signed(l_data_out_n),0));
-        r_data_out_n_to_out_next <= (shift_right(signed(r_data_out_n),0));
-      elsif(BTND_selector = Enabled_Half_Gain) then
+      if (BTND_selector = Enabled_Half_Output_Gain) then
         l_data_out_n_to_out_next <= (shift_right(signed(l_data_out_n),1));
         r_data_out_n_to_out_next <= (shift_right(signed(r_data_out_n),1));
-      elsif(BTND_selector = Enabled_Quarter_Gain) then
+      elsif(BTND_selector = Enabled_Quarter_Output_Gain) then
         l_data_out_n_to_out_next <= (shift_right(signed(l_data_out_n),2));
         r_data_out_n_to_out_next <= (shift_right(signed(r_data_out_n),2));
-      else
+      elsif(BTND_selector = Enabled_Eight_Output_Gain) then
         l_data_out_n_to_out_next <= (shift_right(signed(l_data_out_n),3));
         r_data_out_n_to_out_next <= (shift_right(signed(r_data_out_n),3));
+      else
+        l_data_out_n_to_out_next <= (shift_right(signed(l_data_out_n),4));
+        r_data_out_n_to_out_next <= (shift_right(signed(r_data_out_n),4));
       end if;
     else
       l_data_out_n_to_out_next <= (others => '0');

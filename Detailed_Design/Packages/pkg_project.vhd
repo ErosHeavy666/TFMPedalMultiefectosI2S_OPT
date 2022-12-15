@@ -36,14 +36,19 @@ package pkg_project is
   constant Enabled_999_line    : std_logic_vector(delays_effects_binary-1 downto 0) := "110";
   constant Enabled_499_line    : std_logic_vector(delays_effects_binary-1 downto 0) := "111";
 
-  -- Constants for Encoding Gain in Shift_Register 
+  -- Constants for Encoding Input/Output Gain in Shift_Register 
   constant gain_effects_binary   : integer := integer(ceil(log2(real(total_gain_states))));
   
-  constant Enabled_Unit_Gain    : std_logic_vector(gain_effects_binary-1 downto 0) := "00";
-  constant Enabled_Half_Gain    : std_logic_vector(gain_effects_binary-1 downto 0) := "01";
-  constant Enabled_Quarter_Gain : std_logic_vector(gain_effects_binary-1 downto 0) := "10";
-  -- constant Enabled_Eight_Gain   : std_logic_vector(gain_effects_binary-1 downto 0) := "11"; Used in the "else" statement
- 
+  constant Enabled_Unit_Input_Gain    : std_logic_vector(gain_effects_binary-1 downto 0) := "00";
+  constant Enabled_Half_Input_Gain    : std_logic_vector(gain_effects_binary-1 downto 0) := "01";
+  constant Enabled_Quarter_Input_Gain : std_logic_vector(gain_effects_binary-1 downto 0) := "10";
+  constant Enabled_Eight_Input_Gain   : std_logic_vector(gain_effects_binary-1 downto 0) := "11"; 
+  
+  constant Enabled_Half_Output_Gain    : std_logic_vector(gain_effects_binary-1 downto 0) := "00";
+  constant Enabled_Quarter_Output_Gain : std_logic_vector(gain_effects_binary-1 downto 0) := "01";
+  constant Enabled_Eight_Output_Gain   : std_logic_vector(gain_effects_binary-1 downto 0) := "10"; 
+  constant Enabled_Sixteen_Output_Gain : std_logic_vector(gain_effects_binary-1 downto 0) := "11"; 
+  
   -- Constants for OUTPUT Selector line
   constant total_effects_binary : integer := integer(ceil(log2(real(total_effects))));
 

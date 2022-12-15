@@ -112,10 +112,10 @@ begin
   -- Combinational logic process for Rising_Edge flag detection
   -------------------------------------------------------------------------------------------------------------------------------
   BTNC_re_next <= '1' when (BTNC_reg = '0' and BTNC_next = '1') else '0';  
-  BTNU_re_next <= '1' when (BTNC_reg = '0' and BTNC_next = '1') else '0';  
-  BTNL_re_next <= '1' when (BTNC_reg = '0' and BTNC_next = '1') else '0';  
-  BTNR_re_next <= '1' when (BTNC_reg = '0' and BTNC_next = '1') else '0';  
-  BTND_re_next <= '1' when (BTNC_reg = '0' and BTNC_next = '1') else '0';  
+  BTNU_re_next <= '1' when (BTNU_reg = '0' and BTNU_next = '1') else '0';  
+  BTNL_re_next <= '1' when (BTNL_reg = '0' and BTNL_next = '1') else '0';  
+  BTNR_re_next <= '1' when (BTNR_reg = '0' and BTNR_next = '1') else '0';  
+  BTND_re_next <= '1' when (BTND_reg = '0' and BTND_next = '1') else '0';  
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process for Change the Gain/Delay State. One RE detection --> +1
   -------------------------------------------------------------------------------------------------------------------------------
