@@ -38,6 +38,7 @@ package pkg_digital_effects is
       clk           : in std_logic; 
       reset_n       : in std_logic; 
       enable_in     : in std_logic; 
+      SET           : in std_logic; 
       BTNC          : in std_logic;
       BTNU          : in std_logic; 
       BTNL          : in std_logic; 

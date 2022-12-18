@@ -18,6 +18,7 @@ entity Control_Selector_Module is
     clk           : in std_logic; 
     reset_n       : in std_logic; 
     enable_in     : in std_logic; 
+    SET           : in std_logic; 
     BTNC          : in std_logic;
     BTNU          : in std_logic; 
     BTNL          : in std_logic; 
@@ -119,11 +120,54 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process for Change the Gain/Delay State. One RE detection --> +1
   -------------------------------------------------------------------------------------------------------------------------------
-  BTNL_selector_next <= BTNL_selector_reg + 1 when (BTNL_re_reg = '1') else BTNL_selector_reg;
-  BTNR_selector_next <= BTNR_selector_reg + 1 when (BTNR_re_reg = '1') else BTNR_selector_reg;
-  BTNU_selector_next <= BTNU_selector_reg + 1 when (BTNU_re_reg = '1') else BTNU_selector_reg;
-  BTNC_selector_next <= BTNC_selector_reg + 1 when (BTNC_re_reg = '1') else BTNC_selector_reg;
-  BTND_selector_next <= BTND_selector_reg + 1 when (BTND_re_reg = '1') else BTND_selector_reg;
+  process(SET,
+          BTNL_selector_reg, BTNL_re_reg,
+          BTNR_selector_reg, BTNR_re_reg,
+          BTNU_selector_reg, BTNU_re_reg,
+          BTNC_selector_reg, BTNC_re_reg,
+          BTND_selector_reg, BTND_re_reg)
+  begin
+    if (SET = '1') then
+      BTNL_selector_next <= BTNL_selector_reg;
+      BTNR_selector_next <= BTNR_selector_reg;
+      BTNU_selector_next <= (others => '0');
+      BTNC_selector_next <= (others => '0');
+      BTND_selector_next <= (others => '0');
+    else
+      ------------------------------------------
+      if (BTNL_re_reg = '1') then
+        BTNL_selector_next <= BTNL_selector_reg + 1;
+      else
+        BTNL_selector_next <= BTNL_selector_reg;
+      end if; 
+      ------------------------------------------
+      if (BTNR_re_reg = '1') then
+        BTNR_selector_next <= BTNR_selector_reg + 1;
+      else
+        BTNR_selector_next <= BTNR_selector_reg;
+      end if; 
+      ------------------------------------------
+      if (BTNU_re_reg = '1') then
+        BTNU_selector_next <= BTNU_selector_reg + 1;
+      else
+        BTNU_selector_next <= BTNU_selector_reg;
+      end if; 
+      ------------------------------------------
+      if (BTNC_re_reg = '1') then
+        BTNC_selector_next <= BTNC_selector_reg + 1;
+      else
+        BTNC_selector_next <= BTNC_selector_reg;
+      end if; 
+      ------------------------------------------
+      if (BTND_re_reg = '1') then
+        BTND_selector_next <= BTND_selector_reg + 1;
+      else
+        BTND_selector_next <= BTND_selector_reg;
+      end if; 
+      ------------------------------------------
+    end if;
+  end process;
+
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
   -------------------------------------------------------------------------------------------------------------------------------

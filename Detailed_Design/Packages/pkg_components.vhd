@@ -73,6 +73,7 @@ package pkg_components is
       SW7          : in std_logic; 
       SW8          : in std_logic; 
       SW9          : in std_logic; 
+      SET          : in std_logic; 
       l_data_in    : in std_logic_vector(width-1 downto 0);                     
       r_data_in    : in std_logic_vector(width-1 downto 0);   
       l_data_out   : out std_logic_vector(width-1 downto 0);                    

@@ -36,6 +36,7 @@ entity i2s_playback is
       SW7         : in std_logic;
       SW8         : in std_logic;
       SW9         : in std_logic;            
+      SET         : in std_logic;            
       MCLK        : out std_logic_vector(1 downto 0);  --master clock
       SCLK        : out std_logic_vector(1 downto 0);  --serial clock (or bit clock)
       WS          : out std_logic_vector(1 downto 0);  --word select (or left-right clock)
@@ -112,6 +113,7 @@ begin
       SW7          => SW7,
       SW8          => SW8,
       SW9          => SW9,
+      SET          => SET,
       l_data_in    => l_data_rx,                
       r_data_in    => r_data_rx,
       l_data_out   => l_data_tx,                         
