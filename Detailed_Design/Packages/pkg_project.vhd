@@ -22,7 +22,7 @@ package pkg_project is
   constant total_number_buttons  : integer := 5;
   constant total_delays_states   : integer := 8; 
   constant total_gain_states     : integer := 4; 
-  constant total_effects         : integer := 6; 
+  constant total_effects         : integer := 8; 
      
   -- Constants for Encoding Input/Output LUTRAM selectors
   constant delays_effects_binary : integer := integer(ceil(log2(real(total_delays_states))));
@@ -52,12 +52,13 @@ package pkg_project is
   -- Constants for OUTPUT Selector line
   constant total_effects_binary : integer := integer(ceil(log2(real(total_effects))));
 
-  constant ES_line_active         : std_logic_vector(total_effects_binary-1 downto 0) := "000";
-  constant Feedback_line_active   : std_logic_vector(total_effects_binary-1 downto 0) := "001";
-  constant Looper_line_active     : std_logic_vector(total_effects_binary-1 downto 0) := "010";
-  constant Compressor_line_active : std_logic_vector(total_effects_binary-1 downto 0) := "011";
-  constant Overdrive_line_active  : std_logic_vector(total_effects_binary-1 downto 0) := "100";
-  constant Filter_line_active     : std_logic_vector(total_effects_binary-1 downto 0) := "101";
-  constant Disabled_output_line   : std_logic_vector(total_effects_binary-1 downto 0) := "110";
+  constant ES_line_active            : std_logic_vector(total_effects_binary-1 downto 0) := "000";
+  constant Feedback_1_2_lines_active : std_logic_vector(total_effects_binary-1 downto 0) := "001";
+  constant Feedback_3_lines_active   : std_logic_vector(total_effects_binary-1 downto 0) := "010";
+  constant Looper_line_active        : std_logic_vector(total_effects_binary-1 downto 0) := "011";
+  constant Compressor_line_active    : std_logic_vector(total_effects_binary-1 downto 0) := "100";
+  constant Overdrive_line_active     : std_logic_vector(total_effects_binary-1 downto 0) := "101";
+  constant Filter_line_active        : std_logic_vector(total_effects_binary-1 downto 0) := "110";
+  constant Disabled_output_line      : std_logic_vector(total_effects_binary-1 downto 0) := "111";
     
 end pkg_project;

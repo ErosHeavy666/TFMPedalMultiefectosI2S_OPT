@@ -240,17 +240,17 @@ begin
   begin
     if (FBK_selector(0) = '1') then
       if (BTNU_selector = Enabled_Unit_Input_Gain) then
-        l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),0));
-        r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),0));
+        l_data_in_0_to_out_next <= (shift_right(signed(l_data_in_0),0));
+        r_data_in_0_to_out_next <= (shift_right(signed(r_data_in_0),0));
       elsif(BTNU_selector = Enabled_Half_Input_Gain) then
-        l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),1));
-        r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),1));
+        l_data_in_0_to_out_next <= (shift_right(signed(l_data_in_0),1));
+        r_data_in_0_to_out_next <= (shift_right(signed(r_data_in_0),1));
       elsif(BTNU_selector = Enabled_Quarter_Input_Gain) then
-        l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),2));
-        r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),2));
+        l_data_in_0_to_out_next <= (shift_right(signed(l_data_in_0),2));
+        r_data_in_0_to_out_next <= (shift_right(signed(r_data_in_0),2));
       else
-        l_data_in_0_to_out_next <= -(shift_right(signed(l_data_in_0),3));
-        r_data_in_0_to_out_next <= -(shift_right(signed(r_data_in_0),3));
+        l_data_in_0_to_out_next <= (shift_right(signed(l_data_in_0),3));
+        r_data_in_0_to_out_next <= (shift_right(signed(r_data_in_0),3));
       end if;
     else
       l_data_in_0_to_out_next <= (others => '0');
@@ -308,24 +308,39 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process for data_out_feedback:
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_out_feedback_next <= l_data_in_0_to_out_reg + l_data_in_n_to_out_reg + l_data_out_n_to_out_reg;
-  r_data_out_feedback_next <= r_data_in_0_to_out_reg + r_data_in_n_to_out_reg + r_data_out_n_to_out_reg;
+  process(OUT_selector, 
+          l_data_in_0_to_out_reg, l_data_in_n_to_out_reg, l_data_out_n_to_out_reg, l_data_out_feedback_reg,
+          r_data_in_0_to_out_reg, r_data_in_n_to_out_reg, r_data_out_n_to_out_reg, r_data_out_feedback_reg)
+  begin
+    if (OUT_selector = Feedback_1_2_lines_active) then
+      l_data_out_feedback_next <= l_data_in_0_to_out_reg + l_data_in_n_to_out_reg + l_data_out_n_to_out_reg;
+      r_data_out_feedback_next <= r_data_in_0_to_out_reg + r_data_in_n_to_out_reg + r_data_out_n_to_out_reg;
+    elsif (OUT_selector = Feedback_3_lines_active) then
+      l_data_out_feedback_next <= -(l_data_in_0_to_out_reg) + l_data_in_n_to_out_reg + l_data_out_n_to_out_reg;
+      r_data_out_feedback_next <= -(r_data_in_0_to_out_reg) + r_data_in_n_to_out_reg + r_data_out_n_to_out_reg;
+    else
+      l_data_out_feedback_next <= l_data_out_feedback_reg;
+      r_data_out_feedback_next <= r_data_out_feedback_reg;
+    end if;
+  end process;
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process for data_out_logic: 
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_out_logic_next <= signed(l_data_out_es)         when (OUT_selector = ES_line_active)         else
-                           signed(l_data_out_looper)     when (OUT_selector = Looper_line_active)     else
-                           signed(l_data_out_compressor) when (OUT_selector = Compressor_line_active) else
-                           signed(l_data_out_overdrive)  when (OUT_selector = Overdrive_line_active)  else
-                           signed(l_data_out_filter)     when (OUT_selector = Filter_line_active)     else
-                           l_data_out_feedback_reg       when (OUT_selector = Feedback_line_active)   else
+  l_data_out_logic_next <= signed(l_data_out_es)         when (OUT_selector = ES_line_active)          else
+                           signed(l_data_out_looper)     when (OUT_selector = Looper_line_active)      else
+                           signed(l_data_out_compressor) when (OUT_selector = Compressor_line_active)  else
+                           signed(l_data_out_overdrive)  when (OUT_selector = Overdrive_line_active)   else
+                           signed(l_data_out_filter)     when (OUT_selector = Filter_line_active)      else
+                           l_data_out_feedback_reg       when (OUT_selector = Feedback_1_2_lines_active or
+                                                               OUT_selector = Feedback_3_lines_active) else
                            (others => '0');           -- when (OUT_selector = Disabled_output_line)   
-  r_data_out_logic_next <= signed(r_data_out_es)         when (OUT_selector = ES_line_active)         else
-                           signed(r_data_out_looper)     when (OUT_selector = Looper_line_active)     else
-                           signed(r_data_out_compressor) when (OUT_selector = Compressor_line_active) else
-                           signed(r_data_out_overdrive)  when (OUT_selector = Overdrive_line_active)  else
-                           signed(r_data_out_filter)     when (OUT_selector = Filter_line_active)     else
-                           r_data_out_feedback_reg       when (OUT_selector = Feedback_line_active)   else
+  r_data_out_logic_next <= signed(r_data_out_es)         when (OUT_selector = ES_line_active)          else
+                           signed(r_data_out_looper)     when (OUT_selector = Looper_line_active)      else
+                           signed(r_data_out_compressor) when (OUT_selector = Compressor_line_active)  else
+                           signed(r_data_out_overdrive)  when (OUT_selector = Overdrive_line_active)   else
+                           signed(r_data_out_filter)     when (OUT_selector = Filter_line_active)      else
+                           r_data_out_feedback_reg       when (OUT_selector = Feedback_1_2_lines_active or
+                                                               OUT_selector = Feedback_3_lines_active) else
                            (others => '0');           -- when (OUT_selector = Disabled_output_line)  
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 

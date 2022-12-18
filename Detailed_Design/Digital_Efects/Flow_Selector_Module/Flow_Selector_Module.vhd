@@ -70,18 +70,18 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process for Out_selector:
   -------------------------------------------------------------------------------------------------------------------------------
-  OUT_selector_next <= ES_line_active         when (SW_Vector = "00000000") else
-                       Feedback_line_active   when (SW_Vector = "00000001" or 
-                                                    SW_Vector = "00000010" or 
-                                                    SW_Vector = "00000011" or 
-                                                    SW_Vector = "00000100" or 
-                                                    SW_Vector = "00000101" or 
-                                                    SW_Vector = "00000110" or 
-                                                    SW_Vector = "00000111") else
-                       Looper_line_active     when (SW_Vector = "00011000") else
-                       Compressor_line_active when (SW_Vector = "00100000") else
-                       Overdrive_line_active  when (SW_Vector = "01000000") else
-                       Filter_line_active     when (SW_Vector = "10000000") else
+  OUT_selector_next <= ES_line_active            when (SW_Vector = "00000000") else
+                       Feedback_1_2_lines_active when (SW_Vector = "00000001" or 
+                                                       SW_Vector = "00000010" or 
+                                                       SW_Vector = "00000011" or 
+                                                       SW_Vector = "00000100" or 
+                                                       SW_Vector = "00000101" or 
+                                                       SW_Vector = "00000110") else 
+                       Feedback_3_lines_active   when (SW_Vector = "00000111") else
+                       Looper_line_active        when (SW_Vector = "00011000") else
+                       Compressor_line_active    when (SW_Vector = "00100000") else
+                       Overdrive_line_active     when (SW_Vector = "01000000") else
+                       Filter_line_active        when (SW_Vector = "10000000") else
                        Disabled_output_line;
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
