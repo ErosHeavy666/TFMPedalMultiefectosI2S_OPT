@@ -80,20 +80,8 @@ begin
   -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Muxed data for out_n Output
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_out_n_muxed <= l_data_out_reg(4999)                when (BTNR_selector = Enabled_4999_line) else 
-                        l_data_out_reg(3999)                when (BTNR_selector = Enabled_3999_line) else
-                        l_data_out_reg(3499)                when (BTNR_selector = Enabled_3499_line) else
-                        l_data_out_reg(2999)                when (BTNR_selector = Enabled_2999_line) else
-                        l_data_out_reg(1999)                when (BTNR_selector = Enabled_1999_line) else
-                        l_data_out_reg(999-wave_out_retard) when (BTNR_selector = Enabled_999_line)  else
-                        l_data_out_reg(499)                 when (BTNR_selector = Enabled_499_line)  else (others => '0');                                                                                                           
-  r_data_out_n_muxed <= r_data_out_reg(4999)                when (BTNR_selector = Enabled_4999_line) else 
-                        r_data_out_reg(3999)                when (BTNR_selector = Enabled_3999_line) else
-                        r_data_out_reg(3499)                when (BTNR_selector = Enabled_3499_line) else
-                        r_data_out_reg(2999)                when (BTNR_selector = Enabled_2999_line) else
-                        r_data_out_reg(1999)                when (BTNR_selector = Enabled_1999_line) else
-                        r_data_out_reg(999-wave_out_retard) when (BTNR_selector = Enabled_999_line)  else
-                        r_data_out_reg(499)                 when (BTNR_selector = Enabled_499_line)  else (others => '0');                                                                               
+  l_data_out_n_muxed <= l_data_out_reg(49-wave_out_retard) when (BTNR_selector = Enabled_999_line)  else (others => '0');
+  r_data_out_n_muxed <= r_data_out_reg(49-wave_out_retard) when (BTNR_selector = Enabled_999_line)  else (others => '0');                                                                               
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
   -------------------------------------------------------------------------------------------------------------------------------

@@ -15,7 +15,7 @@ use ieee.math_real.all;
 package pkg_project is
   
   -- Constants for bus width
-  constant n                     : integer := 5000;
+  constant n                     : integer := 50;
   constant width                 : integer := 16;
   constant total_feedback_delays : integer := 3;
   constant total_number_switches : integer := 8;

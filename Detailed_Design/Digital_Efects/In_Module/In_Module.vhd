@@ -42,7 +42,6 @@ architecture arch_In_Module of In_Module is
   signal l_data_in_reg, l_data_in_next : fifo_t;
   signal r_data_in_reg, r_data_in_next : fifo_t;
   signal l_data_in_n_muxed, r_data_in_n_muxed : signed(width-1 downto 0);
-  signal wave_in_retard : integer;
   
 begin
 
@@ -74,26 +73,10 @@ begin
     end loop;
   end process;
   -------------------------------------------------------------------------------------------------------------------------------
-  -- Combinational logic process: Sin_In for Vibrato 
-  -------------------------------------------------------------------------------------------------------------------------------
-  wave_in_retard <= to_integer(unsigned(Sin_In)) when (BTNL_selector = Enabled_499_line) else 0;
-  -------------------------------------------------------------------------------------------------------------------------------
   -- Combinational logic process: Muxed data for in_n Output
   -------------------------------------------------------------------------------------------------------------------------------
-  l_data_in_n_muxed <= l_data_in_reg(4999)                when (BTNL_selector = Enabled_4999_line) else 
-                       l_data_in_reg(3999)                when (BTNL_selector = Enabled_3999_line) else
-                       l_data_in_reg(3499)                when (BTNL_selector = Enabled_3499_line) else
-                       l_data_in_reg(2999)                when (BTNL_selector = Enabled_2999_line) else
-                       l_data_in_reg(1999)                when (BTNL_selector = Enabled_1999_line) else
-                       l_data_in_reg(999)                 when (BTNL_selector = Enabled_999_line)  else
-                       l_data_in_reg(499-wave_in_retard)  when (BTNL_selector = Enabled_499_line)  else (others => '0');                                                                                                           
-  r_data_in_n_muxed <= r_data_in_reg(4999)                when (BTNL_selector = Enabled_4999_line) else 
-                       r_data_in_reg(3999)                when (BTNL_selector = Enabled_3999_line) else
-                       r_data_in_reg(3499)                when (BTNL_selector = Enabled_3499_line) else
-                       r_data_in_reg(2999)                when (BTNL_selector = Enabled_2999_line) else
-                       r_data_in_reg(1999)                when (BTNL_selector = Enabled_1999_line) else
-                       r_data_in_reg(999)                 when (BTNL_selector = Enabled_999_line)  else
-                       r_data_in_reg(499-wave_in_retard)  when (BTNL_selector = Enabled_499_line)  else (others => '0');  
+  l_data_in_n_muxed <= l_data_in_reg(49-to_integer(unsigned(Sin_In))) when (BTNL_selector = Enabled_499_line)  else (others => '0');                                                                                                           
+  r_data_in_n_muxed <= r_data_in_reg(49-to_integer(unsigned(Sin_In))) when (BTNL_selector = Enabled_499_line)  else (others => '0');  
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 
   -------------------------------------------------------------------------------------------------------------------------------
