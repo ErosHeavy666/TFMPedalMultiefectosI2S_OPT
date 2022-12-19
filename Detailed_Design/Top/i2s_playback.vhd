@@ -14,9 +14,7 @@ use work.pkg_project.all;
 ------------
 -- Entity --
 ------------
-entity i2s_playback is
-  generic(
-      g_width     :  integer := 16);                    
+entity i2s_playback is                  
   port(
       CLK_100MHZ  : in std_logic;                     
       N_RESET     : in std_logic;                     
@@ -44,7 +42,7 @@ entity i2s_playback is
       SD_OUT      : out std_logic;
       SEG         : out std_logic_vector(6 downto 0);
       AN          : out std_logic_vector(7 downto 0);
-      LED         : out std_logic_vector(g_width-1 downto 0)
+      LED         : out std_logic_vector(width-1 downto 0)
   );                  
 end i2s_playback;
 
@@ -57,10 +55,10 @@ architecture arch_i2s_playback of i2s_playback is
   signal master_clk  : std_logic; -- internal master clock signal
   signal serial_clk  : std_logic; -- internal serial clock signal
   signal word_select : std_logic; -- internal word select signal
-  signal l_data_rx   : std_logic_vector(g_width-1 downto 0);  -- left channel data received from I2S Transceiver component
-  signal r_data_rx   : std_logic_vector(g_width-1 downto 0);  -- right channel data received from I2S Transceiver component
-  signal l_data_tx   : std_logic_vector(g_width-1 downto 0);  -- left channel data to transmit using I2S Transceiver component
-  signal r_data_tx   : std_logic_vector(g_width-1 downto 0);  -- right channel data to transmit using I2S Transceiver component
+  signal l_data_rx   : std_logic_vector(width-1 downto 0);  -- left channel data received from I2S Transceiver component
+  signal r_data_rx   : std_logic_vector(width-1 downto 0);  -- right channel data received from I2S Transceiver component
+  signal l_data_tx   : std_logic_vector(width-1 downto 0);  -- left channel data to transmit using I2S Transceiver component
+  signal r_data_tx   : std_logic_vector(width-1 downto 0);  -- right channel data to transmit using I2S Transceiver component
   signal en_rx       : std_logic;    
   
   signal reset : std_logic;
@@ -132,7 +130,6 @@ begin
   
   -- Instance for LEDs component
   unit_leds : leds  
-    generic map(g_width => g_width)
     port map(
       clk           => master_clk,
       n_reset       => n_reset,

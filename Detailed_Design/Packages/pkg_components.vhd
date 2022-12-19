@@ -82,16 +82,14 @@ package pkg_components is
   end component;
   
   component leds is
-    generic(
-      g_width       : integer := 16);  
     port ( 
       clk           : in std_logic; 
       n_reset       : in std_logic; 
       i_play_enable : in std_logic; 
       i_en_rx       : in std_logic;  
-      i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); 
-      i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); 
-      o_leds        : out std_logic_vector(g_width-1 downto 0) 
+      i_r_data_rx   : in std_logic_vector(width-1 downto 0); 
+      i_l_data_rx   : in std_logic_vector(width-1 downto 0); 
+      o_leds        : out std_logic_vector(width-1 downto 0) 
     );
   end component;
     
