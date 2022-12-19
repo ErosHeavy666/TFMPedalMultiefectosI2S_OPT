@@ -16,12 +16,6 @@ use work.pkg_project.all;
 -- Entity --
 ------------
 entity digital_effects is
-  generic(
-    n                       : integer := 5000; --Línea de retardo
-    g_width                 : integer := 16;   --Ancho del bus 
-    g_total_number_switches : integer := 10;
-    g_total_delays_effects  : integer := 5;    --Número total de las lineas de retardo que se desea
-    g_total_normal_effects  : integer := 6);   --Número total de los efectos que no son de delay
   port( 
     clk          : in std_logic; -- MCLK                                                
     reset_n      : in std_logic; -- Reset síncrono a nivel alto del sistema global    
@@ -38,10 +32,10 @@ entity digital_effects is
     SW9          : in std_logic; -- Filter
     SW13         : in std_logic; -- RSTA
     SW14         : in std_logic; -- Filter Selector
-    l_data_in    : in std_logic_vector(g_width-1 downto 0);                     
-    r_data_in    : in std_logic_vector(g_width-1 downto 0);   
-    l_data_out   : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
-    r_data_out   : out std_logic_vector(g_width-1 downto 0)  -- Datos de salida derechos sin retardo;        
+    l_data_in    : in std_logic_vector(width-1 downto 0);                     
+    r_data_in    : in std_logic_vector(width-1 downto 0);   
+    l_data_out   : out std_logic_vector(width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
+    r_data_out   : out std_logic_vector(width-1 downto 0)  -- Datos de salida derechos sin retardo;        
   );
 end digital_effects;
 
@@ -51,20 +45,20 @@ end digital_effects;
 architecture arch_digital_effects of digital_effects is
   
   -- Signals for interconnect the instances
-  signal GNL_selector_connection : std_logic_vector(g_total_delays_effects-1 downto 0);
-  signal Out_selector_connection : std_logic_vector(g_total_normal_effects-1 downto 0);
+  signal GNL_selector_connection : std_logic_vector(total_delays_effects-1 downto 0);
+  signal Out_selector_connection : std_logic_vector(total_normal_effects-1 downto 0);
   signal Sin_In_connection : std_logic_vector(sine_vector_width-1 downto 0);
   signal Sin_Out_connection : std_logic_vector(sine_vector_width-1 downto 0);
-  signal l_data_in_0_connection : std_logic_vector(g_width-1 downto 0);
-  signal r_data_in_0_connection : std_logic_vector(g_width-1 downto 0);
-  signal l_data_in_n_connection : std_logic_vector(g_width-1 downto 0);
-  signal r_data_in_n_connection : std_logic_vector(g_width-1 downto 0);
-  signal l_data_out_n_connection : std_logic_vector(g_width-1 downto 0);
-  signal r_data_out_n_connection : std_logic_vector(g_width-1 downto 0);
-  signal l_data_out_logic_connection : std_logic_vector(g_width-1 downto 0);
-  signal r_data_out_logic_connection : std_logic_vector(g_width-1 downto 0);
-  signal l_data_out_0_connection : std_logic_vector(g_width-1 downto 0);
-  signal r_data_out_0_connection : std_logic_vector(g_width-1 downto 0);
+  signal l_data_in_0_connection : std_logic_vector(width-1 downto 0);
+  signal r_data_in_0_connection : std_logic_vector(width-1 downto 0);
+  signal l_data_in_n_connection : std_logic_vector(width-1 downto 0);
+  signal r_data_in_n_connection : std_logic_vector(width-1 downto 0);
+  signal l_data_out_n_connection : std_logic_vector(width-1 downto 0);
+  signal r_data_out_n_connection : std_logic_vector(width-1 downto 0);
+  signal l_data_out_logic_connection : std_logic_vector(width-1 downto 0);
+  signal r_data_out_logic_connection : std_logic_vector(width-1 downto 0);
+  signal l_data_out_0_connection : std_logic_vector(width-1 downto 0);
+  signal r_data_out_0_connection : std_logic_vector(width-1 downto 0);
 
 begin
   
@@ -72,11 +66,6 @@ begin
   -- Component Instances: Selector_Module
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Selector_Module : Selector_Module 
-    generic map (
-      g_total_number_switches => g_total_number_switches,
-      g_total_delays_effects  => g_total_delays_effects,
-      g_total_normal_effects  => g_total_normal_effects
-    )
     port map( 
       clk          => clk,
       reset_n      => reset_n,
@@ -109,11 +98,6 @@ begin
   -- Component Instances: In_Module
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_In_Module : In_Module 
-    generic map(
-      n                       => n,
-      g_total_delays_effects  => g_total_delays_effects, 
-      g_width                 => g_width
-    )
     port map( 
       clk          => clk,
       reset_n      => reset_n,
@@ -131,11 +115,6 @@ begin
   -- Component Instances: Output_Generator_Module
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Output_Generator_Module : Output_Generator_Module 
-    generic map(
-      g_width                 => g_width,
-      g_total_delays_effects  => g_total_delays_effects,
-      g_total_normal_effects  => g_total_normal_effects
-    )
     port map( 
       clk              => clk,
       reset_n          => reset_n,
@@ -159,11 +138,6 @@ begin
   -- Component Instances: Out_Module
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Out_Module : Out_Module
-    generic map(
-      n                       => n,
-      g_total_delays_effects  => g_total_delays_effects,
-      g_width                 => g_width
-    )
     port map( 
       clk              => clk,
       reset_n          => reset_n,

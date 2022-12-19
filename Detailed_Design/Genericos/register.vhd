@@ -8,19 +8,18 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity register_d is
-  generic(
-    g_width : integer := 16);
   port (
     clk     : in std_logic; --Entrada del reloj general del sistema de 12MHz
     n_reset : in std_logic; --Reset síncrono del sistema 
     i_en    : in std_logic; --Enable que activa el FF de tipo D (se asociará con Sample_In_Enable)
-    i_data  : in std_logic_vector(g_width-1 downto 0); --Datos de entrada -> Sample_In -> Xn
-    o_data  : out std_logic_vector(g_width-1 downto 0) --Datos de salida -> Xn -> Sample_Out
+    i_data  : in std_logic_vector(width-1 downto 0); --Datos de entrada -> Sample_In -> Xn
+    o_data  : out std_logic_vector(width-1 downto 0) --Datos de salida -> Xn -> Sample_Out
   );
 end register_d;
 
@@ -30,7 +29,7 @@ end register_d;
 architecture arch_register_d of register_d is
 
   -- Signals
-  signal r_data, s_data : std_logic_vector (g_width-1 downto 0);
+  signal r_data, s_data : std_logic_vector (width-1 downto 0);
   
 begin
   

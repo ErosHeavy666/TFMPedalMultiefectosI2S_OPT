@@ -22,11 +22,11 @@ end tb_digitaleffects;
 architecture tb_digitaleffects_arch of tb_digitaleffects is
 
   -- Constants
-  constant n                       : integer := 5000; 
-  constant g_width                 : integer := 16;   
-  constant g_total_number_switches : integer := 10;
-  constant g_total_delays_effects  : integer := 5;    
-  constant g_total_normal_effects  : integer := 6;   
+  constant n                     : integer := 5000; 
+  constant width                 : integer := 16;   
+  constant total_number_switches : integer := 10;
+  constant total_delays_effects  : integer := 5;    
+  constant total_normal_effects  : integer := 6;   
   
   constant clk_period : time := 45.35us;
   constant haha_duration : time := 1000ms;
@@ -48,9 +48,9 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   signal SW9          : std_logic := '0';  
   signal SW13         : std_logic := '0';  
   signal SW14         : std_logic := '0'; 
-  signal sample_in    : std_logic_vector(g_width-1 downto 0) := (others => '0');
-  signal l_sample_out : std_logic_vector(g_width-1 downto 0) := (others => '0');
-  signal r_sample_out : std_logic_vector(g_width-1 downto 0) := (others => '0');
+  signal sample_in    : std_logic_vector(width-1 downto 0) := (others => '0');
+  signal l_sample_out : std_logic_vector(width-1 downto 0) := (others => '0');
+  signal r_sample_out : std_logic_vector(width-1 downto 0) := (others => '0');
   
   -- Files
   file data_in_file: text open read_mode IS "C:\Users\eros_\Downloads\TFMPedalMultiefectosI2S_OPT\MATLAB\haha_sample_in_16b.dat";
@@ -59,12 +59,6 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
   
   -- Components
   component digital_effects is
-    generic(
-      n                       : integer := 5000; --Línea de retardo
-      g_width                 : integer := 16;   --Ancho del bus 
-      g_total_number_switches : integer := 10;
-      g_total_delays_effects  : integer := 5;    --Número total de las lineas de retardo que se desea
-      g_total_normal_effects  : integer := 6);   --Número total de los efectos que no son de delay
     port( 
       clk          : in std_logic; -- MCLK                                                
       reset_n      : in std_logic; -- Reset síncrono a nivel alto del sistema global    
@@ -81,10 +75,10 @@ architecture tb_digitaleffects_arch of tb_digitaleffects is
       SW9          : in std_logic; -- Filter
       SW13         : in std_logic; -- RSTA
       SW14         : in std_logic; -- Filter Selector
-      l_data_in    : in std_logic_vector(g_width-1 downto 0);                     
-      r_data_in    : in std_logic_vector(g_width-1 downto 0);   
-      l_data_out   : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
-      r_data_out   : out std_logic_vector(g_width-1 downto 0)  -- Datos de salida derechos sin retardo;          
+      l_data_in    : in std_logic_vector(width-1 downto 0);                     
+      r_data_in    : in std_logic_vector(width-1 downto 0);   
+      l_data_out   : out std_logic_vector(width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
+      r_data_out   : out std_logic_vector(width-1 downto 0)  -- Datos de salida derechos sin retardo;          
     );
   end component;
   
@@ -99,13 +93,6 @@ begin
   end process; 
 
   unit_digital_effects : digital_effects 
-    generic map(
-      n                       => n,
-      g_width                 => g_width,
-      g_total_number_switches => g_total_number_switches,
-      g_total_delays_effects  => g_total_delays_effects,  
-      g_total_normal_effects  => g_total_normal_effects
-    )   
     port map( 
       clk          => clk,
       reset_n      => reset_n,
@@ -138,7 +125,7 @@ begin
            ReadLine(data_in_file,in_line);
            report "line: " & in_line.all;
            read(in_line, in_int, in_read_ok);
-           sample_in <= std_logic_vector(to_signed(in_int, g_width)); 
+           sample_in <= std_logic_vector(to_signed(in_int,width)); 
          end if;
       end if;
   end process;

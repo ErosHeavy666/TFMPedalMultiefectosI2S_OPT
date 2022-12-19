@@ -15,23 +15,18 @@ use work.pkg_project.all;
 -- Entity --
 ------------
 entity In_Module is
-  generic(
-    n                       : integer := 5000; --Línea de retardo
-    g_total_delays_effects  : integer := 5; --Número total de las lineas de retardo que se desea  
-    g_width                 : integer := 16 --Ancho del bus 
-  );
   port ( 
     clk          : in std_logic; --MCLK                                            
     reset_n      : in std_logic; --Reset síncrono a nivel alto del sistema global 
     enable_in    : in std_logic; --Enable proporcionado por el i2s2
     Sin_In       : in std_logic_vector(sine_vector_width-1 downto 0); --Señal senoidal para seleccionar el retardo modulable    
-    GNL_selector : in std_logic_vector(g_total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
-    l_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada izquierdos;                        
-    r_data_in    : in std_logic_vector(g_width-1 downto 0); -- Datos de entrada derechos;                            
-    l_data_in_0  : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
-    r_data_in_0  : out std_logic_vector(g_width-1 downto 0);  -- Datos de salida derechos sin retardo;                         
-    l_data_in_n  : out std_logic_vector(g_width-1 downto 0); -- Datos de salida izquierdos con retardo;                            
-    r_data_in_n  : out std_logic_vector(g_width-1 downto 0)  -- Datos de salida derechos con retardo;      
+    GNL_selector : in std_logic_vector(total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
+    l_data_in    : in std_logic_vector(width-1 downto 0); -- Datos de entrada izquierdos;                        
+    r_data_in    : in std_logic_vector(width-1 downto 0); -- Datos de entrada derechos;                            
+    l_data_in_0  : out std_logic_vector(width-1 downto 0); -- Datos de salida izquierdos sin retardo;                            
+    r_data_in_0  : out std_logic_vector(width-1 downto 0);  -- Datos de salida derechos sin retardo;                         
+    l_data_in_n  : out std_logic_vector(width-1 downto 0); -- Datos de salida izquierdos con retardo;                            
+    r_data_in_n  : out std_logic_vector(width-1 downto 0)  -- Datos de salida derechos con retardo;      
 ); 
 end In_Module;
 
@@ -41,12 +36,12 @@ end In_Module;
 architecture arch_In_Module of In_Module is
   
   -- Type for fifo delay  
-  type fifo_t is array (0 to n-1) of signed(g_width-1 downto 0);
+  type fifo_t is array (0 to n-1) of signed(width-1 downto 0);
   
   --Signals
   signal l_data_in_reg, l_data_in_next : fifo_t;
   signal r_data_in_reg, r_data_in_next : fifo_t;
-  signal l_data_in_n_muxed, r_data_in_n_muxed : signed(g_width-1 downto 0);
+  signal l_data_in_n_muxed, r_data_in_n_muxed : signed(width-1 downto 0);
   signal wave_in_retard : integer;
   
 begin

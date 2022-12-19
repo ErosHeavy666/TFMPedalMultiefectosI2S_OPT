@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_digitaleffects_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="pkg_digital_effects" />
+            <top_module name="pkg_project" />
+            <top_module name="pkg_sine" />
+            <top_module name="tb_digitaleffects" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="650000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="136412800000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="219"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject fp_name="/tb_digitaleffects/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/reset_n" type="logic">
+      <obj_property name="ElementShortName">reset_n</obj_property>
+      <obj_property name="ObjectShortName">reset_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/enable_in" type="logic">
+      <obj_property name="ElementShortName">enable_in</obj_property>
+      <obj_property name="ObjectShortName">enable_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/enable_out" type="logic">
+      <obj_property name="ElementShortName">enable_out</obj_property>
+      <obj_property name="ObjectShortName">enable_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW0" type="logic">
+      <obj_property name="ElementShortName">SW0</obj_property>
+      <obj_property name="ObjectShortName">SW0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW1" type="logic">
+      <obj_property name="ElementShortName">SW1</obj_property>
+      <obj_property name="ObjectShortName">SW1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW2" type="logic">
+      <obj_property name="ElementShortName">SW2</obj_property>
+      <obj_property name="ObjectShortName">SW2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW3" type="logic">
+      <obj_property name="ElementShortName">SW3</obj_property>
+      <obj_property name="ObjectShortName">SW3</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW4" type="logic">
+      <obj_property name="ElementShortName">SW4</obj_property>
+      <obj_property name="ObjectShortName">SW4</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW5" type="logic">
+      <obj_property name="ElementShortName">SW5</obj_property>
+      <obj_property name="ObjectShortName">SW5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW6" type="logic">
+      <obj_property name="ElementShortName">SW6</obj_property>
+      <obj_property name="ObjectShortName">SW6</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW7" type="logic">
+      <obj_property name="ElementShortName">SW7</obj_property>
+      <obj_property name="ObjectShortName">SW7</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW8" type="logic">
+      <obj_property name="ElementShortName">SW8</obj_property>
+      <obj_property name="ObjectShortName">SW8</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW9" type="logic">
+      <obj_property name="ElementShortName">SW9</obj_property>
+      <obj_property name="ObjectShortName">SW9</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW13" type="logic">
+      <obj_property name="ElementShortName">SW13</obj_property>
+      <obj_property name="ObjectShortName">SW13</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/SW14" type="logic">
+      <obj_property name="ElementShortName">SW14</obj_property>
+      <obj_property name="ObjectShortName">SW14</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/sample_in" type="array">
+      <obj_property name="ElementShortName">sample_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sample_in[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/l_sample_out" type="array">
+      <obj_property name="ElementShortName">l_sample_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_sample_out[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/r_sample_out" type="array">
+      <obj_property name="ElementShortName">r_sample_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_sample_out[15:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/n" type="other">
+      <obj_property name="ElementShortName">n</obj_property>
+      <obj_property name="ObjectShortName">n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/clk_period" type="other">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_digitaleffects/haha_duration" type="other">
+      <obj_property name="ElementShortName">haha_duration</obj_property>
+      <obj_property name="ObjectShortName">haha_duration</obj_property>
+   </wvobject>
+</wave_config>

@@ -8,21 +8,20 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity leds is
-  generic(
-    g_width       : integer := 16);  -- Data width
   port ( 
     clk           : in std_logic; -- MCLK
     n_reset       : in std_logic; -- Reset síncrono a nivel bajo del sistema global
     i_play_enable : in std_logic; -- Enable que activa el sistema 
     i_en_rx       : in std_logic; 
-    i_r_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal derecho de audio a la entrada
-    i_l_data_rx   : in std_logic_vector(g_width-1 downto 0); -- Canal izquierdo de audio a la entrada
-    o_leds        : out std_logic_vector(g_width-1 downto 0) -- Vector de 16 Leds 
+    i_r_data_rx   : in std_logic_vector(width-1 downto 0); -- Canal derecho de audio a la entrada
+    i_l_data_rx   : in std_logic_vector(width-1 downto 0); -- Canal izquierdo de audio a la entrada
+    o_leds        : out std_logic_vector(width-1 downto 0) -- Vector de 16 Leds 
   );
 end leds;
 
@@ -32,8 +31,8 @@ end leds;
 architecture arch_leds of leds is
 
   -- Signals
-  signal r_r_LEDs, s_r_LEDs : std_logic_vector(g_width/2-1 downto 0);
-  signal r_l_LEDs, s_l_LEDs : std_logic_vector(g_width/2-1 downto 0);
+  signal r_r_LEDs, s_r_LEDs : std_logic_vector(width/2-1 downto 0);
+  signal r_l_LEDs, s_l_LEDs : std_logic_vector(width/2-1 downto 0);
     
 begin
       

@@ -8,44 +8,41 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.pkg_project.all;
 
 ------------
 -- Entity --
 ------------
 entity efecto_filter is
-  generic(
-    g_width    : integer := 16); --Ancho del bus
   port ( 
     clk        : in std_logic; --MCLK
     reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global
     enable_in  : in std_logic; --Enable proporcionado por el i2s2 
     SW14       : in std_logic; --Switch de control para el tipo de filtro
-    l_data_in  : in std_logic_vector(g_width-1 downto 0);             
-    r_data_in  : in std_logic_vector(g_width-1 downto 0);                             
-    l_data_out : out std_logic_vector(g_width-1 downto 0);                        
-    r_data_out : out std_logic_vector(g_width-1 downto 0)
+    l_data_in  : in std_logic_vector(width-1 downto 0);             
+    r_data_in  : in std_logic_vector(width-1 downto 0);                             
+    l_data_out : out std_logic_vector(width-1 downto 0);                        
+    r_data_out : out std_logic_vector(width-1 downto 0)
   ); 
 end efecto_filter;
 
 architecture efecto_filter_arch of efecto_filter is
          
   -- Signals         
-  signal l_data_filtered_reg, r_data_filtered_reg : std_logic_vector(g_width-1 downto 0);   
-  signal l_data_filtered_next, r_data_filtered_next: std_logic_vector(g_width-1 downto 0);   
+  signal l_data_filtered_reg, r_data_filtered_reg : std_logic_vector(width-1 downto 0);   
+  signal l_data_filtered_next, r_data_filtered_next: std_logic_vector(width-1 downto 0);   
   signal l_data_filtered_ready, r_data_filtered_ready : std_logic; 
   signal filter_select : std_logic;    
   
   -- Components declaration  
   component Fir_Filter_Bankfilter is
-    generic(
-      g_width : integer := 16);
     port (  
       clk              : in std_logic; 
       reset_n          : in std_logic;             
       filter_select    : in std_logic;   
-      data_in          : in std_logic_vector(g_width-1 downto 0); 
+      data_in          : in std_logic_vector(width-1 downto 0); 
       data_in_ready    : in std_logic;    
-      data_out         : out std_logic_vector(g_width-1 downto 0); 
+      data_out         : out std_logic_vector(width-1 downto 0); 
       data_out_ready   : out std_logic
     );                                           
   end component;
@@ -60,7 +57,6 @@ begin
   -- Filter Instance for Left channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_L : Fir_Filter_Bankfilter 
-  generic map(g_width => g_width)
   port map(
     clk              => clk,
     reset_n          => reset_n,
@@ -74,7 +70,6 @@ begin
   -- Filter Instance for Right channel:
   -------------------------------------------------------------------------------------------------------------------------------
   Unit_Fir_Filter_Bankfilter_R : Fir_Filter_Bankfilter 
-  generic map(g_width => g_width)
   port map(
     clk              => clk,
     reset_n          => reset_n,

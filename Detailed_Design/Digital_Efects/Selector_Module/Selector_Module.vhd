@@ -13,11 +13,6 @@ use work.pkg_project.all;
 -- Entity --
 ------------
 entity Selector_Module is
-  generic(
-    g_total_number_switches : integer := 10;
-    g_total_delays_effects  : integer := 5; --Número total de las lineas de retardo que se desea
-    g_total_normal_effects  : integer := 6  --Número total de los efectos que no son de delay
-  );
   port ( 
     clk          : in std_logic; --MCLK                                                
     reset_n      : in std_logic; --Reset síncrono a nivel alto del sistema global    
@@ -32,8 +27,8 @@ entity Selector_Module is
     SW7          : in std_logic; --Switches de entrada para selección del modo de funcionamiento
     SW8          : in std_logic; --Switches de entrada para selección del modo de funcionamiento
     SW9          : in std_logic; --Switches de entrada para selección del modo de funcionamiento
-    GNL_selector : out std_logic_vector(g_total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
-    Out_selector : out std_logic_vector(g_total_normal_effects-1 downto 0) -- Out Selector
+    GNL_selector : out std_logic_vector(total_delays_effects-1 downto 0); -- Gain, N, Logic Selector
+    Out_selector : out std_logic_vector(total_normal_effects-1 downto 0) -- Out Selector
 );
 end Selector_Module;
 
@@ -43,11 +38,11 @@ end Selector_Module;
 architecture arch_Selector_Module of Selector_Module is
     
   -- Signals for Output generation
-  signal GNL_selector_reg, GNL_selector_next : std_logic_vector(g_total_delays_effects-1 downto 0);
-  signal Out_selector_reg, Out_selector_next : std_logic_vector(g_total_normal_effects-1 downto 0);
+  signal GNL_selector_reg, GNL_selector_next : std_logic_vector(total_delays_effects-1 downto 0);
+  signal Out_selector_reg, Out_selector_next : std_logic_vector(total_normal_effects-1 downto 0);
   
   -- Signals for make discrete inputs into a vector type
-  signal SW_Vector : std_logic_vector(g_total_number_switches-1 downto 0);
+  signal SW_Vector : std_logic_vector(total_number_switches-1 downto 0);
   
 begin
 
