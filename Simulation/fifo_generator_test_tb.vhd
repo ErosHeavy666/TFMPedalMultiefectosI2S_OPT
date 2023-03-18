@@ -28,8 +28,9 @@ architecture arch_fifo_generator_test_tb of fifo_generator_test_tb is
   -- Signals
   signal clk                                         : std_logic := '1';
   signal srst                                        : std_logic := '1';
-  signal din_1, din_2, din_3, din_4, din_5           : unsigned(d_width-1 downto 0) := (others => '0');
+  signal din_1, din_2, din_3, din_4, din_5           : unsigned(d_width-1 downto 0) := x"0001";
   signal wr_en_1, wr_en_2, wr_en_3, wr_en_4, wr_en_5 : std_logic := '0';
+  signal wr_en_4_ff, wr_en_5_ff                      : std_logic := '0';
   signal rd_en_1, rd_en_2, rd_en_3, rd_en_4, rd_en_5 : std_logic := '0';
   signal dout_1, dout_2, dout_3, dout_4, dout_5      : std_logic_vector(d_width-1 downto 0) := (others => '0');
   signal full_1, full_2, full_3, full_4, full_5      : std_logic := '0';
@@ -92,7 +93,7 @@ begin
       clk   => clk,
       srst  => srst,
       din   => std_logic_vector(din_4),
-      wr_en => wr_en_4,
+      wr_en => wr_en_4_ff,
       rd_en => rd_en_4,
       dout  => dout_4,
       full  => full_4,
@@ -104,7 +105,7 @@ begin
       clk   => clk,
       srst  => srst,
       din   => std_logic_vector(din_5),
-      wr_en => wr_en_5,
+      wr_en => wr_en_5_ff,
       rd_en => rd_en_5,
       dout  => dout_5,
       full  => full_5,
@@ -121,6 +122,7 @@ begin
                  
   stim_proc: process 
   begin
+      wait for 30 ns;
       --------------------
       -- Test Purpose 1 --
       --------------------
@@ -229,7 +231,9 @@ begin
   begin
     if (rising_edge(clk)) then   
       wr_en_4 <= full_3;
+      wr_en_4_ff <= wr_en_4;
       wr_en_5 <= full_4;
+      wr_en_5_ff <= wr_en_5;
     end if;
   end process; 
     
