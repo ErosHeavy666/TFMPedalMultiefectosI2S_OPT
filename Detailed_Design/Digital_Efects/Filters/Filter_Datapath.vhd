@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity Filter_Datapath is
   generic (
-    g_width : integer := 12
+    g_width : integer := 8
   );
   port(  
     clk           : in std_logic;
@@ -42,7 +42,7 @@ architecture Filter_Datapath_arch of Filter_Datapath is
   -- Components declaration   
   component register_d is 
     generic(
-      g_width : integer := 12);
+      g_width : integer := 8);
     port (
       clk     : in std_logic; 
       n_reset : in std_logic; 
@@ -58,7 +58,7 @@ begin
   -- Registers Instances for Datapath
   -------------------------------------------------------------------------------------------------------------------------------
   register_d_0: register_d
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -67,7 +67,7 @@ begin
        o_data => x0
   );  
   register_d_1: register_d
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -76,7 +76,7 @@ begin
        o_data => x1
   );                               
   register_d_2: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -85,7 +85,7 @@ begin
        o_data => x2
   );                                 
   register_d_3: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -94,7 +94,7 @@ begin
        o_data => x3
   );                                
   register_d_4: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -103,7 +103,7 @@ begin
        o_data => x4
   );                                
   register_d_5: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -112,7 +112,7 @@ begin
        o_data => x5
   );      
   register_d_6: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -121,7 +121,7 @@ begin
        o_data => x6
   );      
   register_d_7: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -130,7 +130,7 @@ begin
        o_data => x7
   );      
   register_d_8: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -139,7 +139,7 @@ begin
        o_data => x8
   );      
   register_d_9: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -148,7 +148,7 @@ begin
        o_data => x9
   );      
   register_d_10: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -157,7 +157,7 @@ begin
        o_data => x10
   );      
   register_d_11: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -166,7 +166,7 @@ begin
        o_data => x11
   );      
   register_d_12: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -175,7 +175,7 @@ begin
        o_data => x12
   );      
   register_d_13: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -184,7 +184,7 @@ begin
        o_data => x13
   );      
   register_d_14: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -193,7 +193,7 @@ begin
        o_data => x14
   );         
   register_d_15: register_d                            
-  generic map(g_width => 12)
+  generic map(g_width => 8)
   port map(
        clk => clk,  
        n_reset => reset_n,
@@ -224,39 +224,39 @@ begin
   process(filter_select)
   begin                
     if (filter_select = '1') then --LPF   
-        c0  <= "111111111101";
-        c1  <= "000000101111";
-        c2  <= "000001100000";
-        c3  <= "000001101100";
-        c4  <= "000010100011";
-        c5  <= "000011000000";
-        c6  <= "000011100001";
-        c7  <= "000011101101";
-        c8  <= "000011101101";
-        c9  <= "000011100001";
-        c10 <= "000011000000";
-        c11 <= "000010100011";
-        c12 <= "000001101100";  
-        c13 <= "000001100000";
-        c14 <= "000000101111";
-        c15 <= "111111111101";   
+        c0  <= "11111111";
+        c1  <= "00000010";
+        c2  <= "00000110";
+        c3  <= "00000110";
+        c4  <= "00001010";
+        c5  <= "00001100";
+        c6  <= "00001110";
+        c7  <= "00001110";
+        c8  <= "00001110";
+        c9  <= "00001110";
+        c10 <= "00001100";
+        c11 <= "00001010";
+        c12 <= "00000110";  
+        c13 <= "00000110";
+        c14 <= "00000010";
+        c15 <= "11111111";   
     else  --HPF      
-        c0  <= "000000010100";
-        c1  <= "000000101111";
-        c2  <= "111100111001";
-        c3  <= "111111111001";
-        c4  <= "111010101010";   
-        c5  <= "000000011110"; 
-        c6  <= "110101011100"; 
-        c7  <= "010000001000"; 
-        c8  <= "010000001000"; 
-        c9  <= "110101011100";  
-        c10 <= "000000011110";  
-        c11 <= "111010101010"; 
-        c12 <= "111111111001"; 
-        c13 <= "111100111001"; 
-        c14 <= "000000101111";
-        c15 <= "000000010100";             
+        c0  <= "00000001";
+        c1  <= "00000010";
+        c2  <= "11110011";
+        c3  <= "11111111";
+        c4  <= "11101010";   
+        c5  <= "00000001"; 
+        c6  <= "11010101"; 
+        c7  <= "01000000"; 
+        c8  <= "01000000"; 
+        c9  <= "11010101";  
+        c10 <= "00000001";  
+        c11 <= "11101010"; 
+        c12 <= "11111111"; 
+        c13 <= "11110011"; 
+        c14 <= "00000010";
+        c15 <= "00000001";             
       end if;
   end process;
   -------------------------------------------------------------------------------------------------------------------------------
@@ -323,7 +323,7 @@ begin
   mult <= mult_aux(g_width*2-2 downto 0);
   R1_next <= mult;    
   R2_next <= R1_reg;    
-  R3_next <= R2_reg(g_width*2-2 downto g_width*2-2-11) + M3_aux;
+  R3_next <= R2_reg(g_width*2-2 downto g_width*2-2-7) + M3_aux;
   M3_aux <= R3_reg when (M3 = '1') else (others => '0');       
   -------------------------------------------------------------------------------------------------------------------------------
   -- Output process: 

@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity efecto_overdrive is
   generic(
-    g_width : integer := 12 --Ancho del bus 
+    g_width : integer := 8 --Ancho del bus 
     );
   port ( 
     clk        : in std_logic; --MCLK                                                
@@ -33,9 +33,9 @@ end efecto_overdrive;
 architecture arch_efecto_overdrive of efecto_overdrive is
 
   -- Constants for threshold
-  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := x"D00"; --Umbral negativo
-  constant Vth_POSITIVE : signed(g_width-1 downto 0) := x"300"; --Umbral positivo
-  constant Vth_ZERO : signed(g_width-1 downto 0) := x"000";
+  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := x"D0"; --Umbral negativo
+  constant Vth_POSITIVE : signed(g_width-1 downto 0) := x"30"; --Umbral positivo
+  constant Vth_ZERO : signed(g_width-1 downto 0) := x"00";
   
   -- Signals 
   signal l_data_in_reg, l_data_in_next : signed(g_width-1 downto 0);

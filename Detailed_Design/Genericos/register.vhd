@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity register_d is
   generic(
-    g_width : integer := 12);
+    g_width : integer := 8);
   port (
     clk     : in std_logic; --Entrada del reloj general del sistema de 12MHz
     n_reset : in std_logic; --Reset síncrono del sistema 
