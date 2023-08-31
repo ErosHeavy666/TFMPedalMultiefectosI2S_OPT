@@ -16,7 +16,7 @@ use work.pkg_sine.all;
 entity efecto_vibrato is
   generic(
     n       : integer := 500; --Línea de retardo
-    g_width : integer := 12 --Ancho del bus  
+    g_width : integer := 10 --Ancho del bus  
   );
   port( 
     clk        : in std_logic; --MCLK                                            

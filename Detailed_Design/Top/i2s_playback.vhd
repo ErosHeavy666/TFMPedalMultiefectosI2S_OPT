@@ -15,7 +15,7 @@ use work.pkg_components.all;
 ------------
 entity i2s_playback IS
   generic(
-      g_width     :  integer := 12);                    
+      g_width     :  integer := 10);                    
   port(
       CLK_100MHZ  : in std_logic;                     
       N_RESET     : in std_logic;                     
@@ -96,7 +96,7 @@ begin
   reset <= not N_RESET;
   
   unit_digital_efects : digital_efects
-  generic map(g_width => 12)
+  generic map(g_width => 10)
   port map(
        clk        => master_clk, 
        reset_n    => reset,
@@ -138,7 +138,7 @@ begin
   
   -- Instance for LEDs component
   unit_leds : leds  
-    generic map(g_width => 12)
+    generic map(g_width => 10)
     port map(
       clk           => master_clk,
       n_reset       => n_reset,

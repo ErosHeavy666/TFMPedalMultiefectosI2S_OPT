@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity efecto_compressor is
   generic(
-    g_width : integer := 12 --Ancho del bus 
+    g_width : integer := 10 --Ancho del bus 
     );
   port ( 
     clk        : in std_logic; --MCLK                                                
@@ -31,14 +31,14 @@ end efecto_compressor;
 -- Architecture --
 ------------------
 architecture arch_efecto_compressor of efecto_compressor is
- 
+
   -- Constants for threshold
-  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := x"9FF"; --Umbral de la zona no líneal negativa --> +0.75
-  constant Vth_POSITIVE : signed(g_width-1 downto 0) := x"600"; --Umbral de la zona no lineal positiva --> -0.75
-  constant Vth_ZERO : signed(g_width-1 downto 0) := x"000";
+  constant Vth_NEGATIVE : signed(g_width-1 downto 0) := "10" & x"80"; --Umbral de la zona no líneal negativa --> +0.75
+  constant Vth_POSITIVE : signed(g_width-1 downto 0) := "01" & x"80"; --Umbral de la zona no lineal positiva --> -0.75
+  constant Vth_ZERO : signed(g_width-1 downto 0) := "00" & x"00";
   -- Constants for gain
-  constant g1 : signed((g_width/2-1) downto 0) := x"5" & "00"; --Ganancia para zona lineal --> 0.625
-  constant g2 : signed((g_width/2-1) downto 0) := x"1" & "00"; --Ganancia para zona no lineal --> 0.125
+  constant g1 : signed((g_width/2-1) downto 0) := "0" & x"A"; --Ganancia para zona lineal --> 0.625
+  constant g2 : signed((g_width/2-1) downto 0) := "0" & x"2"; --Ganancia para zona no lineal --> 0.125
 
   -- Signals 
   signal l_data_in_reg, l_data_in_next : signed(g_width-1 downto 0);

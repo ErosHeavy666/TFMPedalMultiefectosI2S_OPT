@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity efecto_delay is
   generic(
     n       : integer := 4000; --Línea de retardo
-    g_width : integer := 12 --Ancho del bus 
+    g_width : integer := 10 --Ancho del bus 
   );
   port ( 
     clk        : in std_logic; --MCLK                                            

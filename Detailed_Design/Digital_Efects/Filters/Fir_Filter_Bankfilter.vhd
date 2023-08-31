@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity Fir_Filter_Bankfilter is
   generic(
-    g_width : integer := 12);
+    g_width : integer := 10);
   port (  
     clk              : in std_logic; 
     reset_n          : in std_logic;             
@@ -38,7 +38,7 @@ architecture Fir_Filter_Bankfilter_arch of Fir_Filter_Bankfilter is
   -- Components declaration 
   component Filter_Datapath is 
     generic (
-      g_width : integer := 12
+      g_width : integer := 10
     );
     port(  
       clk           : in std_logic;

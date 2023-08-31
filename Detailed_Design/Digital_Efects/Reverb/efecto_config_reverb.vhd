@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity efecto_config_reverb is
   generic(
     n1      : integer := 1500;--Línea de retardo  
-    g_width : integer := 12); --Ancho del bus     
+    g_width : integer := 10); --Ancho del bus     
   port( 
     clk        : in std_logic; --MCLK                                             
     reset_n    : in std_logic; --Reset asíncrono a nivel alto del sistema global  

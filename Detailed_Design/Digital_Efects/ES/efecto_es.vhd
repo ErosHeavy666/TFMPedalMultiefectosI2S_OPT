@@ -14,7 +14,7 @@ use ieee.numeric_std.all;
 ------------
 entity efecto_es is
   generic(
-    g_width : integer := 12 --Ancho del bus
+    g_width : integer := 10 --Ancho del bus
   ); 
   port( 
     clk        : in std_logic; --MCLK                                            
