@@ -18,7 +18,7 @@ package pkg_project is
   constant total_delays_effects  : integer := 5; 
   constant total_normal_effects  : integer := 6; 
   constant n                     : integer := 5000;
-  constant width                 : integer := 16;
+  constant width                 : integer := 12;
     
   -- Constants for Encoding GNL selectors
   constant Disabled_delay_line : std_logic_vector(total_delays_effects-1 downto 0) := "00000";

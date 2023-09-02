@@ -31,9 +31,9 @@ end efecto_overdrive;
 architecture arch_efecto_overdrive of efecto_overdrive is
 
   -- Constants for threshold
-  constant Vth_NEGATIVE : signed(width-1 downto 0) := x"D000"; --Umbral negativo
-  constant Vth_POSITIVE : signed(width-1 downto 0) := x"3000"; --Umbral positivo
-  constant Vth_ZERO : signed(width-1 downto 0) := x"0000";
+  constant Vth_NEGATIVE : signed(width-1 downto 0) := x"D00"; --Umbral negativo
+  constant Vth_POSITIVE : signed(width-1 downto 0) := x"300"; --Umbral positivo
+  constant Vth_ZERO : signed(width-1 downto 0) := x"000";
   
   -- Signals 
   signal l_data_in_reg, l_data_in_next : signed(width-1 downto 0);

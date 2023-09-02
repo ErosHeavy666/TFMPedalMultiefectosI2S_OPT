@@ -31,12 +31,12 @@ end efecto_compressor;
 architecture arch_efecto_compressor of efecto_compressor is
  
   -- Constants for threshold
-  constant Vth_NEGATIVE : signed(width-1 downto 0) := x"9FFF"; --Umbral de la zona no líneal negativa --> +0.75
-  constant Vth_POSITIVE : signed(width-1 downto 0) := x"6000"; --Umbral de la zona no lineal positiva --> -0.75
-  constant Vth_ZERO : signed(width-1 downto 0) := x"0000";
+  constant Vth_NEGATIVE : signed(width-1 downto 0) := x"9FF"; --Umbral de la zona no líneal negativa --> +0.75
+  constant Vth_POSITIVE : signed(width-1 downto 0) := x"600"; --Umbral de la zona no lineal positiva --> -0.75
+  constant Vth_ZERO : signed(width-1 downto 0) := x"000";
   -- Constants for gain
-  constant g1 : signed((width/2-1) downto 0) := x"50"; --Ganancia para zona lineal --> 0.625
-  constant g2 : signed((width/2-1) downto 0) := x"10"; --Ganancia para zona no lineal --> 0.125
+  constant g1 : signed((width/2-1) downto 0) := x"5" & "00"; --Ganancia para zona lineal --> 0.625
+  constant g2 : signed((width/2-1) downto 0) := x"1" & "00"; --Ganancia para zona no lineal --> 0.125
 
   -- Signals 
   signal l_data_in_reg, l_data_in_next : signed(width-1 downto 0);
