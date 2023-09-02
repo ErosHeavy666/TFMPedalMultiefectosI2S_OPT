@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Sun Feb 26 21:02:34 2023
+// Date        : Sat Sep  2 20:00:39 2023
 // Host        : DESKTOP-K6HLBBJ running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top fifo_generator_test -prefix
-//               fifo_generator_test_ fifo_generator_test_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               C:/Users/eros_/Downloads/TFMPedalMultiefectosI2S_OPT_ReArch_V1_FIFO/PROJECT/PROJECT.srcs/sources_1/ip/fifo_generator_test/fifo_generator_test_sim_netlist.v
 // Design      : fifo_generator_test
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -600,6 +600,7 @@ module fifo_generator_test
         .wr_rst_busy(NLW_U0_wr_rst_busy_UNCONNECTED));
 endmodule
 
+(* ORIG_REF_NAME = "compare" *) 
 module fifo_generator_test_compare
    (comp0,
     \gmux.gm[4].gms.ms_0 ,
@@ -836,6 +837,7 @@ module fifo_generator_test_compare_2
         .O(rd_en_0));
 endmodule
 
+(* ORIG_REF_NAME = "dmem" *) 
 module fifo_generator_test_dmem
    (dout,
     clk,
@@ -2599,6 +2601,7 @@ module fifo_generator_test_dmem
         .S(\gpr1.dout_i_reg[15]_0 [8]));
 endmodule
 
+(* ORIG_REF_NAME = "fifo_generator_ramfifo" *) 
 module fifo_generator_test_fifo_generator_ramfifo
    (empty,
     full,
@@ -2704,6 +2707,7 @@ module fifo_generator_test_fifo_generator_ramfifo
         .srst(srst));
 endmodule
 
+(* ORIG_REF_NAME = "fifo_generator_top" *) 
 module fifo_generator_test_fifo_generator_top
    (empty,
     full,
@@ -2809,7 +2813,7 @@ endmodule
 (* C_WR_DEPTH_WRCH = "16" *) (* C_WR_FREQ = "1" *) (* C_WR_PNTR_WIDTH = "9" *) 
 (* C_WR_PNTR_WIDTH_AXIS = "10" *) (* C_WR_PNTR_WIDTH_RACH = "4" *) (* C_WR_PNTR_WIDTH_RDCH = "10" *) 
 (* C_WR_PNTR_WIDTH_WACH = "4" *) (* C_WR_PNTR_WIDTH_WDCH = "10" *) (* C_WR_PNTR_WIDTH_WRCH = "4" *) 
-(* C_WR_RESPONSE_LATENCY = "1" *) 
+(* C_WR_RESPONSE_LATENCY = "1" *) (* ORIG_REF_NAME = "fifo_generator_v13_2_3" *) 
 module fifo_generator_test_fifo_generator_v13_2_3
    (backup,
     backup_marker,
@@ -3822,6 +3826,7 @@ module fifo_generator_test_fifo_generator_v13_2_3
         .wr_en(wr_en));
 endmodule
 
+(* ORIG_REF_NAME = "fifo_generator_v13_2_3_synth" *) 
 module fifo_generator_test_fifo_generator_v13_2_3_synth
    (empty,
     full,
@@ -3860,6 +3865,7 @@ module fifo_generator_test_fifo_generator_v13_2_3_synth
         .wr_en(wr_en));
 endmodule
 
+(* ORIG_REF_NAME = "memory" *) 
 module fifo_generator_test_memory
    (dout,
     clk,
@@ -3926,6 +3932,7 @@ module fifo_generator_test_memory
         .srst(srst));
 endmodule
 
+(* ORIG_REF_NAME = "rd_bin_cntr" *) 
 module fifo_generator_test_rd_bin_cntr
    (Q,
     v1_reg,
@@ -4330,6 +4337,7 @@ module fifo_generator_test_rd_bin_cntr
         .O(\gc0.count_d1_reg[6]_0 ));
 endmodule
 
+(* ORIG_REF_NAME = "rd_logic" *) 
 module fifo_generator_test_rd_logic
    (out,
     empty,
@@ -4419,6 +4427,7 @@ module fifo_generator_test_rd_logic
         .v1_reg_1(\c2/v1_reg ));
 endmodule
 
+(* ORIG_REF_NAME = "rd_status_flags_ss" *) 
 module fifo_generator_test_rd_status_flags_ss
    (out,
     empty,
@@ -4517,6 +4526,7 @@ module fifo_generator_test_rd_status_flags_ss
         .S(srst));
 endmodule
 
+(* ORIG_REF_NAME = "wr_bin_cntr" *) 
 module fifo_generator_test_wr_bin_cntr
    (wr_en_0,
     Q,
@@ -4911,6 +4921,7 @@ module fifo_generator_test_wr_bin_cntr
         .O(\gcc0.gc0.count_d1_reg[8]_2 ));
 endmodule
 
+(* ORIG_REF_NAME = "wr_logic" *) 
 module fifo_generator_test_wr_logic
    (out,
     full,
@@ -5023,6 +5034,7 @@ module fifo_generator_test_wr_logic
         .wr_en_3(wr_en_3));
 endmodule
 
+(* ORIG_REF_NAME = "wr_status_flags_ss" *) 
 module fifo_generator_test_wr_status_flags_ss
    (out,
     full,

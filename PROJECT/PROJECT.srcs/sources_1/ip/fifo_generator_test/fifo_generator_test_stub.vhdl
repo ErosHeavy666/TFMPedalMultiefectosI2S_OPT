@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Sun Feb 26 21:02:34 2023
+-- Date        : Sat Sep  2 20:00:39 2023
 -- Host        : DESKTOP-K6HLBBJ running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top fifo_generator_test -prefix
---               fifo_generator_test_ fifo_generator_test_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               C:/Users/eros_/Downloads/TFMPedalMultiefectosI2S_OPT_ReArch_V1_FIFO/PROJECT/PROJECT.srcs/sources_1/ip/fifo_generator_test/fifo_generator_test_stub.vhdl
 -- Design      : fifo_generator_test
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tcsg324-1
