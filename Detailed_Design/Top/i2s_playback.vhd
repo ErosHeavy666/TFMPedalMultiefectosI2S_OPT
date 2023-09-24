@@ -16,7 +16,7 @@ use work.pkg_project.all;
 ------------
 entity i2s_playback IS                   
   port(
-      CLK_100MHZ  : in std_logic;                     
+      SYS_CLK     : in std_logic;                     
       N_RESET     : in std_logic;                     
       PLAY_ENABLE : in std_logic;
 --      BTNR        : in std_logic;
@@ -71,7 +71,7 @@ begin
   -- Instance for PLL component
   unit_clk_wiz_1: clk_wiz_1 
     port map(
-      clk_in1 => CLK_100MHZ, 
+      clk_in1 => SYS_CLK, 
       clk_out1 => master_clk
   );
   

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="MIG_Controller_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="MIG_Controller_tb" />
+            <top_module name="glbl" />
+            <top_module name="pkg_project" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="201000000001fs"></ZoomEndTime>
+      <Cursor1Time time="15712106768fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="219"></NameColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="58" />
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/reset_n" type="logic">
+      <obj_property name="ElementShortName">reset_n</obj_property>
+      <obj_property name="ObjectShortName">reset_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/enable_in" type="logic">
+      <obj_property name="ElementShortName">enable_in</obj_property>
+      <obj_property name="ObjectShortName">enable_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/SW13" type="logic">
+      <obj_property name="ElementShortName">SW13</obj_property>
+      <obj_property name="ObjectShortName">SW13</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/SW5" type="logic">
+      <obj_property name="ElementShortName">SW5</obj_property>
+      <obj_property name="ObjectShortName">SW5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/SW6" type="logic">
+      <obj_property name="ElementShortName">SW6</obj_property>
+      <obj_property name="ObjectShortName">SW6</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/l_data_out" type="array">
+      <obj_property name="ElementShortName">l_data_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">l_data_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/r_data_out" type="array">
+      <obj_property name="ElementShortName">r_data_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r_data_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_cmd_reg" type="array">
+      <obj_property name="ElementShortName">app_cmd_reg[2:0]</obj_property>
+      <obj_property name="ObjectShortName">app_cmd_reg[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_addr_reg" type="array">
+      <obj_property name="ElementShortName">app_addr_reg[26:0]</obj_property>
+      <obj_property name="ObjectShortName">app_addr_reg[26:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_en_reg" type="logic">
+      <obj_property name="ElementShortName">app_en_reg</obj_property>
+      <obj_property name="ObjectShortName">app_en_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_rdy_reg" type="logic">
+      <obj_property name="ElementShortName">app_rdy_reg</obj_property>
+      <obj_property name="ObjectShortName">app_rdy_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_wdf_data_reg" type="array">
+      <obj_property name="ElementShortName">app_wdf_data_reg[63:0]</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_data_reg[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_wdf_end_reg" type="logic">
+      <obj_property name="ElementShortName">app_wdf_end_reg</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_end_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_wdf_mask_reg" type="array">
+      <obj_property name="ElementShortName">app_wdf_mask_reg[7:0]</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_mask_reg[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_wdf_wren_reg" type="logic">
+      <obj_property name="ElementShortName">app_wdf_wren_reg</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_wren_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_wdf_rdy_reg" type="logic">
+      <obj_property name="ElementShortName">app_wdf_rdy_reg</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_rdy_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_rd_data_reg" type="array">
+      <obj_property name="ElementShortName">app_rd_data_reg[63:0]</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data_reg[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_rd_data_end_reg" type="logic">
+      <obj_property name="ElementShortName">app_rd_data_end_reg</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data_end_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/app_rd_data_valid_reg" type="logic">
+      <obj_property name="ElementShortName">app_rd_data_valid_reg</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data_valid_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/state_reg" type="other">
+      <obj_property name="ElementShortName">state_reg</obj_property>
+      <obj_property name="ObjectShortName">state_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_dq" type="array">
+      <obj_property name="ElementShortName">ddr2_dq[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_dq[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_dqs_p" type="array">
+      <obj_property name="ElementShortName">ddr2_dqs_p[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_dqs_p[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_dqs_n" type="array">
+      <obj_property name="ElementShortName">ddr2_dqs_n[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_dqs_n[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_addr" type="array">
+      <obj_property name="ElementShortName">ddr2_addr[12:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_addr[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_ba" type="array">
+      <obj_property name="ElementShortName">ddr2_ba[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_ba[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_ras_n" type="logic">
+      <obj_property name="ElementShortName">ddr2_ras_n</obj_property>
+      <obj_property name="ObjectShortName">ddr2_ras_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_cas_n" type="logic">
+      <obj_property name="ElementShortName">ddr2_cas_n</obj_property>
+      <obj_property name="ObjectShortName">ddr2_cas_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_we_n" type="logic">
+      <obj_property name="ElementShortName">ddr2_we_n</obj_property>
+      <obj_property name="ObjectShortName">ddr2_we_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_ck_p" type="array">
+      <obj_property name="ElementShortName">ddr2_ck_p[0:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_ck_p[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_ck_n" type="array">
+      <obj_property name="ElementShortName">ddr2_ck_n[0:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_ck_n[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_cke" type="array">
+      <obj_property name="ElementShortName">ddr2_cke[0:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_cke[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_cs_n" type="array">
+      <obj_property name="ElementShortName">ddr2_cs_n[0:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_cs_n[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_dm" type="array">
+      <obj_property name="ElementShortName">ddr2_dm[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_dm[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ddr2_odt" type="array">
+      <obj_property name="ElementShortName">ddr2_odt[0:0]</obj_property>
+      <obj_property name="ObjectShortName">ddr2_odt[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_wdf_mask" type="array">
+      <obj_property name="ElementShortName">app_wdf_mask[7:0]</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_mask[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_rd_data" type="array">
+      <obj_property name="ElementShortName">app_rd_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_rd_data_end" type="logic">
+      <obj_property name="ElementShortName">app_rd_data_end</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data_end</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_rd_data_valid" type="logic">
+      <obj_property name="ElementShortName">app_rd_data_valid</obj_property>
+      <obj_property name="ObjectShortName">app_rd_data_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_wdf_rdy" type="logic">
+      <obj_property name="ElementShortName">app_wdf_rdy</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_sr_req" type="logic">
+      <obj_property name="ElementShortName">app_sr_req</obj_property>
+      <obj_property name="ObjectShortName">app_sr_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_ref_req" type="logic">
+      <obj_property name="ElementShortName">app_ref_req</obj_property>
+      <obj_property name="ObjectShortName">app_ref_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_zq_req" type="logic">
+      <obj_property name="ElementShortName">app_zq_req</obj_property>
+      <obj_property name="ObjectShortName">app_zq_req</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_sr_active" type="logic">
+      <obj_property name="ElementShortName">app_sr_active</obj_property>
+      <obj_property name="ObjectShortName">app_sr_active</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_ref_ack" type="logic">
+      <obj_property name="ElementShortName">app_ref_ack</obj_property>
+      <obj_property name="ObjectShortName">app_ref_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_zq_ack" type="logic">
+      <obj_property name="ElementShortName">app_zq_ack</obj_property>
+      <obj_property name="ObjectShortName">app_zq_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ui_clk_sync_rst" type="logic">
+      <obj_property name="ElementShortName">ui_clk_sync_rst</obj_property>
+      <obj_property name="ObjectShortName">ui_clk_sync_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/init_calib_complete" type="logic">
+      <obj_property name="ElementShortName">init_calib_complete</obj_property>
+      <obj_property name="ObjectShortName">init_calib_complete</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/ui_clk" type="logic">
+      <obj_property name="ElementShortName">ui_clk</obj_property>
+      <obj_property name="ObjectShortName">ui_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_en" type="logic">
+      <obj_property name="ElementShortName">app_en</obj_property>
+      <obj_property name="ObjectShortName">app_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_wdf_wren" type="logic">
+      <obj_property name="ElementShortName">app_wdf_wren</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_wren</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_wdf_end" type="logic">
+      <obj_property name="ElementShortName">app_wdf_end</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_end</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_wdf_data" type="array">
+      <obj_property name="ElementShortName">app_wdf_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">app_wdf_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_addr" type="array">
+      <obj_property name="ElementShortName">app_addr[26:0]</obj_property>
+      <obj_property name="ObjectShortName">app_addr[26:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_cmd" type="array">
+      <obj_property name="ElementShortName">app_cmd[2:0]</obj_property>
+      <obj_property name="ObjectShortName">app_cmd[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/app_rdy" type="logic">
+      <obj_property name="ElementShortName">app_rdy</obj_property>
+      <obj_property name="ObjectShortName">app_rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/sys_clk_i" type="logic">
+      <obj_property name="ElementShortName">sys_clk_i</obj_property>
+      <obj_property name="ObjectShortName">sys_clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/MIG_Controller_tb/unit_MIG_Controller/mig_7series_0_unit/sys_rst" type="logic">
+      <obj_property name="ElementShortName">sys_rst</obj_property>
+      <obj_property name="ObjectShortName">sys_rst</obj_property>
+   </wvobject>
+</wave_config>
